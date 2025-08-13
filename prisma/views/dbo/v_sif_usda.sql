@@ -1,0 +1,515 @@
+SELECT
+  INSP.PLANILLA_SAG,
+  INSP.FEC_FUM,
+  INSP.GUIA_FUM,
+  INSP.CER_FUM,
+  UPPER(INSP.CER_SAG) AS CER_SAG,
+  INSP.TIPO_LOT,
+  INSP.GUIA_SAG,
+  UPPER(INSP.ZON) AS ZON,
+  INSP.COD_FRI,
+  INSP.COD_MER,
+  M.NOM_MER AS MERCADO,
+  INSP.COD_MER1,
+  M1.NOM_MER AS MERCADO1,
+  INSP.COD_MER2,
+  M2.NOM_MER AS MERCADO2,
+  INSP.COD_MER3,
+  M3.NOM_MER AS MERCADO3,
+  INSP.ESTA_FUIN,
+  INSP.NRO_MIX,
+  INSP.ALTURA,
+  INSP.TEMP_PAC,
+  INSP.PLANILLA,
+  INSP.FECHA_PAC,
+  INSP.FECHA_RPA,
+  INSP.GUIA,
+  INSP.COD_ENV,
+  INSP.COD_EMB,
+  INSP.COD_PRO,
+  INSP.COD_ESP,
+  INSP.COD_VAR,
+  INSP.COD_CAL,
+  INSP.COD_CAT,
+  INSP.COD_PACK,
+  INSP.COD_ETI,
+  INSP.PLU,
+  INSP.LOTE,
+  INSP.CAJAS,
+  INSP.CAJ_BAS,
+  E.NOM_ESP,
+  V.NOM_VAR,
+  P.NOM_PRO,
+  PK.NOM_PACK,
+  F.NOM_FRI,
+  ENV.NOM_ENV,
+  INSP.SOL_SAG,
+  UPPER(INSP.COD_TEM) AS COD_TEM,
+  UPPER(INSP.COD_EMP) AS COD_EMP,
+  INSP2.CAJAS AS CAJASLOTE,
+  INSP.TIPO_INSP,
+  INSP.COD_TIPO_FUM,
+  ISNULL(CO.DESCRIPCION, N'') AS COMUNA,
+  ISNULL(PR.DESCRIPCION, N'') AS PROVINCIA,
+  ISNULL(C.REGION_REPORTE, N'') AS REGION_REPORTE,
+  ISNULL(INSP.COD_PRE, N'') AS COD_PRE,
+  ISNULL(INSP.COD_CUA, N'') AS COD_CUA,
+  ISNULL(
+    (
+      SELECT
+        MAX(COD_INSCRIPCION) AS Expr1
+      FROM
+        Erpfrusys.dbo.PREDIOS_INSPECCION AS PRE_INSP
+      WHERE
+        (COD_EMP = INSP.COD_EMP)
+        AND (COD_TEM = INSP.COD_TEM)
+        AND (COD_MER = INSP.COD_MER)
+        AND (COD_PRO = INSP.COD_PRO)
+        AND (COD_PRE = INSP.COD_PRE)
+    ),
+    N''
+  ) AS CODIGO_INSCRIPCION,
+  COMUNADOS.DESCRIPCION AS [Nombre Comuna Packing],
+  PROVDOS.DESCRIPCION AS [Nombre Provincia Packing],
+  PK.COD_COM AS [Comuna Packing],
+  PK.COD_PROVC AS [Provincia Packing],
+  Erpfrusys.dbo.EMPRESAS.NOM_EMP AS [Nombre Empresa],
+  COMUNADOS.DESCRIPCION AS Nombre_Comuna_Packing,
+  PROVDOS.DESCRIPCION AS Nombre_Provincia_Packing,
+  PK.COD_COM AS Comuna_Packing,
+  PK.COD_PROVC AS Provincia_Packing,
+  Erpfrusys.dbo.EMPRESAS.NOM_EMP AS Nombre_Empresa,
+  INSP.CAJAS * Erpfrusys.dbo.ENVASEOPERACIONAL.PESO_NETO AS KILOS,
+  INSP.FEC_SAG AS FECHA_SAG_INSPECCION,
+  ISNULL(INSP.COD_VAR_ETI, INSP.COD_VAR) AS COD_VAR_ETI,
+  ISNULL(VE.NOM_VAR, V.NOM_VAR) AS VARIEDA_ETIQUETADA,
+  INSP.COD_PRO_ETIQUETADO,
+  P_E.NOM_PRO AS NOM_PRO_ETIQUETADO,
+  PK.CSP,
+  PROV_PRE.COD_PROVC AS Cod_Provincia_Predio,
+  PROV_PRE.DESCRIPCION AS Provincia_Predio,
+  COM_PRE.COD_COM AS Cod_Comuna_Predio,
+  COM_PRE.DESCRIPCION AS Comuna_Predio,
+  PROV_PRE_ETI.COD_PROVC AS Cod_Provincia_Predio_Eti,
+  PROV_PRE_ETI.DESCRIPCION AS Provincia_Predio_Eti,
+  COM_PRE_ETI.COD_COM AS Cod_Comuna_Predio_Eti,
+  COM_PRE_ETI.DESCRIPCION AS Comuna_Predio_Eti,
+  ISNULL(C.CODIGO_PLANTA_SAG, N'') AS CODIGO_PLANTA_SAG,
+  ISNULL(
+    (
+      SELECT
+        SUM(I.CAJAS) AS Expr1
+      FROM
+        (
+          SELECT
+            COD_EMP,
+            COD_TEM,
+            COD_ESP,
+            COD_ENV,
+            COD_EMB,
+            CAJAS
+          FROM
+            Erpfrusys.dbo.INSPECCION
+          WHERE
+            (NRO_MIX = 0)
+            AND (COD_EMP = INSP.COD_EMP)
+            AND (COD_TEM = INSP.COD_TEM)
+            AND (CER_SAG = 'SF')
+            AND (PLANILLA_SAG = INSP.PLANILLA_SAG)
+          UNION
+          ALL
+          SELECT
+            COD_EMP,
+            COD_TEM,
+            COD_ESP,
+            COD_ENV,
+            COD_EMB,
+            CAJAS
+          FROM
+            Erpfrusys.dbo.MIXINSPECCION
+          WHERE
+            (COD_EMP = INSP.COD_EMP)
+            AND (COD_TEM = INSP.COD_TEM)
+            AND (CER_SAG = 'SF')
+            AND (PLANILLA_SAG = INSP.PLANILLA_SAG)
+        ) AS I
+        JOIN Erpfrusys.dbo.ENVASEOPERACIONAL AS EO ON I.COD_EMP = EO.COD_EMP
+        AND I.COD_TEM = EO.COD_TEM
+        AND I.COD_ESP = EO.COD_ESP
+        AND I.COD_ENV = EO.COD_ENV
+        AND I.COD_EMB = EO.COD_EMB
+      WHERE
+        (EO.PESO_NETO <= 5)
+    ),
+    0
+  ) AS CAT_A_FUM,
+  ISNULL(
+    (
+      SELECT
+        SUM(I_2.CAJAS) AS Expr1
+      FROM
+        (
+          SELECT
+            COD_EMP,
+            COD_TEM,
+            COD_ESP,
+            COD_ENV,
+            COD_EMB,
+            CAJAS
+          FROM
+            Erpfrusys.dbo.INSPECCION AS INSPECCION_2
+          WHERE
+            (NRO_MIX = 0)
+            AND (COD_EMP = INSP.COD_EMP)
+            AND (COD_TEM = INSP.COD_TEM)
+            AND (CER_SAG = 'SF')
+            AND (PLANILLA_SAG = INSP.PLANILLA_SAG)
+          UNION
+          ALL
+          SELECT
+            COD_EMP,
+            COD_TEM,
+            COD_ESP,
+            COD_ENV,
+            COD_EMB,
+            CAJAS
+          FROM
+            Erpfrusys.dbo.MIXINSPECCION AS MIXINSPECCION_2
+          WHERE
+            (COD_EMP = INSP.COD_EMP)
+            AND (COD_TEM = INSP.COD_TEM)
+            AND (CER_SAG = 'SF')
+            AND (PLANILLA_SAG = INSP.PLANILLA_SAG)
+        ) AS I_2
+        JOIN Erpfrusys.dbo.ENVASEOPERACIONAL AS EO ON I_2.COD_EMP = EO.COD_EMP
+        AND I_2.COD_TEM = EO.COD_TEM
+        AND I_2.COD_ESP = EO.COD_ESP
+        AND I_2.COD_ENV = EO.COD_ENV
+        AND I_2.COD_EMB = EO.COD_EMB
+      WHERE
+        (EO.PESO_NETO > 5)
+        AND (EO.PESO_NETO <= 10)
+    ),
+    0
+  ) AS CAT_B_FUM,
+  ISNULL(
+    (
+      SELECT
+        SUM(I_1.CAJAS) AS Expr1
+      FROM
+        (
+          SELECT
+            COD_EMP,
+            COD_TEM,
+            COD_ESP,
+            COD_ENV,
+            COD_EMB,
+            CAJAS
+          FROM
+            Erpfrusys.dbo.INSPECCION AS INSPECCION_1
+          WHERE
+            (NRO_MIX = 0)
+            AND (COD_EMP = INSP.COD_EMP)
+            AND (COD_TEM = INSP.COD_TEM)
+            AND (CER_SAG = 'SF')
+            AND (PLANILLA_SAG = INSP.PLANILLA_SAG)
+          UNION
+          ALL
+          SELECT
+            COD_EMP,
+            COD_TEM,
+            COD_ESP,
+            COD_ENV,
+            COD_EMB,
+            CAJAS
+          FROM
+            Erpfrusys.dbo.MIXINSPECCION AS MIXINSPECCION_1
+          WHERE
+            (COD_EMP = INSP.COD_EMP)
+            AND (COD_TEM = INSP.COD_TEM)
+            AND (CER_SAG = 'SF')
+            AND (PLANILLA_SAG = INSP.PLANILLA_SAG)
+        ) AS I_1
+        JOIN Erpfrusys.dbo.ENVASEOPERACIONAL AS EO ON I_1.COD_EMP = EO.COD_EMP
+        AND I_1.COD_TEM = EO.COD_TEM
+        AND I_1.COD_ESP = EO.COD_ESP
+        AND I_1.COD_ENV = EO.COD_ENV
+        AND I_1.COD_EMB = EO.COD_EMB
+      WHERE
+        (EO.PESO_NETO > 10)
+    ),
+    0
+  ) AS CAT_C_FUM,
+  C.IDP,
+  INSP2.TEMPERATURA,
+  PR.DESCRIPCION AS [Nombre Provincia Productor],
+  CO.DESCRIPCION AS [Nombre Comuna Productor],
+  INSP.CSG,
+  (
+    CASE
+      WHEN PEI.SW_IDG = 0 THEN ISNULL(
+        REPLACE(
+          LTRIM(REPLACE(PEI.COD_INSCRIPCION, '0', ' ')),
+          ' ',
+          '0'
+        ),
+        ''
+      )
+      ELSE ''
+    END
+  ) AS SDP,
+  PR_ETI.DESCRIPCION AS [Nombre Provincia Productor Eti],
+  CO_ETI.DESCRIPCION AS [Nombre Comuna Productor Eti ],
+  PROV_PRE.DESCRIPCION AS NOMBREPROV_PREDIO,
+  COM_PRE.DESCRIPCION AS NOMBRECOM_PREDIO,
+  ISNULL(INSP.PK_ORIGINAL, 0) AS NUMERO_PROCESO
+FROM
+  (
+    SELECT
+      PLANILLA_SAG,
+      FEC_FUM,
+      GUIA_FUM,
+      CER_FUM,
+      CER_SAG,
+      TIPO_LOT,
+      GUIA_SAG,
+      ZON,
+      COD_FRI,
+      COD_MER,
+      COD_MER1,
+      COD_MER2,
+      COD_MER3,
+      ESTA_FUIN,
+      NRO_MIX,
+      ALTURA,
+      TEMP_PAC,
+      PLANILLA,
+      FECHA_PAC,
+      FECHA_RPA,
+      GUIA,
+      COD_ENV,
+      COD_EMB,
+      ISNULL(COD_PRO_INS, ISNULL(COD_PRO_ETIQUETADO, COD_PRO)) AS COD_PRO,
+      COD_ESP,
+      COD_VAR,
+      COD_CAL,
+      COD_CAT,
+      COD_PACK,
+      COD_ETI,
+      PLU,
+      LOTE,
+      CAJAS,
+      CAJ_BAS,
+      SOL_SAG,
+      COD_TEM,
+      COD_EMP,
+      TIPO_INSP,
+      COD_TIPO_FUM,
+      COD_PRE,
+      COD_CUA,
+      FEC_SAG,
+      COD_VAR_ETI,
+      COD_PRO_ETIQUETADO,
+      ISNULL(COD_PRE, COD_PRO_ETIQUETADO) AS CSG,
+      (
+        CASE
+          WHEN isnull(PK_ORIGINAL, 0) = 0 THEN (
+            SELECT
+              TOP (1) PK_ORIGINAL
+            FROM
+              Erpfrusys.dbo.REPALETIZADOS
+            WHERE
+              cod_emp = INSPECCION_3.cod_emp
+              AND cod_tem = INSPECCION_3.cod_tem
+              AND zon = INSPECCION_3.zon
+              AND lote = INSPECCION_3.lote
+          )
+          ELSE PK_ORIGINAL
+        END
+      ) AS PK_ORIGINAL
+    FROM
+      Erpfrusys.dbo.INSPECCION AS INSPECCION_3
+    WHERE
+      (NRO_MIX = 0)
+    UNION
+    ALL
+    SELECT
+      PLANILLA_SAG,
+      FEC_FUM,
+      GUIA_FUM,
+      CER_FUM,
+      CER_SAG,
+      TIPO_LOT,
+      GUIA_SAG,
+      ZON,
+      COD_FRI,
+      COD_MER,
+      COD_MER1,
+      COD_MER2,
+      COD_MER3,
+      ESTA_FUIN,
+      NRO_MIX,
+      ALTURA,
+      TEMP_PAC,
+      ISNULL(PK_ORIGINAL, PLANILLA) AS planilla,
+      FECHA_PAC,
+      FECHA_RPA,
+      GUIA,
+      COD_ENV,
+      COD_EMB,
+      ISNULL(COD_PRO_INS, ISNULL(COD_PRO_ETIQUETADO, COD_PRO)) AS COD_PRO,
+      COD_ESP,
+      COD_VAR,
+      COD_CAL,
+      COD_CAT,
+      COD_PACK,
+      COD_ETI,
+      PLU,
+      LOTE,
+      CAJAS,
+      CAJ_BAS,
+      SOL_SAG,
+      COD_TEM,
+      COD_EMP,
+      TIPO_INSP,
+      COD_TIPO_FUM,
+      COD_PRE,
+      COD_CUA,
+      FEC_SAG,
+      COD_VAR_ETI,
+      COD_PRO_ETIQUETADO,
+      ISNULL(COD_PRE, COD_PRO_ETIQUETADO) AS CSG,
+      (
+        CASE
+          WHEN isnull(PK_ORIGINAL, 0) = 0 THEN ISNULL(
+            (
+              SELECT
+                TOP (1) PK_ORIGINAL
+              FROM
+                Erpfrusys.dbo.REPALETIZADOMIX
+              WHERE
+                cod_emp = MIXINSPECCION_3.cod_emp
+                AND cod_tem = MIXINSPECCION_3.cod_tem
+                AND zon = MIXINSPECCION_3.zon
+                AND lote = MIXINSPECCION_3.lote
+                AND COD_PRO = MIXINSPECCION_3.COD_PRO
+            ),
+            (
+              SELECT
+                TOP (1) PK_ORIGINAL
+              FROM
+                Erpfrusys.dbo.REPALETIZADOS
+              WHERE
+                cod_emp = MIXINSPECCION_3.cod_emp
+                AND cod_tem = MIXINSPECCION_3.cod_tem
+                AND zon = MIXINSPECCION_3.zon
+                AND lote = MIXINSPECCION_3.lote
+            )
+          )
+          ELSE PK_ORIGINAL
+        END
+      ) AS PK_ORIGINAL
+    FROM
+      Erpfrusys.dbo.MIXINSPECCION AS MIXINSPECCION_3
+  ) AS INSP
+  JOIN Erpfrusys.dbo.INSPECCION AS INSP2 ON INSP2.COD_EMP = INSP.COD_EMP
+  AND INSP2.COD_TEM = INSP.COD_TEM
+  AND INSP2.ZON = INSP.ZON
+  AND INSP2.CER_SAG = INSP.CER_SAG
+  AND INSP2.GUIA_SAG = INSP.GUIA_SAG
+  AND INSP2.LOTE = INSP.LOTE
+  LEFT JOIN Erpfrusys.dbo.PRODUCTORES AS P ON P.COD_PRO = INSP.COD_PRO
+  AND P.COD_TEM = INSP.COD_TEM
+  AND P.COD_EMP = INSP.COD_EMP
+  JOIN Erpfrusys.dbo.PACKINGS AS PK ON INSP.COD_PACK = PK.COD_PACK
+  AND INSP.COD_TEM = PK.COD_TEM
+  AND INSP.COD_EMP = PK.COD_EMP
+  JOIN Erpfrusys.dbo.FRIOS AS F ON INSP.COD_FRI = F.COD_FRI
+  AND INSP.COD_TEM = F.COD_TEM
+  AND INSP.COD_EMP = F.COD_EMP
+  JOIN Erpfrusys.dbo.ENVASE AS ENV ON INSP.COD_ENV = ENV.COD_ENV
+  AND INSP.COD_TEM = ENV.COD_TEM
+  AND INSP.COD_EMP = ENV.COD_EMP
+  JOIN Erpfrusys.dbo.VARIEDAD AS V ON INSP.COD_VAR = V.COD_VAR
+  AND INSP.COD_ESP = V.COD_ESP
+  AND INSP.COD_TEM = V.COD_TEM
+  AND INSP.COD_EMP = V.COD_EMP
+  JOIN Erpfrusys.dbo.ESPECIE AS E ON INSP.COD_ESP = E.COD_ESP
+  AND INSP.COD_TEM = E.COD_TEM
+  AND INSP.COD_EMP = E.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.MERCADO AS M ON INSP.COD_MER = M.COD_MER
+  AND INSP.COD_TEM = M.COD_TEM
+  AND INSP.COD_EMP = M.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.MERCADO AS M1 ON INSP.COD_MER1 = M1.COD_MER
+  AND INSP.COD_TEM = M1.COD_TEM
+  AND INSP.COD_EMP = M1.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.MERCADO AS M2 ON INSP.COD_MER2 = M2.COD_MER
+  AND INSP.COD_TEM = M2.COD_TEM
+  AND INSP.COD_EMP = M2.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.MERCADO AS M3 ON INSP.COD_MER3 = M3.COD_MER
+  AND INSP.COD_TEM = M3.COD_TEM
+  AND INSP.COD_EMP = M3.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.COMUNAS AS CO ON P.COD_EMP = CO.COD_EMP
+  AND P.COD_TEM = CO.COD_TEM
+  AND P.COD_COM = CO.COD_COM
+  LEFT JOIN Erpfrusys.dbo.PROVINCIAS AS PR ON P.COD_EMP = PR.COD_EMP
+  AND P.COD_TEM = PR.COD_TEM
+  AND P.COD_PROVC = PR.COD_PROVC
+  LEFT JOIN Erpfrusys.dbo.CONFIGURACION_SAG AS C ON INSP.COD_FRI = C.COD_FRI
+  AND INSP.COD_TEM = C.COD_TEM
+  AND INSP.COD_EMP = C.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.PROVINCIAS AS PROVDOS ON PROVDOS.COD_EMP = PK.COD_EMP
+  AND PROVDOS.COD_TEM = PK.COD_TEM
+  AND PROVDOS.COD_PROVC = PK.COD_PROVC
+  LEFT JOIN Erpfrusys.dbo.COMUNAS AS COMUNADOS ON COMUNADOS.COD_EMP = PK.COD_EMP
+  AND COMUNADOS.COD_TEM = PK.COD_TEM
+  AND COMUNADOS.COD_COM = PK.COD_COM
+  LEFT JOIN Erpfrusys.dbo.EMPRESAS ON Erpfrusys.dbo.EMPRESAS.COD_EMP = INSP.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.ENVASEOPERACIONAL ON INSP.COD_TEM = Erpfrusys.dbo.ENVASEOPERACIONAL.COD_TEM
+  AND INSP.COD_EMP = Erpfrusys.dbo.ENVASEOPERACIONAL.COD_EMP
+  AND INSP.COD_ESP = Erpfrusys.dbo.ENVASEOPERACIONAL.COD_ESP
+  AND INSP.COD_ENV = Erpfrusys.dbo.ENVASEOPERACIONAL.COD_ENV
+  AND INSP.COD_EMB = Erpfrusys.dbo.ENVASEOPERACIONAL.COD_EMB
+  LEFT JOIN Erpfrusys.dbo.VARIEDAD AS VE ON INSP.COD_VAR_ETI = VE.COD_VAR
+  AND INSP.COD_ESP = VE.COD_ESP
+  AND INSP.COD_TEM = VE.COD_TEM
+  AND INSP.COD_EMP = VE.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.PRODUCTORES AS P_E ON P_E.COD_PRO = INSP.COD_PRO_ETIQUETADO
+  AND P_E.COD_TEM = INSP.COD_TEM
+  AND P_E.COD_EMP = INSP.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.COMUNAS AS CO_ETI ON P_E.COD_EMP = CO_ETI.COD_EMP
+  AND P_E.COD_TEM = CO_ETI.COD_TEM
+  AND P_E.COD_COM = CO_ETI.COD_COM
+  LEFT JOIN Erpfrusys.dbo.PROVINCIAS AS PR_ETI ON P_E.COD_EMP = PR_ETI.COD_EMP
+  AND P_E.COD_TEM = PR_ETI.COD_TEM
+  AND P_E.COD_PROVC = PR_ETI.COD_PROVC
+  LEFT JOIN Erpfrusys.dbo.PREDIOS AS PRED ON INSP.COD_EMP = PRED.COD_EMP
+  AND INSP.COD_TEM = PRED.COD_TEM
+  AND INSP.COD_PRO = PRED.COD_PRO
+  AND INSP.COD_PRE = PRED.COD_PRE
+  LEFT JOIN Erpfrusys.dbo.PROVINCIAS AS PROV_PRE ON PRED.COD_EMP = PROV_PRE.COD_EMP
+  AND PRED.COD_TEM = PROV_PRE.COD_TEM
+  AND PRED.COD_PROVC = PROV_PRE.COD_PROVC
+  LEFT JOIN Erpfrusys.dbo.COMUNAS AS COM_PRE ON PRED.COD_EMP = COM_PRE.COD_EMP
+  AND PRED.COD_TEM = COM_PRE.COD_TEM
+  AND PRED.COD_COM = COM_PRE.COD_COM
+  LEFT JOIN Erpfrusys.dbo.PREDIOS AS PRED_ETI ON INSP.COD_EMP = PRED_ETI.COD_EMP
+  AND INSP.COD_TEM = PRED_ETI.COD_TEM
+  AND INSP.COD_PRO_ETIQUETADO = PRED_ETI.COD_PRO
+  AND INSP.COD_PRE = PRED_ETI.COD_PRE
+  LEFT JOIN Erpfrusys.dbo.PROVINCIAS AS PROV_PRE_ETI ON PRED_ETI.COD_EMP = PROV_PRE_ETI.COD_EMP
+  AND PRED_ETI.COD_TEM = PROV_PRE_ETI.COD_TEM
+  AND PRED_ETI.COD_PROVC = PROV_PRE_ETI.COD_PROVC
+  LEFT JOIN Erpfrusys.dbo.COMUNAS AS COM_PRE_ETI ON PRED_ETI.COD_EMP = COM_PRE_ETI.COD_EMP
+  AND PRED_ETI.COD_TEM = COM_PRE_ETI.COD_TEM
+  AND PRED_ETI.COD_COM = COM_PRE_ETI.COD_COM
+  LEFT JOIN Erpfrusys.dbo.PREDIOS_INSPECCION AS PEI ON PEI.COD_EMP = INSP.COD_EMP
+  AND PEI.COD_TEM = INSP.COD_TEM
+  AND PEI.COD_PRO = INSP.COD_PRO
+  AND PEI.COD_PRE = INSP.COD_PRE
+  AND PEI.COD_CUA = INSP.COD_CUA
+  AND PEI.COD_MER = INSP.COD_MER
+WHERE
+  C.COD_TEM = 7
+  AND INSP.CER_SAG = 'U'
+  AND E.COD_ESP IN ('40', '41', '42', '43');

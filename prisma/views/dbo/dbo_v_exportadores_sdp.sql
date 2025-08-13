@@ -1,0 +1,17 @@
+SELECT
+  DISTINCT e.NOM_EXP,
+  pi.COD_PRO,
+  e.COD_EXP,
+  pi.COD_INSCRIPCION AS sdp,
+  pi.COD_PRE,
+  pi.COD_CUA
+FROM
+  Erpfrusys.dbo.PREDIOS_INSPECCION AS pi
+  LEFT JOIN Erpfrusys.dbo.PRODUCTOR_X_EXPORTADOR AS pxe ON pi.COD_PRO = pxe.COD_PRO
+  AND pi.COD_TEM = pxe.COD_TEM
+  AND pi.COD_EMP = pxe.COD_EMP
+  LEFT JOIN Erpfrusys.dbo.EXPORTADORES AS e ON pxe.COD_EXP = e.COD_EXP
+  AND pi.COD_TEM = e.COD_TEM
+  AND pi.COD_EMP = e.COD_EMP
+WHERE
+  pi.COD_TEM = '7';

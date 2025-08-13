@@ -1,0 +1,7 @@
+SELECT
+  *
+FROM
+  [192.168.1.104].erpfrusys.dbo.RECEPCIONMATERIALES AS r
+WHERE
+  r.COD_TEM = 7
+  AND r.ID_ORDEN = 0;

@@ -1,0 +1,90 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./generated/client4"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model validaciones {
+  id        Int      @id(map: "Validacion_pkey") @default(autoincrement())
+  Folio     String   @unique(map: "Validacion_Folio_key") @db.NVarChar(100)
+  Cajas     Int
+  Especie   String   @db.NVarChar(30)
+  Estado    Boolean  @default(false, map: "Validacion_Estado_df")
+  Camara    String   @db.NVarChar(100)
+  Usuario   String
+  Packing   String
+  createdAt DateTime @default(now(), map: "Validacion_createdAt_df")
+  updatedAt DateTime
+}
+
+model dm_motivo_rechazo {
+  id_motivo     Int          @id(map: "PK_dm_motivo_rechazo_id") @default(autoincrement())
+  nombre_motivo String?      @db.NVarChar(300)
+  estado_motivo Boolean?
+  rechazados    rechazados[]
+}
+
+model rechazados {
+  id_rechazado         Int                @id(map: "PK_rechazados_id_rechazado")
+  folio_rechazado      String?            @db.NVarChar(100)
+  id_motivo_rechazo_fk Int?
+  fecha_rechazado      DateTime?
+  usuario              String?
+  cajas                Int?
+  camara               String?            @db.NVarChar(100)
+  nombre_estado        String?            @db.NVarChar(100)
+  estado               Boolean?
+  packing              String?
+  especie              String?            @db.NVarChar(30)
+  dm_motivo_rechazo    dm_motivo_rechazo? @relation(fields: [id_motivo_rechazo_fk], references: [id_motivo], onDelete: NoAction, onUpdate: NoAction, map: "FK__rechazado__id_mo__2FCF1A8A")
+
+  @@index([id_motivo_rechazo_fk], map: "idx_rechazados_id_motivo")
+}
+
+view v_cajas_packing {
+  Folio         String  @db.NVarChar(15)
+  Especie       String  @db.NVarChar(30)
+  Fecha_packing String  @db.VarChar(30)
+  Cajas         Int
+  LINEA         String? @db.NVarChar(18)
+
+  @@unique([Folio, Especie, Fecha_packing], map: "v_cajas_packing_unique")
+}
+
+view v_cajas_validadas {
+  Especie       String @db.NVarChar(30)
+  Fecha_packing String @db.VarChar(30)
+  Folio         String @db.NVarChar(100)
+  Cajas         Int
+  Camara        String @db.NVarChar(100)
+
+  @@unique([Folio, Especie, Fecha_packing], map: "v_cajas_validadas_unique")
+}
+
+view v_cajas_rechazadas {
+  folio_rechazado String  @db.NVarChar(100)
+  especie         String  @db.NVarChar(30)
+  Fecha_packing   String  @db.VarChar(30)
+  cajas           Int?
+  camara          String? @db.NVarChar(100)
+
+  @@unique([folio_rechazado, especie, Fecha_packing], map: "v_cajas_rechazadas_unique")
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+view v_informe_diario {
+  Folio         String  @db.NVarChar(100)
+  Especie       String  @db.NVarChar(30)
+  Fecha_packing String  @db.VarChar(30)
+  Cajas         Int
+  LINEA         String? @db.NVarChar(50)
+  Camara        String? @db.NVarChar(100)
+  Estado        String  @db.VarChar(13)
+
+  @@unique([Folio, Especie, Fecha_packing], map: "v_informe_diario_unique")
+}

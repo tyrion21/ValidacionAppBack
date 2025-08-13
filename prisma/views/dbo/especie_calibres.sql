@@ -1,0 +1,8 @@
+SELECT
+  COD_ESP,
+  COD_CAL,
+  ORD_CAL
+FROM
+  Erpfrusys.dbo.CALIBRES
+WHERE
+  (COD_EMP = 'MER');

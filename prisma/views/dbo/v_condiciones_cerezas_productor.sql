@@ -1,0 +1,28 @@
+SELECT
+  tr.FECHA_RECEPCION,
+  tr.COD_PRO AS CODIGO,
+  p.NOM_PRO AS NOMBRE,
+  cd.PLANILLA,
+  ci.DESCRIPCION,
+  cd.DESCRIPCION AS UNIDAD,
+  CASE
+    ci.ITEM
+    WHEN 1 THEN 'CALIDAD'
+    WHEN 2 THEN 'CONDICION'
+  END AS TIPO
+FROM
+  Erpfrusys.dbo.CTRL_DATOS AS cd
+  LEFT JOIN Erpfrusys.dbo.CTRL_ITEM AS ci ON cd.COD_TEM = ci.COD_TEM
+  AND ci.ITEM = cd.ITEM
+  AND cd.COD_FAMILIA = ci.COD_FAMILIA
+  AND ci.COD_ITEM = cd.COD_ITEM
+  LEFT JOIN Erpfrusys.dbo.TIT_RECEPACK AS tr ON cd.PLANILLA = tr.PLANILLA
+  AND cd.COD_TEM = tr.COD_TEM
+  LEFT JOIN Erpfrusys.dbo.PRODUCTORES AS p ON tr.COD_TEM = p.COD_TEM
+  AND p.COD_PRO = tr.COD_PRO
+  AND p.COD_EMP = tr.cod_emp
+WHERE
+  cd.COD_TEM = '7'
+  AND ci.item IN (1, 2)
+  AND tr.COD_PRO LIKE 'ql%'
+  AND tr.COD_ESP = 5;

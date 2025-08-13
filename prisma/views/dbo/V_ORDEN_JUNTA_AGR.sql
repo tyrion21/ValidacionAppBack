@@ -1,0 +1,36 @@
+SELECT
+  COD_EMP,
+  COD_TEM,
+  ZON,
+  NRO_ORDEN,
+  COD_ESP,
+  COD_VAR,
+  COD_PRO_ETI,
+  COD_VAR_ETI,
+  COD_CUA_ETI,
+  SUM(CANTIDAD) AS CANTIDAD,
+  SUM(TOTAL_KILOS) AS TOTAL_KILOS,
+  MAX(LOTE) AS LOTE,
+  MAX(prpk) AS prpk,
+  MIN(prpk_OR) AS PRPK_OR,
+  (
+    SELECT
+      MAX(LOTE) AS Expr1
+    FROM
+      Erpfrusys.dbo.PROCEPACK AS pc
+    WHERE
+      (PLANILLA = MAX(dbo.V_ORDEN_JUNTA.prpk_OR))
+      AND (TIPOFRU = 'p')
+  ) AS x_lote
+FROM
+  dbo.V_ORDEN_JUNTA
+GROUP BY
+  COD_EMP,
+  COD_TEM,
+  ZON,
+  NRO_ORDEN,
+  COD_ESP,
+  COD_VAR,
+  COD_PRO_ETI,
+  COD_VAR_ETI,
+  COD_CUA_ETI;

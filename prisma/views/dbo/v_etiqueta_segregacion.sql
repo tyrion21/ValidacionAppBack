@@ -1,0 +1,16 @@
+SELECT
+  DISTINCT pm.LOTE AS 'FOLIO',
+  p.LOTE,
+  p.PLANILLA,
+  pm.COD_ETI AS 'ETIQUETA',
+  r.NotaCalidad AS 'SEGREGACION'
+FROM
+  Erpfrusys.dbo.PROCEPACK AS p
+  LEFT JOIN dbo.v_Recepcion_Calidad AS r ON r.LOTE = p.LOTE
+  LEFT JOIN Erpfrusys.dbo.UNE_DESPACHOS_MIXTOS AS pm ON pm.PLANILLA = p.PLANILLA
+  AND pm.COD_TEM = p.COD_TEM
+WHERE
+  (p.COD_CAL = 'AP')
+  AND (p.COD_TEM = 6)
+  AND (p.COD_PRO LIKE 'QL%')
+  AND (pm.LOTE IS NOT NULL);

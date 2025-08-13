@@ -1,0 +1,78 @@
+SELECT
+  dm.PLANILLA,
+  dm.COD_TEM,
+  dm.COD_EMP,
+  dm.ZON,
+  dm.COD_FRI,
+  dm.NOM_FRI,
+  dm.ESTA_FUIN,
+  dm.TIP_MOV,
+  dm.FECHA_PAC,
+  dm.FECHA_RPA,
+  dm.GUIA,
+  dm.COD_PACK,
+  dm.COD_PRO,
+  dm.COD_ESP,
+  dm.COD_VAR,
+  dm.HORA_REC,
+  dm.CONDICION,
+  dm.TIP_LOT,
+  dm.ALTURA,
+  dm.TIPO_LOT,
+  dm.LOTE,
+  dm.COD_ENV,
+  dm.COD_ETI,
+  dm.COD_EMB,
+  dm.COD_ENVOP,
+  dm.PLU,
+  dm.CAJAS,
+  dm.CAJ_BAS,
+  dm.COD_CAT,
+  dm.COD_CAL,
+  dm.TEMP_PAC,
+  dm.TEMP_DES,
+  dm.NRO_MIX,
+  dm.FEC_SAG,
+  dm.GUIA_SAG,
+  dm.CER_SAG,
+  dm.SOL_SAG,
+  dm.TIP_SAG,
+  dm.FEC_FUM,
+  dm.GUIA_FUM,
+  dm.CER_FUM,
+  dm.GUIA_DESP,
+  dm.FECHA_DESP,
+  dm.FOLIO_SAG,
+  dm.TIPO_CAMION,
+  dm.ESTADO_FRU,
+  dm.GUIA_DES,
+  dm.TIPO_TRANSP,
+  dm.COD_TRP,
+  dm.PATENTE,
+  dm.HORA_PRE,
+  dm.RUT_CHOFER,
+  dm.ETA,
+  dm.CHOFER,
+  dm.COD_BP,
+  dm.NOM_ESP,
+  dm.NOM_VAR,
+  dm.NOM_PRO,
+  dm.NOM_PACK,
+  dm.NOM_ENV,
+  dm.COD_MER,
+  dm.NOM_MER,
+  en.PESO_NETO,
+  pe.COD_EXP,
+  ex.NOM_EXP
+FROM
+  Erpfrusys.dbo.EXPORTADORES AS ex
+  RIGHT JOIN Erpfrusys.dbo.PRODUCTOR_X_EXPORTADOR AS pe ON ex.COD_EMP = pe.COD_EMP
+  AND ex.COD_TEM = pe.COD_TEM
+  AND ex.COD_EXP = pe.COD_EXP
+  RIGHT JOIN Erpfrusys.dbo.UNE_DEVOLUCIONES_MIXTOS AS dm ON pe.COD_EMP = dm.COD_EMP
+  AND pe.COD_TEM = dm.COD_TEM
+  AND pe.COD_PRO = dm.COD_PRO
+  LEFT JOIN Erpfrusys.dbo.ENVASEOPERACIONAL AS en ON dm.COD_EMP = en.COD_EMP
+  AND dm.COD_ESP = en.COD_ESP
+  AND dm.COD_TEM = en.COD_TEM
+  AND en.COD_ENVOP = dm.COD_ENVOP;

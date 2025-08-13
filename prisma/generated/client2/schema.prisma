@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client2"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL2")
+}
+
+model CAMARAS {
+  COD_EMP     String  @db.NVarChar(4)
+  COD_TEM     String  @db.NVarChar(2)
+  COD_FRI     String  @db.NVarChar(12)
+  COD_CAM     String  @db.NVarChar(8)
+  DES_CAM     String? @db.NVarChar(50)
+  TIPO_CAMARA String? @db.NVarChar(1)
+  BANDAS      Int?
+  FILAS       Int?
+  PISOS       Int?
+  TUNEL       Boolean @default(false, map: "DF_CAMARAS_TUNEL")
+
+  @@id([COD_EMP, COD_TEM, COD_FRI, COD_CAM], map: "PK_CAMARAS")
+}
+
+model FRIOS {
+  COD_FRI         String   @db.NVarChar(12)
+  COD_TEM         String   @db.NVarChar(2)
+  COD_EMP         String   @db.NVarChar(4)
+  COD_GRP_FRI     String?  @db.NVarChar(4)
+  NOM_FRI         String   @db.NVarChar(120)
+  FDA             String?  @db.NVarChar(30)
+  PIN             String?  @db.NVarChar(30)
+  ZON             String?  @db.NVarChar(8)
+  DIRECCION       String?  @db.NVarChar(120)
+  COD_PROVC       String?  @db.NVarChar(8)
+  COD_COM         String?  @db.NVarChar(8)
+  RUT             String?  @db.NVarChar(10)
+  RAZON_SOCIAL    String?  @db.NVarChar(50)
+  COD_CENTROCOSTO Int?
+  COD_SUBCENTRO   Int?
+  COD_EMP_CONT    String?  @db.NVarChar(4)
+  NOMBRELOGO      String?  @db.NVarChar(50)
+  IMAGEN          Bytes?   @db.Image
+  EMAIL           String?  @db.NChar(255)
+  TELEFONO        String?  @db.NVarChar(20)
+  FAX             String?  @db.NVarChar(20)
+  SW_INACTIVO     Boolean?
+
+  @@id([COD_FRI, COD_TEM, COD_EMP], map: "PK_FRIOS", clustered: false)
+  @@index([COD_TEM, COD_EMP], map: "IX_FRIOS_COD_TEM_COD_EMP")
+  @@index([COD_TEM, COD_EMP, ZON], map: "IX_FRIOS_COD_TEM_COD_EMP_ZON")
+}

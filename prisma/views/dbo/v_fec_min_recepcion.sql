@@ -1,0 +1,16 @@
+SELECT
+  m.LOTE,
+  MIN(ISNULL(r.FECHA_RPA, m.FECHA_RPA)) AS FechaRecepcion
+FROM
+  Erpfrusys.dbo.UNE_DESPACHOS_MIXTOS AS m
+  LEFT JOIN Erpfrusys.dbo.EXPORTADORES AS e ON e.COD_EXP = m.COD_EXP
+  LEFT JOIN Erpfrusys.dbo.PROCEPACK AS pr ON pr.PLANILLA = m.PLANILLA
+  AND pr.COD_TEM = m.COD_TEM
+  AND pr.TIPOFRU = 'E'
+  LEFT JOIN Erpfrusys.dbo.RECEPACK AS r ON r.LOTE = pr.LOTE
+  AND r.COD_TEM = pr.COD_TEM
+WHERE
+  (m.COD_TEM = 7)
+  AND (m.COD_EXP = 64)
+GROUP BY
+  m.LOTE;

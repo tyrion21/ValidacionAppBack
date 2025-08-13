@@ -1,0 +1,11 @@
+SELECT
+  Erpfrusys.dbo.CALIDADPACKING.COD_CALIDAD,
+  Erpfrusys.dbo.CALIDADPACKING.NOM_CALIDAD,
+  Erpfrusys.dbo.ESPECIE.NOM_ESP
+FROM
+  Erpfrusys.dbo.CALIDADPACKING
+  JOIN Erpfrusys.dbo.ESPECIE ON Erpfrusys.dbo.CALIDADPACKING.COD_ESP = Erpfrusys.dbo.ESPECIE.COD_ESP
+  AND Erpfrusys.dbo.CALIDADPACKING.COD_TEM = Erpfrusys.dbo.ESPECIE.COD_TEM
+  AND Erpfrusys.dbo.CALIDADPACKING.COD_EMP = Erpfrusys.dbo.ESPECIE.COD_EMP
+WHERE
+  (Erpfrusys.dbo.CALIDADPACKING.COD_EMP = 'mer');

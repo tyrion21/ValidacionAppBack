@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>    <!-- Permitir conexiones HTTP a tu servidor local -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">192.168.7.25</domain>
+    </domain-config>
+    
+    <!-- Configuración para HTTPS con certificados auto-firmados -->
+    <domain-config>
+        <domain includeSubdomains="false">192.168.7.25</domain>
+        <trust-anchors>
+            <!-- Confiar en certificados del sistema -->
+            <certificates src="system"/>
+            <!-- Confiar en certificados del usuario -->
+            <certificates src="user"/>
+            <!-- Opcional: agregar tu certificado específico -->
+            <!-- <certificates src="@raw/validacion_ca"/> -->
+        </trust-anchors>
+    </domain-config>
+    
+    <!-- Configuración base -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system"/>
+            <certificates src="user"/>
+        </trust-anchors>
+    </base-config>
+</network-security-config>

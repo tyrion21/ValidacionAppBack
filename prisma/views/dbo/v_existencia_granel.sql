@@ -1,0 +1,9 @@
+SELECT
+  COD_TEM,
+  FECHA_RPA,
+  COD_EMP,
+  CANTIDAD,
+  NULL AS EXP,
+  COD_ESP
+FROM
+  Erpfrusys.dbo.EXISPACK;

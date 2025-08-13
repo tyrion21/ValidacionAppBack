@@ -1,0 +1,10 @@
+SELECT
+  COD_PRO,
+  FAX,
+  NOM_PRO
+FROM
+  Erpfrusys.dbo.PRODUCTORES
+WHERE
+  (COD_TEM = 6)
+  AND (FAX IS NOT NULL)
+  AND (FAX <> '');

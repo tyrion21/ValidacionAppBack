@@ -1,0 +1,47 @@
+SELECT
+  TOP (100) PERCENT tipo,
+  COD_EMP,
+  COD_TEM,
+  fecha_proceso,
+  c_turno,
+  c_linea,
+  n_linea,
+  PLANILLA,
+  T_PROCESO,
+  SUM(peso_neto_real) AS PESO_NETO_REAL,
+  n_exportadora,
+  N_CUARTEL,
+  COD_CUA,
+  COD_PRE,
+  n_predio,
+  COD_PRO,
+  n_productor,
+  SUM(CANTIDAD) AS CANTIDAD,
+  TIPOFRU,
+  NOM_VAR,
+  NOM_ESP
+FROM
+  dbo.v_pkg_produccion_completo
+GROUP BY
+  tipo,
+  COD_EMP,
+  COD_TEM,
+  fecha_proceso,
+  c_turno,
+  c_linea,
+  n_linea,
+  PLANILLA,
+  T_PROCESO,
+  n_exportadora,
+  N_CUARTEL,
+  COD_CUA,
+  COD_PRE,
+  n_predio,
+  COD_PRO,
+  n_productor,
+  TIPOFRU,
+  NOM_VAR,
+  NOM_ESP
+ORDER BY
+  COD_TEM DESC,
+  PLANILLA DESC;

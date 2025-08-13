@@ -1,0 +1,32 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- CreateTable
+CREATE TABLE [dbo].[validaciones] (
+    [id] INT NOT NULL IDENTITY(1,1),
+    [Folio] NVARCHAR(100) NOT NULL,
+    [Cajas] INT NOT NULL,
+    [Especie] NVARCHAR(30) NOT NULL,
+    [Estado] BIT NOT NULL CONSTRAINT [Validacion_Estado_df] DEFAULT 0,
+    [Camara] NVARCHAR(100) NOT NULL,
+    [Usuario] NVARCHAR(1000) NOT NULL,
+    [Packing] NVARCHAR(1000) NOT NULL,
+    [createdAt] DATETIME2 NOT NULL CONSTRAINT [Validacion_createdAt_df] DEFAULT CURRENT_TIMESTAMP,
+    [updatedAt] DATETIME2 NOT NULL,
+    CONSTRAINT [Validacion_pkey] PRIMARY KEY CLUSTERED ([id]),
+    CONSTRAINT [Validacion_Folio_key] UNIQUE NONCLUSTERED ([Folio])
+);
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH

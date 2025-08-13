@@ -1,0 +1,62 @@
+SELECT
+  e1.NOM_EXP,
+  ctd.PLANILLA,
+  p.nom_pro,
+  e.NOM_ESP,
+  v.NOM_VAR,
+  ctd.lote,
+  tr.FECHA_COSECHA,
+  SUBSTRING(
+    ctd.OBSERVACION
+    FROM
+      0 FOR CHARINDEX('A', ctd.OBSERVACION)
+  ) AS BRIX,
+  SUBSTRING(
+    ctd.OBSERVACION
+    FROM
+      CHARINDEX('A', ctd.OBSERVACION) FOR 13
+  ) AS ACIDEZ,
+  SUBSTRING(
+    ctd.OBSERVACION
+    FROM
+      CHARINDEX('RE', ctd.OBSERVACION) FOR 14
+  ) AS RELACION,
+  SUBSTRING(
+    ctd.OBSERVACION
+    FROM
+      CHARINDEX('%', ctd.OBSERVACION) FOR 16
+  ) AS '% JUGO',
+  SUBSTRING(
+    ctd.OBSERVACION
+    FROM
+      CHARINDEX('% DE SEM', ctd.OBSERVACION) FOR 18
+  ) AS '% DE SEMILLAS',
+  SUBSTRING(
+    ctd.OBSERVACION
+    FROM
+      CHARINDEX('SEG', ctd.OBSERVACION) FOR 21
+  ) AS SEGREGACION,
+  SUBSTRING(
+    ctd.OBSERVACION
+    FROM
+      CHARINDEX('COL', ctd.OBSERVACION) FOR 17
+  ) AS COLOR
+FROM
+  Erpfrusys.dbo.CTRL_TIT_DATOS AS ctd
+  LEFT JOIN Erpfrusys.dbo.ESPECIE AS e ON e.COD_ESP = ctd.COD_ESP
+  AND e.cod_tem = ctd.cod_tem
+  LEFT JOIN Erpfrusys.dbo.VARIEDAD AS v ON v.cod_var = ctd.cod_var
+  AND v.cod_tem = ctd.cod_tem
+  LEFT JOIN Erpfrusys.dbo.TIT_RECEPACK AS tr ON ctd.PLANILLA = tr.PLANILLA
+  AND ctd.COD_TEM = tr.COD_TEM
+  LEFT JOIN Erpfrusys.dbo.PRODUCTORES AS p ON tr.COD_TEM = p.COD_TEM
+  AND tr.COD_PRO = p.COD_PRO
+  LEFT JOIN Erpfrusys.dbo.PRODUCTOR_X_EXPORTADOR AS pxe ON p.COD_EMP = pxe.COD_EMP
+  AND p.COD_TEM = pxe.COD_TEM
+  AND p.COD_PRO = pxe.COD_PRO
+  LEFT JOIN Erpfrusys.dbo.EXPORTADORES AS e1 ON pxe.COD_EXP = e1.COD_EXP
+  AND pxe.COD_TEM = e1.COD_TEM
+  AND pxe.COD_EMP = e1.COD_EMP
+WHERE
+  (ctd.COD_ESP IN ('5'))
+  AND (ctd.COD_TEM = 7);
