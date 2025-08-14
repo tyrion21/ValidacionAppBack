@@ -31,21 +31,37 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
+          echo "🔍 Deployment diagnostics started..."
+          echo "📍 PWD: $(pwd)"
+          echo "👤 User: $(whoami)"
+          echo "🐳 Docker: $(docker --version)"
+          
           cd ${{ secrets.APP_PATH }}
+          echo "✅ Changed to: $(pwd)"
+          
+          echo "📋 Git status:"
+          git status
           
           echo "🔄 Pulling latest changes..."
           git pull origin main
           
-          echo "🐳 Stopping current containers..."
-          docker-compose down
+          echo "📄 Files in directory:"
+          ls -la
           
-          echo "🏗️ Building and starting new containers..."
-          docker-compose up --build -d
+          echo "🐳 Stopping containers..."
+          docker-compose down 2>&1 || echo "No containers running"
           
-          echo "📋 Checking container status..."
-          docker ps
+          echo "🏗️ Building containers..."
+          docker-compose up --build -d 2>&1
           
-          echo "📝 Showing recent logs..."
-          docker logs validacion-app-backend --tail 20
+          echo "⏰ Waiting 10 seconds for containers to start..."
+          sleep 10
           
-          echo "✅ Deployment completed!"
+          echo "📋 Container status:"
+          docker ps -a
+          
+          echo "📝 Container logs:"
+          docker logs validacion-app-backend --tail 30 2>&1 || echo "Container not found or no logs"
+          
+          echo "🔍 Docker compose logs:"
+          docker-compose logs --tail 20 2>&1 || echo "No compose logs"
