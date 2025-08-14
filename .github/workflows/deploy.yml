@@ -29,13 +29,11 @@ jobs:
         echo "✅ Linting step completed"
       continue-on-error: true
     
-    - name: Run tests (optional)  
+    - name: Run tests (non-blocking)
       run: |
-        if npm run test --silent > /dev/null 2>&1; then
-          echo "✅ Tests passed"
-        else
-          echo "⚠️ Tests failed or not configured, continuing deployment"
-        fi
+        echo "🧪 Running tests (won't block deployment)..."
+        npm run test || echo "⚠️ Some tests failed - continuing with deployment"
+        echo "✅ Test step completed"
       continue-on-error: true
     
     - name: Build application
