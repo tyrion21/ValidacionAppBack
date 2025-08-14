@@ -5,11 +5,10 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 # Copy package files
-COPY package*.json pnpm-lock.yaml ./
+COPY package*.json ./
 
-# Install pnpm and dependencies
-RUN npm install -g pnpm
-RUN pnpm install --frozen-lockfile
+# Install dependencies
+RUN npm ci --only=development
 
 # Copy source code
 COPY . .
@@ -18,7 +17,7 @@ COPY . .
 RUN npx prisma generate
 
 # Build the application
-RUN pnpm run build
+RUN npm run build
 
 # Production stage
 FROM node:18-alpine AS production
@@ -34,11 +33,10 @@ RUN adduser -S nestjs -u 1001
 WORKDIR /app
 
 # Copy package files
-COPY package*.json pnpm-lock.yaml ./
+COPY package*.json ./
 
-# Install pnpm and production dependencies only
-RUN npm install -g pnpm
-RUN pnpm install --frozen-lockfile --prod
+# Install production dependencies only
+RUN npm ci --only=production
 
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
