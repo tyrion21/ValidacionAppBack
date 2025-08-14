@@ -19,8 +19,11 @@ COPY . .
 # Set environment for Prisma with correct Alpine targets
 ENV PRISMA_CLI_BINARY_TARGETS="linux-musl,linux-musl-openssl-3.0.x"
 
-# Generate Prisma client for schema4
+# Generate Prisma clients for all schemas
+RUN npx prisma generate --schema=prisma/schema2.prisma
+RUN npx prisma generate --schema=prisma/schema3.prisma
 RUN npx prisma generate --schema=prisma/schema4.prisma
+RUN npx prisma generate --schema=prisma/schema5.prisma
 
 # Build the application
 RUN npm run build
@@ -54,8 +57,11 @@ COPY --chown=nestjs:nodejs secrets ./secrets
 # Set environment for Prisma in production
 ENV PRISMA_CLI_BINARY_TARGETS="linux-musl,linux-musl-openssl-3.0.x"
 
-# Generate Prisma client for production using schema4
+# Generate Prisma clients for production using all schemas
+RUN npx prisma generate --schema=prisma/schema2.prisma
+RUN npx prisma generate --schema=prisma/schema3.prisma
 RUN npx prisma generate --schema=prisma/schema4.prisma
+RUN npx prisma generate --schema=prisma/schema5.prisma
 
 # Change ownership of the app directory to the nestjs user
 RUN chown -R nestjs:nodejs /app
