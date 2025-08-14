@@ -89,6 +89,24 @@ npm run pm2:fix        # Fix PM2 issues
 - `prisma/migrations/`: Database migration files
 - `prisma/views/`: Database view definitions
 
+## Environment Setup
+
+### Database Configuration
+1. Copy the environment template:
+```bash
+cp .env.example .env
+```
+
+2. Edit `.env` with your actual SQL Server credentials:
+```bash
+DATABASE_URL="sqlserver://username:password@server:port;database=db;trustServerCertificate=true"
+DATABASE_URL2="sqlserver://username:password@server:port;database=db2;trustServerCertificate=true"
+DATABASE_URL3="sqlserver://username:password@server:port;database=db3;trustServerCertificate=true"
+DATABASE_URL4="sqlserver://username:password@server:port;database=db4;trustServerCertificate=true"
+```
+
+**⚠️ IMPORTANT**: Never commit `.env` files to Git. They contain sensitive credentials.
+
 ## Docker Deployment
 
 ### Build and Run with Docker
