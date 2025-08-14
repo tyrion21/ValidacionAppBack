@@ -13,6 +13,11 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
+      # Database URLs - Configure these with your SQL Server details
+      - DATABASE_URL=${DATABASE_URL:-sqlserver://user:password@host:1433;database=db;trustServerCertificate=true}
+      - DATABASE_URL2=${DATABASE_URL2:-sqlserver://user:password@host:1433;database=db2;trustServerCertificate=true}
+      - DATABASE_URL3=${DATABASE_URL3:-sqlserver://user:password@host:1433;database=db3;trustServerCertificate=true}
+      - DATABASE_URL4=${DATABASE_URL4:-sqlserver://user:password@host:1433;database=db4;trustServerCertificate=true}
     volumes:
       # Mount logs directory for persistence
       - ./logs:/app/logs
