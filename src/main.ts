@@ -14,15 +14,15 @@ async function bootstrap() {
   });
   
   // Servidor HTTP en puerto 3000 para testing
-  await httpApp.listen(3000, '192.168.7.25');
-  console.log('Servidor HTTP de testing corriendo en http://192.168.7.25:3000');
+  await httpApp.listen(3000, '192.168.7.26');
+  console.log('Servidor HTTP de testing corriendo en http://192.168.7.26:3000');
 
   // Leer los certificados SSL
   const httpsOptions = {
     key: fs.readFileSync(
-      path.join(__dirname, '../secrets/192.168.7.25-key.pem'),
+      path.join(__dirname, '../secrets/192.168.7.26-key.pem'),
     ),
-    cert: fs.readFileSync(path.join(__dirname, '../secrets/192.168.7.25.pem')),
+    cert: fs.readFileSync(path.join(__dirname, '../secrets/192.168.7.26.pem')),
   };
 
   // Crear la aplicación NestJS con opciones HTTPS
@@ -38,8 +38,8 @@ async function bootstrap() {
     optionsSuccessStatus: 204,
   });
 
-  await app.listen(4000, '192.168.7.25');
+  await app.listen(4000, '192.168.7.26');
   //console.log('Servidor HTTPS corriendo en http://localhost:4000');
-   console.log('Servidor HTTPS corriendo en https://192.168.7.25:4000');
+   console.log('Servidor HTTPS corriendo en https://192.168.7.26:4000');
 }
 bootstrap();

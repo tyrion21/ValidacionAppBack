@@ -1,0 +1,69 @@
+# Node modules
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist
+build
+coverage
+
+# Logs
+logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Testing
+coverage
+*.lcov
+
+# Documentation
+README.md
+docs/
+
+# Development files
+.nyc_output
+
+# PM2
+ecosystem.config.js
+
+# Scripts (not needed in container)
+scripts/
+
+# Temporary files
+tmp/
+temp/
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Workspace files
+*.code-workspace
