@@ -13,8 +13,8 @@ RUN npm ci --only=development
 # Copy source code
 COPY . .
 
-# Generate Prisma client
-RUN npx prisma generate
+# Generate Prisma client for schema4
+RUN npx prisma generate --schema=prisma/schema4.prisma
 
 # Build the application
 RUN npm run build
@@ -45,8 +45,8 @@ COPY --from=builder /app/prisma ./prisma
 # Copy secrets directory (SSL certificates)
 COPY --chown=nestjs:nodejs secrets ./secrets
 
-# Generate Prisma client for production
-RUN npx prisma generate
+# Generate Prisma client for production using schema4
+RUN npx prisma generate --schema=prisma/schema4.prisma
 
 # Change ownership of the app directory to the nestjs user
 RUN chown -R nestjs:nodejs /app
