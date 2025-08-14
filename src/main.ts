@@ -15,7 +15,7 @@ async function bootstrap() {
   
   // Servidor HTTP en puerto 3000 para testing
   await httpApp.listen(3000, '0.0.0.0');
-  console.log('Servidor HTTP de testing corriendo en http://0.0.0.0:3000');
+  console.log('Servidor HTTP de testing corriendo en http://0.0.0.0:3000 ');
 
   // Leer los certificados SSL
   const httpsOptions = {
@@ -40,6 +40,6 @@ async function bootstrap() {
 
   await app.listen(4000, '0.0.0.0');
   //console.log('Servidor HTTPS corriendo en http://localhost:4000');
-   console.log('Servidor HTTPS corriendo en https://0.0.0.0:4000');
+   console.log('Servidor HTTPS corriendo en https://0.0.0.0:4000 probando deploy manual');
 }
 bootstrap();
