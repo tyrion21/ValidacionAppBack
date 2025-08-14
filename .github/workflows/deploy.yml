@@ -22,14 +22,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
-    - name: Check if ESLint config exists
+    - name: Run linter (warnings only)
       run: |
-        if [ -f ".eslintrc.js" ] || [ -f ".eslintrc.json" ] || [ -f ".eslintrc.yml" ]; then
-          echo "ESLint config found, running linter..."
-          npm run lint || echo "⚠️ Linting failed but continuing"
-        else
-          echo "⚠️ No ESLint config found, skipping linting"
-        fi
+        echo "🔍 Running ESLint (errors won't block deployment)..."
+        npm run lint || echo "⚠️ Linting issues found but continuing deployment"
+        echo "✅ Linting step completed"
       continue-on-error: true
     
     - name: Run tests (optional)  
