@@ -1,8 +1,8 @@
 # Multi-stage build for production optimization
 FROM node:18-alpine AS builder
 
-# Install OpenSSL 1.1 compatibility and other required packages
-RUN apk add --no-cache openssl1.1-compat libc6-compat
+# Install required packages for Prisma (correct Alpine package names)
+RUN apk add --no-cache openssl openssl-dev
 
 # Set working directory
 WORKDIR /app
@@ -16,8 +16,8 @@ RUN npm ci --only=development
 # Copy source code
 COPY . .
 
-# Set environment for Prisma
-ENV PRISMA_CLI_BINARY_TARGETS="linux-musl,linux-musl-openssl-1.1.x"
+# Set environment for Prisma with correct Alpine targets
+ENV PRISMA_CLI_BINARY_TARGETS="linux-musl,linux-musl-openssl-3.0.x"
 
 # Generate Prisma client for schema4
 RUN npx prisma generate --schema=prisma/schema4.prisma
@@ -29,7 +29,7 @@ RUN npm run build
 FROM node:18-alpine AS production
 
 # Install required packages for Prisma and proper signal handling
-RUN apk add --no-cache openssl1.1-compat libc6-compat dumb-init
+RUN apk add --no-cache openssl openssl-dev dumb-init
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs
@@ -52,7 +52,7 @@ COPY --from=builder /app/prisma ./prisma
 COPY --chown=nestjs:nodejs secrets ./secrets
 
 # Set environment for Prisma in production
-ENV PRISMA_CLI_BINARY_TARGETS="linux-musl,linux-musl-openssl-1.1.x"
+ENV PRISMA_CLI_BINARY_TARGETS="linux-musl,linux-musl-openssl-3.0.x"
 
 # Generate Prisma client for production using schema4
 RUN npx prisma generate --schema=prisma/schema4.prisma
