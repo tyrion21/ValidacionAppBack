@@ -141,7 +141,7 @@ export type existenciamix_cajas = $Result.DefaultSelection<Prisma.$existenciamix
 
 /**
  * ##  Prisma Client ʲˢ
- * 
+ *
  * Type-safe database client for TypeScript & Node.js
  * @example
  * ```
@@ -150,19 +150,19 @@ export type existenciamix_cajas = $Result.DefaultSelection<Prisma.$existenciamix
  * const capacidad_lineas = await prisma.capacidad_lineas.findMany()
  * ```
  *
- * 
+ *
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
     /**
    * ##  Prisma Client ʲˢ
-   * 
+   *
    * Type-safe database client for TypeScript & Node.js
    * @example
    * ```
@@ -171,12 +171,12 @@ export class PrismaClient<
    * const capacidad_lineas = await prisma.capacidad_lineas.findMany()
    * ```
    *
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
   constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
-  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
 
   /**
    * Connect with the database
@@ -188,20 +188,13 @@ export class PrismaClient<
    */
   $disconnect(): $Utils.JsPromise<void>;
 
-  /**
-   * Add a middleware
-   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-   * @see https://pris.ly/d/extensions
-   */
-  $use(cb: Prisma.Middleware): void
-
 /**
    * Executes a prepared raw query and returns the number of affected rows.
    * @example
    * ```
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
@@ -213,7 +206,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
@@ -224,7 +217,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
@@ -236,7 +229,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
@@ -260,7 +253,9 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+    extArgs: ExtArgs
+  }>>
 
       /**
    * `prisma.capacidad_lineas`: Exposes CRUD operations for the **capacidad_lineas** model.
@@ -270,7 +265,7 @@ export class PrismaClient<
     * const capacidad_lineas = await prisma.capacidad_lineas.findMany()
     * ```
     */
-  get capacidad_lineas(): Prisma.capacidad_lineasDelegate<ExtArgs>;
+  get capacidad_lineas(): Prisma.capacidad_lineasDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.cc_checklist`: Exposes CRUD operations for the **cc_checklist** model.
@@ -280,7 +275,7 @@ export class PrismaClient<
     * const cc_checklists = await prisma.cc_checklist.findMany()
     * ```
     */
-  get cc_checklist(): Prisma.cc_checklistDelegate<ExtArgs>;
+  get cc_checklist(): Prisma.cc_checklistDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.certificacion`: Exposes CRUD operations for the **certificacion** model.
@@ -290,7 +285,7 @@ export class PrismaClient<
     * const certificacions = await prisma.certificacion.findMany()
     * ```
     */
-  get certificacion(): Prisma.certificacionDelegate<ExtArgs>;
+  get certificacion(): Prisma.certificacionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.correlativo`: Exposes CRUD operations for the **correlativo** model.
@@ -300,7 +295,7 @@ export class PrismaClient<
     * const correlativos = await prisma.correlativo.findMany()
     * ```
     */
-  get correlativo(): Prisma.correlativoDelegate<ExtArgs>;
+  get correlativo(): Prisma.correlativoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.env_x_sellar`: Exposes CRUD operations for the **env_x_sellar** model.
@@ -310,7 +305,7 @@ export class PrismaClient<
     * const env_x_sellars = await prisma.env_x_sellar.findMany()
     * ```
     */
-  get env_x_sellar(): Prisma.env_x_sellarDelegate<ExtArgs>;
+  get env_x_sellar(): Prisma.env_x_sellarDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.estados`: Exposes CRUD operations for the **estados** model.
@@ -320,7 +315,7 @@ export class PrismaClient<
     * const estados = await prisma.estados.findMany()
     * ```
     */
-  get estados(): Prisma.estadosDelegate<ExtArgs>;
+  get estados(): Prisma.estadosDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.folios`: Exposes CRUD operations for the **folios** model.
@@ -330,7 +325,7 @@ export class PrismaClient<
     * const folios = await prisma.folios.findMany()
     * ```
     */
-  get folios(): Prisma.foliosDelegate<ExtArgs>;
+  get folios(): Prisma.foliosDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.folios_frio`: Exposes CRUD operations for the **folios_frio** model.
@@ -340,7 +335,7 @@ export class PrismaClient<
     * const folios_frios = await prisma.folios_frio.findMany()
     * ```
     */
-  get folios_frio(): Prisma.folios_frioDelegate<ExtArgs>;
+  get folios_frio(): Prisma.folios_frioDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.folios_pack`: Exposes CRUD operations for the **folios_pack** model.
@@ -350,7 +345,7 @@ export class PrismaClient<
     * const folios_packs = await prisma.folios_pack.findMany()
     * ```
     */
-  get folios_pack(): Prisma.folios_packDelegate<ExtArgs>;
+  get folios_pack(): Prisma.folios_packDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.folios_se`: Exposes CRUD operations for the **folios_se** model.
@@ -360,7 +355,7 @@ export class PrismaClient<
     * const folios_ses = await prisma.folios_se.findMany()
     * ```
     */
-  get folios_se(): Prisma.folios_seDelegate<ExtArgs>;
+  get folios_se(): Prisma.folios_seDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.fr_repa_cab`: Exposes CRUD operations for the **fr_repa_cab** model.
@@ -370,7 +365,7 @@ export class PrismaClient<
     * const fr_repa_cabs = await prisma.fr_repa_cab.findMany()
     * ```
     */
-  get fr_repa_cab(): Prisma.fr_repa_cabDelegate<ExtArgs>;
+  get fr_repa_cab(): Prisma.fr_repa_cabDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.fr_repa_det`: Exposes CRUD operations for the **fr_repa_det** model.
@@ -380,7 +375,7 @@ export class PrismaClient<
     * const fr_repa_dets = await prisma.fr_repa_det.findMany()
     * ```
     */
-  get fr_repa_det(): Prisma.fr_repa_detDelegate<ExtArgs>;
+  get fr_repa_det(): Prisma.fr_repa_detDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.gr_Tipo_Cobro`: Exposes CRUD operations for the **Gr_Tipo_Cobro** model.
@@ -390,7 +385,7 @@ export class PrismaClient<
     * const gr_Tipo_Cobros = await prisma.gr_Tipo_Cobro.findMany()
     * ```
     */
-  get gr_Tipo_Cobro(): Prisma.Gr_Tipo_CobroDelegate<ExtArgs>;
+  get gr_Tipo_Cobro(): Prisma.Gr_Tipo_CobroDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.insp_cab`: Exposes CRUD operations for the **insp_cab** model.
@@ -400,7 +395,7 @@ export class PrismaClient<
     * const insp_cabs = await prisma.insp_cab.findMany()
     * ```
     */
-  get insp_cab(): Prisma.insp_cabDelegate<ExtArgs>;
+  get insp_cab(): Prisma.insp_cabDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.mae_sta_elena`: Exposes CRUD operations for the **mae_sta_elena** model.
@@ -410,7 +405,7 @@ export class PrismaClient<
     * const mae_sta_elenas = await prisma.mae_sta_elena.findMany()
     * ```
     */
-  get mae_sta_elena(): Prisma.mae_sta_elenaDelegate<ExtArgs>;
+  get mae_sta_elena(): Prisma.mae_sta_elenaDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.maestro_plu`: Exposes CRUD operations for the **maestro_plu** model.
@@ -420,7 +415,7 @@ export class PrismaClient<
     * const maestro_plus = await prisma.maestro_plu.findMany()
     * ```
     */
-  get maestro_plu(): Prisma.maestro_pluDelegate<ExtArgs>;
+  get maestro_plu(): Prisma.maestro_pluDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.pk_desver_cab`: Exposes CRUD operations for the **pk_desver_cab** model.
@@ -430,7 +425,7 @@ export class PrismaClient<
     * const pk_desver_cabs = await prisma.pk_desver_cab.findMany()
     * ```
     */
-  get pk_desver_cab(): Prisma.pk_desver_cabDelegate<ExtArgs>;
+  get pk_desver_cab(): Prisma.pk_desver_cabDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.pk_desver_det`: Exposes CRUD operations for the **pk_desver_det** model.
@@ -440,7 +435,7 @@ export class PrismaClient<
     * const pk_desver_dets = await prisma.pk_desver_det.findMany()
     * ```
     */
-  get pk_desver_det(): Prisma.pk_desver_detDelegate<ExtArgs>;
+  get pk_desver_det(): Prisma.pk_desver_detDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.sys_log`: Exposes CRUD operations for the **sys_log** model.
@@ -450,7 +445,7 @@ export class PrismaClient<
     * const sys_logs = await prisma.sys_log.findMany()
     * ```
     */
-  get sys_log(): Prisma.sys_logDelegate<ExtArgs>;
+  get sys_log(): Prisma.sys_logDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.sysdiagrams`: Exposes CRUD operations for the **sysdiagrams** model.
@@ -460,7 +455,7 @@ export class PrismaClient<
     * const sysdiagrams = await prisma.sysdiagrams.findMany()
     * ```
     */
-  get sysdiagrams(): Prisma.sysdiagramsDelegate<ExtArgs>;
+  get sysdiagrams(): Prisma.sysdiagramsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.tipo_ins`: Exposes CRUD operations for the **tipo_ins** model.
@@ -470,7 +465,7 @@ export class PrismaClient<
     * const tipo_ins = await prisma.tipo_ins.findMany()
     * ```
     */
-  get tipo_ins(): Prisma.tipo_insDelegate<ExtArgs>;
+  get tipo_ins(): Prisma.tipo_insDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.traductor_calibre`: Exposes CRUD operations for the **traductor_calibre** model.
@@ -480,7 +475,7 @@ export class PrismaClient<
     * const traductor_calibres = await prisma.traductor_calibre.findMany()
     * ```
     */
-  get traductor_calibre(): Prisma.traductor_calibreDelegate<ExtArgs>;
+  get traductor_calibre(): Prisma.traductor_calibreDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.validacion_pallets`: Exposes CRUD operations for the **validacion_pallets** model.
@@ -490,7 +485,7 @@ export class PrismaClient<
     * const validacion_pallets = await prisma.validacion_pallets.findMany()
     * ```
     */
-  get validacion_pallets(): Prisma.validacion_palletsDelegate<ExtArgs>;
+  get validacion_pallets(): Prisma.validacion_palletsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.existencias_cajas`: Exposes CRUD operations for the **existencias_cajas** model.
@@ -500,7 +495,7 @@ export class PrismaClient<
     * const existencias_cajas = await prisma.existencias_cajas.findMany()
     * ```
     */
-  get existencias_cajas(): Prisma.existencias_cajasDelegate<ExtArgs>;
+  get existencias_cajas(): Prisma.existencias_cajasDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.existenciamix_cajas`: Exposes CRUD operations for the **existenciamix_cajas** model.
@@ -510,7 +505,7 @@ export class PrismaClient<
     * const existenciamix_cajas = await prisma.existenciamix_cajas.findMany()
     * ```
     */
-  get existenciamix_cajas(): Prisma.existenciamix_cajasDelegate<ExtArgs>;
+  get existenciamix_cajas(): Prisma.existenciamix_cajasDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -531,7 +526,6 @@ export namespace Prisma {
   export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
   export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
   export import PrismaClientValidationError = runtime.PrismaClientValidationError
-  export import NotFoundError = runtime.NotFoundError
 
   /**
    * Re-export of sql-template-tag
@@ -552,7 +546,7 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics 
+   * Metrics
    */
   export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
@@ -570,14 +564,14 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.22.0
-   * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
+   * Prisma Client JS version: 6.17.1
+   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
    */
   export type PrismaVersion = {
     client: string
   }
 
-  export const prismaVersion: PrismaVersion 
+  export const prismaVersion: PrismaVersion
 
   /**
    * Utility Types
@@ -593,15 +587,15 @@ export namespace Prisma {
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   namespace NullTypes {
     /**
     * Type of `Prisma.DbNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class DbNull {
@@ -611,9 +605,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.JsonNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class JsonNull {
@@ -623,9 +617,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.AnyNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class AnyNull {
@@ -636,21 +630,21 @@ export namespace Prisma {
 
   /**
    * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const AnyNull: NullTypes.AnyNull
@@ -838,7 +832,7 @@ export namespace Prisma {
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
     ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-      | {[P in keyof O as P extends K ? K : never]-?: O[P]} & O
+      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
     : never>;
 
   type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
@@ -986,11 +980,14 @@ export namespace Prisma {
     db?: Datasource
   }
 
-  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs, clientOptions: PrismaClientOptions }, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs'], this['params']['clientOptions']>
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+    globalOmitOptions: {
+      omit: GlobalOmitOptions
+    }
     meta: {
       modelProps: "capacidad_lineas" | "cc_checklist" | "certificacion" | "correlativo" | "env_x_sellar" | "estados" | "folios" | "folios_frio" | "folios_pack" | "folios_se" | "fr_repa_cab" | "fr_repa_det" | "gr_Tipo_Cobro" | "insp_cab" | "mae_sta_elena" | "maestro_plu" | "pk_desver_cab" | "pk_desver_det" | "sys_log" | "sysdiagrams" | "tipo_ins" | "traductor_calibre" | "validacion_pallets" | "existencias_cajas" | "existenciamix_cajas"
       txIsolationLevel: Prisma.TransactionIsolationLevel
@@ -2538,34 +2535,6 @@ export namespace Prisma {
             args: Prisma.existencias_cajasFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$existencias_cajasPayload>[]
           }
-          create: {
-            args: Prisma.existencias_cajasCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existencias_cajasPayload>
-          }
-          createMany: {
-            args: Prisma.existencias_cajasCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.existencias_cajasDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existencias_cajasPayload>
-          }
-          update: {
-            args: Prisma.existencias_cajasUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existencias_cajasPayload>
-          }
-          deleteMany: {
-            args: Prisma.existencias_cajasDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.existencias_cajasUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.existencias_cajasUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existencias_cajasPayload>
-          }
           aggregate: {
             args: Prisma.Existencias_cajasAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateExistencias_cajas>
@@ -2603,34 +2572,6 @@ export namespace Prisma {
           findMany: {
             args: Prisma.existenciamix_cajasFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$existenciamix_cajasPayload>[]
-          }
-          create: {
-            args: Prisma.existenciamix_cajasCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existenciamix_cajasPayload>
-          }
-          createMany: {
-            args: Prisma.existenciamix_cajasCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.existenciamix_cajasDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existenciamix_cajasPayload>
-          }
-          update: {
-            args: Prisma.existenciamix_cajasUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existenciamix_cajasPayload>
-          }
-          deleteMany: {
-            args: Prisma.existenciamix_cajasDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.existenciamix_cajasUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.existenciamix_cajasUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$existenciamix_cajasPayload>
           }
           aggregate: {
             args: Prisma.Existenciamix_cajasAggregateArgs<ExtArgs>
@@ -2689,16 +2630,24 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Defaults to stdout
+     * // Shorthand for `emit: 'stdout'`
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events
+     * // Emit as events only
      * log: [
-     *   { emit: 'stdout', level: 'query' },
-     *   { emit: 'stdout', level: 'info' },
-     *   { emit: 'stdout', level: 'warn' }
-     *   { emit: 'stdout', level: 'error' }
+     *   { emit: 'event', level: 'query' },
+     *   { emit: 'event', level: 'info' },
+     *   { emit: 'event', level: 'warn' }
+     *   { emit: 'event', level: 'error' }
      * ]
+     * 
+     * / Emit as events and log to stdout
+     * og: [
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
+     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -2713,8 +2662,53 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
+    /**
+     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
+     */
+    adapter?: runtime.SqlDriverAdapterFactory | null
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
   }
-
+  export type GlobalOmitConfig = {
+    capacidad_lineas?: capacidad_lineasOmit
+    cc_checklist?: cc_checklistOmit
+    certificacion?: certificacionOmit
+    correlativo?: correlativoOmit
+    env_x_sellar?: env_x_sellarOmit
+    estados?: estadosOmit
+    folios?: foliosOmit
+    folios_frio?: folios_frioOmit
+    folios_pack?: folios_packOmit
+    folios_se?: folios_seOmit
+    fr_repa_cab?: fr_repa_cabOmit
+    fr_repa_det?: fr_repa_detOmit
+    gr_Tipo_Cobro?: Gr_Tipo_CobroOmit
+    insp_cab?: insp_cabOmit
+    mae_sta_elena?: mae_sta_elenaOmit
+    maestro_plu?: maestro_pluOmit
+    pk_desver_cab?: pk_desver_cabOmit
+    pk_desver_det?: pk_desver_detOmit
+    sys_log?: sys_logOmit
+    sysdiagrams?: sysdiagramsOmit
+    tipo_ins?: tipo_insOmit
+    traductor_calibre?: traductor_calibreOmit
+    validacion_pallets?: validacion_palletsOmit
+    existencias_cajas?: existencias_cajasOmit
+    existenciamix_cajas?: existenciamix_cajasOmit
+  }
 
   /* Types for Logging */
   export type LogLevel = 'info' | 'query' | 'warn' | 'error'
@@ -2723,10 +2717,15 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-    : never
+  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+  export type GetLogType<T> = CheckIsLogLevel<
+    T extends LogDefinition ? T['level'] : T
+  >;
+
+  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+    ? GetLogType<T[number]>
+    : never;
 
   export type QueryEvent = {
     timestamp: Date
@@ -2755,6 +2754,7 @@ export namespace Prisma {
     | 'createManyAndReturn'
     | 'update'
     | 'updateMany'
+    | 'updateManyAndReturn'
     | 'upsert'
     | 'delete'
     | 'deleteMany'
@@ -2765,25 +2765,6 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
-
-  /**
-   * These options are being passed into the middleware as "params"
-   */
-  export type MiddlewareParams = {
-    model?: ModelName
-    action: PrismaAction
-    args: any
-    dataPath: string[]
-    runInTransaction: boolean
-  }
-
-  /**
-   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
-   */
-  export type Middleware<T = any> = (
-    params: MiddlewareParams,
-    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -3016,6 +2997,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["capacidad_lineas"]>
 
 
+
   export type capacidad_lineasSelectScalar = {
     id?: boolean
     cod_linea?: boolean
@@ -3024,6 +3006,7 @@ export namespace Prisma {
     capacidad_vias?: boolean
   }
 
+  export type capacidad_lineasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cod_linea" | "cod_esp" | "nro_vias" | "capacidad_vias", ExtArgs["result"]["capacidad_lineas"]>
 
   export type $capacidad_lineasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "capacidad_lineas"
@@ -3040,12 +3023,12 @@ export namespace Prisma {
 
   type capacidad_lineasGetPayload<S extends boolean | null | undefined | capacidad_lineasDefaultArgs> = $Result.GetResult<Prisma.$capacidad_lineasPayload, S>
 
-  type capacidad_lineasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<capacidad_lineasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type capacidad_lineasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<capacidad_lineasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Capacidad_lineasCountAggregateInputType | true
     }
 
-  export interface capacidad_lineasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface capacidad_lineasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['capacidad_lineas'], meta: { name: 'capacidad_lineas' } }
     /**
      * Find zero or one Capacidad_lineas that matches the filter.
@@ -3058,10 +3041,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends capacidad_lineasFindUniqueArgs>(args: SelectSubset<T, capacidad_lineasFindUniqueArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends capacidad_lineasFindUniqueArgs>(args: SelectSubset<T, capacidad_lineasFindUniqueArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Capacidad_lineas that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Capacidad_lineas that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {capacidad_lineasFindUniqueOrThrowArgs} args - Arguments to find a Capacidad_lineas
      * @example
@@ -3072,7 +3055,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends capacidad_lineasFindUniqueOrThrowArgs>(args: SelectSubset<T, capacidad_lineasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends capacidad_lineasFindUniqueOrThrowArgs>(args: SelectSubset<T, capacidad_lineasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Capacidad_lineas that matches the filter.
@@ -3087,7 +3070,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends capacidad_lineasFindFirstArgs>(args?: SelectSubset<T, capacidad_lineasFindFirstArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends capacidad_lineasFindFirstArgs>(args?: SelectSubset<T, capacidad_lineasFindFirstArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Capacidad_lineas that matches the filter or
@@ -3103,7 +3086,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends capacidad_lineasFindFirstOrThrowArgs>(args?: SelectSubset<T, capacidad_lineasFindFirstOrThrowArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends capacidad_lineasFindFirstOrThrowArgs>(args?: SelectSubset<T, capacidad_lineasFindFirstOrThrowArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Capacidad_lineas that matches the filter.
@@ -3121,7 +3104,7 @@ export namespace Prisma {
      * const capacidad_lineasWithIdOnly = await prisma.capacidad_lineas.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends capacidad_lineasFindManyArgs>(args?: SelectSubset<T, capacidad_lineasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends capacidad_lineasFindManyArgs>(args?: SelectSubset<T, capacidad_lineasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Capacidad_lineas.
@@ -3135,7 +3118,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends capacidad_lineasCreateArgs>(args: SelectSubset<T, capacidad_lineasCreateArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends capacidad_lineasCreateArgs>(args: SelectSubset<T, capacidad_lineasCreateArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Capacidad_lineas.
@@ -3163,7 +3146,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends capacidad_lineasDeleteArgs>(args: SelectSubset<T, capacidad_lineasDeleteArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends capacidad_lineasDeleteArgs>(args: SelectSubset<T, capacidad_lineasDeleteArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Capacidad_lineas.
@@ -3180,7 +3163,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends capacidad_lineasUpdateArgs>(args: SelectSubset<T, capacidad_lineasUpdateArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends capacidad_lineasUpdateArgs>(args: SelectSubset<T, capacidad_lineasUpdateArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Capacidad_lineas.
@@ -3232,7 +3215,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends capacidad_lineasUpsertArgs>(args: SelectSubset<T, capacidad_lineasUpsertArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends capacidad_lineasUpsertArgs>(args: SelectSubset<T, capacidad_lineasUpsertArgs<ExtArgs>>): Prisma__capacidad_lineasClient<$Result.GetResult<Prisma.$capacidad_lineasPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -3372,7 +3355,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__capacidad_lineasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__capacidad_lineasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3401,7 +3384,7 @@ export namespace Prisma {
 
   /**
    * Fields of the capacidad_lineas model
-   */ 
+   */
   interface capacidad_lineasFieldRefs {
     readonly id: FieldRef<"capacidad_lineas", 'Int'>
     readonly cod_linea: FieldRef<"capacidad_lineas", 'String'>
@@ -3421,6 +3404,10 @@ export namespace Prisma {
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
+    /**
      * Filter, which capacidad_lineas to fetch.
      */
     where: capacidad_lineasWhereUniqueInput
@@ -3435,6 +3422,10 @@ export namespace Prisma {
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
+    /**
      * Filter, which capacidad_lineas to fetch.
      */
     where: capacidad_lineasWhereUniqueInput
@@ -3448,6 +3439,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the capacidad_lineas
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
     /**
      * Filter, which capacidad_lineas to fetch.
      */
@@ -3493,6 +3488,10 @@ export namespace Prisma {
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
+    /**
      * Filter, which capacidad_lineas to fetch.
      */
     where?: capacidad_lineasWhereInput
@@ -3537,6 +3536,10 @@ export namespace Prisma {
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
+    /**
      * Filter, which capacidad_lineas to fetch.
      */
     where?: capacidad_lineasWhereInput
@@ -3576,6 +3579,10 @@ export namespace Prisma {
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
+    /**
      * The data needed to create a capacidad_lineas.
      */
     data?: XOR<capacidad_lineasCreateInput, capacidad_lineasUncheckedCreateInput>
@@ -3600,6 +3607,10 @@ export namespace Prisma {
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
+    /**
      * The data needed to update a capacidad_lineas.
      */
     data: XOR<capacidad_lineasUpdateInput, capacidad_lineasUncheckedUpdateInput>
@@ -3621,6 +3632,10 @@ export namespace Prisma {
      * Filter which capacidad_lineas to update
      */
     where?: capacidad_lineasWhereInput
+    /**
+     * Limit how many capacidad_lineas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -3631,6 +3646,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the capacidad_lineas
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
     /**
      * The filter to search for the capacidad_lineas to update in case it exists.
      */
@@ -3654,6 +3673,10 @@ export namespace Prisma {
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
+    /**
      * Filter which capacidad_lineas to delete.
      */
     where: capacidad_lineasWhereUniqueInput
@@ -3667,6 +3690,10 @@ export namespace Prisma {
      * Filter which capacidad_lineas to delete
      */
     where?: capacidad_lineasWhereInput
+    /**
+     * Limit how many capacidad_lineas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -3677,6 +3704,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the capacidad_lineas
      */
     select?: capacidad_lineasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the capacidad_lineas
+     */
+    omit?: capacidad_lineasOmit<ExtArgs> | null
   }
 
 
@@ -4033,6 +4064,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["cc_checklist"]>
 
 
+
   export type cc_checklistSelectScalar = {
     id?: boolean
     n_proceso?: boolean
@@ -4058,6 +4090,7 @@ export namespace Prisma {
     fec_muestra?: boolean
   }
 
+  export type cc_checklistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "n_proceso" | "cod_esp" | "cod_var" | "cod_pro" | "cod_linea" | "fecha" | "cal_encerado" | "porc_exp" | "cal_cajas" | "porc_plu_c" | "peso_caj" | "cal_palet" | "saturacion" | "porc_exp_c" | "usuario" | "porc_plu" | "cod_emp" | "cod_tem" | "cod_envop" | "peso_c" | "fec_muestra", ExtArgs["result"]["cc_checklist"]>
 
   export type $cc_checklistPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "cc_checklist"
@@ -4091,12 +4124,12 @@ export namespace Prisma {
 
   type cc_checklistGetPayload<S extends boolean | null | undefined | cc_checklistDefaultArgs> = $Result.GetResult<Prisma.$cc_checklistPayload, S>
 
-  type cc_checklistCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<cc_checklistFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type cc_checklistCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<cc_checklistFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Cc_checklistCountAggregateInputType | true
     }
 
-  export interface cc_checklistDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface cc_checklistDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['cc_checklist'], meta: { name: 'cc_checklist' } }
     /**
      * Find zero or one Cc_checklist that matches the filter.
@@ -4109,10 +4142,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends cc_checklistFindUniqueArgs>(args: SelectSubset<T, cc_checklistFindUniqueArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends cc_checklistFindUniqueArgs>(args: SelectSubset<T, cc_checklistFindUniqueArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Cc_checklist that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Cc_checklist that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {cc_checklistFindUniqueOrThrowArgs} args - Arguments to find a Cc_checklist
      * @example
@@ -4123,7 +4156,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends cc_checklistFindUniqueOrThrowArgs>(args: SelectSubset<T, cc_checklistFindUniqueOrThrowArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends cc_checklistFindUniqueOrThrowArgs>(args: SelectSubset<T, cc_checklistFindUniqueOrThrowArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Cc_checklist that matches the filter.
@@ -4138,7 +4171,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends cc_checklistFindFirstArgs>(args?: SelectSubset<T, cc_checklistFindFirstArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends cc_checklistFindFirstArgs>(args?: SelectSubset<T, cc_checklistFindFirstArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Cc_checklist that matches the filter or
@@ -4154,7 +4187,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends cc_checklistFindFirstOrThrowArgs>(args?: SelectSubset<T, cc_checklistFindFirstOrThrowArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends cc_checklistFindFirstOrThrowArgs>(args?: SelectSubset<T, cc_checklistFindFirstOrThrowArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Cc_checklists that matches the filter.
@@ -4172,7 +4205,7 @@ export namespace Prisma {
      * const cc_checklistWithIdOnly = await prisma.cc_checklist.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends cc_checklistFindManyArgs>(args?: SelectSubset<T, cc_checklistFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends cc_checklistFindManyArgs>(args?: SelectSubset<T, cc_checklistFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Cc_checklist.
@@ -4186,7 +4219,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends cc_checklistCreateArgs>(args: SelectSubset<T, cc_checklistCreateArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends cc_checklistCreateArgs>(args: SelectSubset<T, cc_checklistCreateArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Cc_checklists.
@@ -4214,7 +4247,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends cc_checklistDeleteArgs>(args: SelectSubset<T, cc_checklistDeleteArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends cc_checklistDeleteArgs>(args: SelectSubset<T, cc_checklistDeleteArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Cc_checklist.
@@ -4231,7 +4264,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends cc_checklistUpdateArgs>(args: SelectSubset<T, cc_checklistUpdateArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends cc_checklistUpdateArgs>(args: SelectSubset<T, cc_checklistUpdateArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Cc_checklists.
@@ -4283,7 +4316,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends cc_checklistUpsertArgs>(args: SelectSubset<T, cc_checklistUpsertArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends cc_checklistUpsertArgs>(args: SelectSubset<T, cc_checklistUpsertArgs<ExtArgs>>): Prisma__cc_checklistClient<$Result.GetResult<Prisma.$cc_checklistPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -4423,7 +4456,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__cc_checklistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__cc_checklistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4452,7 +4485,7 @@ export namespace Prisma {
 
   /**
    * Fields of the cc_checklist model
-   */ 
+   */
   interface cc_checklistFieldRefs {
     readonly id: FieldRef<"cc_checklist", 'Int'>
     readonly n_proceso: FieldRef<"cc_checklist", 'Int'>
@@ -4489,6 +4522,10 @@ export namespace Prisma {
      */
     select?: cc_checklistSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
+    /**
      * Filter, which cc_checklist to fetch.
      */
     where: cc_checklistWhereUniqueInput
@@ -4503,6 +4540,10 @@ export namespace Prisma {
      */
     select?: cc_checklistSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
+    /**
      * Filter, which cc_checklist to fetch.
      */
     where: cc_checklistWhereUniqueInput
@@ -4516,6 +4557,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the cc_checklist
      */
     select?: cc_checklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
     /**
      * Filter, which cc_checklist to fetch.
      */
@@ -4561,6 +4606,10 @@ export namespace Prisma {
      */
     select?: cc_checklistSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
+    /**
      * Filter, which cc_checklist to fetch.
      */
     where?: cc_checklistWhereInput
@@ -4605,6 +4654,10 @@ export namespace Prisma {
      */
     select?: cc_checklistSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
+    /**
      * Filter, which cc_checklists to fetch.
      */
     where?: cc_checklistWhereInput
@@ -4644,6 +4697,10 @@ export namespace Prisma {
      */
     select?: cc_checklistSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
+    /**
      * The data needed to create a cc_checklist.
      */
     data?: XOR<cc_checklistCreateInput, cc_checklistUncheckedCreateInput>
@@ -4668,6 +4725,10 @@ export namespace Prisma {
      */
     select?: cc_checklistSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
+    /**
      * The data needed to update a cc_checklist.
      */
     data: XOR<cc_checklistUpdateInput, cc_checklistUncheckedUpdateInput>
@@ -4689,6 +4750,10 @@ export namespace Prisma {
      * Filter which cc_checklists to update
      */
     where?: cc_checklistWhereInput
+    /**
+     * Limit how many cc_checklists to update.
+     */
+    limit?: number
   }
 
   /**
@@ -4699,6 +4764,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the cc_checklist
      */
     select?: cc_checklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
     /**
      * The filter to search for the cc_checklist to update in case it exists.
      */
@@ -4722,6 +4791,10 @@ export namespace Prisma {
      */
     select?: cc_checklistSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
+    /**
      * Filter which cc_checklist to delete.
      */
     where: cc_checklistWhereUniqueInput
@@ -4735,6 +4808,10 @@ export namespace Prisma {
      * Filter which cc_checklists to delete
      */
     where?: cc_checklistWhereInput
+    /**
+     * Limit how many cc_checklists to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -4745,6 +4822,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the cc_checklist
      */
     select?: cc_checklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cc_checklist
+     */
+    omit?: cc_checklistOmit<ExtArgs> | null
   }
 
 
@@ -4981,6 +5062,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["certificacion"]>
 
 
+
   export type certificacionSelectScalar = {
     id?: boolean
     exportadora?: boolean
@@ -4993,6 +5075,7 @@ export namespace Prisma {
     mercados?: boolean
   }
 
+  export type certificacionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "exportadora" | "productor" | "ggn" | "fecha_emision" | "fecha_caducidad" | "vigencia" | "especie" | "mercados", ExtArgs["result"]["certificacion"]>
 
   export type $certificacionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "certificacion"
@@ -5013,12 +5096,12 @@ export namespace Prisma {
 
   type certificacionGetPayload<S extends boolean | null | undefined | certificacionDefaultArgs> = $Result.GetResult<Prisma.$certificacionPayload, S>
 
-  type certificacionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<certificacionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type certificacionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<certificacionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: CertificacionCountAggregateInputType | true
     }
 
-  export interface certificacionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface certificacionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['certificacion'], meta: { name: 'certificacion' } }
     /**
      * Find zero or one Certificacion that matches the filter.
@@ -5031,10 +5114,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends certificacionFindUniqueArgs>(args: SelectSubset<T, certificacionFindUniqueArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends certificacionFindUniqueArgs>(args: SelectSubset<T, certificacionFindUniqueArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Certificacion that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Certificacion that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {certificacionFindUniqueOrThrowArgs} args - Arguments to find a Certificacion
      * @example
@@ -5045,7 +5128,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends certificacionFindUniqueOrThrowArgs>(args: SelectSubset<T, certificacionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends certificacionFindUniqueOrThrowArgs>(args: SelectSubset<T, certificacionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Certificacion that matches the filter.
@@ -5060,7 +5143,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends certificacionFindFirstArgs>(args?: SelectSubset<T, certificacionFindFirstArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends certificacionFindFirstArgs>(args?: SelectSubset<T, certificacionFindFirstArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Certificacion that matches the filter or
@@ -5076,7 +5159,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends certificacionFindFirstOrThrowArgs>(args?: SelectSubset<T, certificacionFindFirstOrThrowArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends certificacionFindFirstOrThrowArgs>(args?: SelectSubset<T, certificacionFindFirstOrThrowArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Certificacions that matches the filter.
@@ -5094,7 +5177,7 @@ export namespace Prisma {
      * const certificacionWithIdOnly = await prisma.certificacion.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends certificacionFindManyArgs>(args?: SelectSubset<T, certificacionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends certificacionFindManyArgs>(args?: SelectSubset<T, certificacionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Certificacion.
@@ -5108,7 +5191,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends certificacionCreateArgs>(args: SelectSubset<T, certificacionCreateArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends certificacionCreateArgs>(args: SelectSubset<T, certificacionCreateArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Certificacions.
@@ -5136,7 +5219,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends certificacionDeleteArgs>(args: SelectSubset<T, certificacionDeleteArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends certificacionDeleteArgs>(args: SelectSubset<T, certificacionDeleteArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Certificacion.
@@ -5153,7 +5236,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends certificacionUpdateArgs>(args: SelectSubset<T, certificacionUpdateArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends certificacionUpdateArgs>(args: SelectSubset<T, certificacionUpdateArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Certificacions.
@@ -5205,7 +5288,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends certificacionUpsertArgs>(args: SelectSubset<T, certificacionUpsertArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends certificacionUpsertArgs>(args: SelectSubset<T, certificacionUpsertArgs<ExtArgs>>): Prisma__certificacionClient<$Result.GetResult<Prisma.$certificacionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -5345,7 +5428,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__certificacionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__certificacionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5374,7 +5457,7 @@ export namespace Prisma {
 
   /**
    * Fields of the certificacion model
-   */ 
+   */
   interface certificacionFieldRefs {
     readonly id: FieldRef<"certificacion", 'Int'>
     readonly exportadora: FieldRef<"certificacion", 'String'>
@@ -5398,6 +5481,10 @@ export namespace Prisma {
      */
     select?: certificacionSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
+    /**
      * Filter, which certificacion to fetch.
      */
     where: certificacionWhereUniqueInput
@@ -5412,6 +5499,10 @@ export namespace Prisma {
      */
     select?: certificacionSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
+    /**
      * Filter, which certificacion to fetch.
      */
     where: certificacionWhereUniqueInput
@@ -5425,6 +5516,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the certificacion
      */
     select?: certificacionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
     /**
      * Filter, which certificacion to fetch.
      */
@@ -5470,6 +5565,10 @@ export namespace Prisma {
      */
     select?: certificacionSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
+    /**
      * Filter, which certificacion to fetch.
      */
     where?: certificacionWhereInput
@@ -5514,6 +5613,10 @@ export namespace Prisma {
      */
     select?: certificacionSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
+    /**
      * Filter, which certificacions to fetch.
      */
     where?: certificacionWhereInput
@@ -5553,6 +5656,10 @@ export namespace Prisma {
      */
     select?: certificacionSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
+    /**
      * The data needed to create a certificacion.
      */
     data: XOR<certificacionCreateInput, certificacionUncheckedCreateInput>
@@ -5577,6 +5684,10 @@ export namespace Prisma {
      */
     select?: certificacionSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
+    /**
      * The data needed to update a certificacion.
      */
     data: XOR<certificacionUpdateInput, certificacionUncheckedUpdateInput>
@@ -5598,6 +5709,10 @@ export namespace Prisma {
      * Filter which certificacions to update
      */
     where?: certificacionWhereInput
+    /**
+     * Limit how many certificacions to update.
+     */
+    limit?: number
   }
 
   /**
@@ -5608,6 +5723,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the certificacion
      */
     select?: certificacionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
     /**
      * The filter to search for the certificacion to update in case it exists.
      */
@@ -5631,6 +5750,10 @@ export namespace Prisma {
      */
     select?: certificacionSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
+    /**
      * Filter which certificacion to delete.
      */
     where: certificacionWhereUniqueInput
@@ -5644,6 +5767,10 @@ export namespace Prisma {
      * Filter which certificacions to delete
      */
     where?: certificacionWhereInput
+    /**
+     * Limit how many certificacions to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -5654,6 +5781,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the certificacion
      */
     select?: certificacionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the certificacion
+     */
+    omit?: certificacionOmit<ExtArgs> | null
   }
 
 
@@ -5858,6 +5989,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["correlativo"]>
 
 
+
   export type correlativoSelectScalar = {
     id_cor?: boolean
     id_tip_ins?: boolean
@@ -5865,6 +5997,7 @@ export namespace Prisma {
     cod_sdp?: boolean
   }
 
+  export type correlativoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_cor" | "id_tip_ins" | "nro_sag" | "cod_sdp", ExtArgs["result"]["correlativo"]>
 
   export type $correlativoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "correlativo"
@@ -5880,12 +6013,12 @@ export namespace Prisma {
 
   type correlativoGetPayload<S extends boolean | null | undefined | correlativoDefaultArgs> = $Result.GetResult<Prisma.$correlativoPayload, S>
 
-  type correlativoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<correlativoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type correlativoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<correlativoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: CorrelativoCountAggregateInputType | true
     }
 
-  export interface correlativoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface correlativoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['correlativo'], meta: { name: 'correlativo' } }
     /**
      * Find zero or one Correlativo that matches the filter.
@@ -5898,10 +6031,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends correlativoFindUniqueArgs>(args: SelectSubset<T, correlativoFindUniqueArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends correlativoFindUniqueArgs>(args: SelectSubset<T, correlativoFindUniqueArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Correlativo that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Correlativo that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {correlativoFindUniqueOrThrowArgs} args - Arguments to find a Correlativo
      * @example
@@ -5912,7 +6045,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends correlativoFindUniqueOrThrowArgs>(args: SelectSubset<T, correlativoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends correlativoFindUniqueOrThrowArgs>(args: SelectSubset<T, correlativoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Correlativo that matches the filter.
@@ -5927,7 +6060,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends correlativoFindFirstArgs>(args?: SelectSubset<T, correlativoFindFirstArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends correlativoFindFirstArgs>(args?: SelectSubset<T, correlativoFindFirstArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Correlativo that matches the filter or
@@ -5943,7 +6076,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends correlativoFindFirstOrThrowArgs>(args?: SelectSubset<T, correlativoFindFirstOrThrowArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends correlativoFindFirstOrThrowArgs>(args?: SelectSubset<T, correlativoFindFirstOrThrowArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Correlativos that matches the filter.
@@ -5961,7 +6094,7 @@ export namespace Prisma {
      * const correlativoWithId_corOnly = await prisma.correlativo.findMany({ select: { id_cor: true } })
      * 
      */
-    findMany<T extends correlativoFindManyArgs>(args?: SelectSubset<T, correlativoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends correlativoFindManyArgs>(args?: SelectSubset<T, correlativoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Correlativo.
@@ -5975,7 +6108,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends correlativoCreateArgs>(args: SelectSubset<T, correlativoCreateArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends correlativoCreateArgs>(args: SelectSubset<T, correlativoCreateArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Correlativos.
@@ -6003,7 +6136,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends correlativoDeleteArgs>(args: SelectSubset<T, correlativoDeleteArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends correlativoDeleteArgs>(args: SelectSubset<T, correlativoDeleteArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Correlativo.
@@ -6020,7 +6153,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends correlativoUpdateArgs>(args: SelectSubset<T, correlativoUpdateArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends correlativoUpdateArgs>(args: SelectSubset<T, correlativoUpdateArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Correlativos.
@@ -6072,7 +6205,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends correlativoUpsertArgs>(args: SelectSubset<T, correlativoUpsertArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends correlativoUpsertArgs>(args: SelectSubset<T, correlativoUpsertArgs<ExtArgs>>): Prisma__correlativoClient<$Result.GetResult<Prisma.$correlativoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -6212,7 +6345,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__correlativoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__correlativoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6241,7 +6374,7 @@ export namespace Prisma {
 
   /**
    * Fields of the correlativo model
-   */ 
+   */
   interface correlativoFieldRefs {
     readonly id_cor: FieldRef<"correlativo", 'Int'>
     readonly id_tip_ins: FieldRef<"correlativo", 'Int'>
@@ -6260,6 +6393,10 @@ export namespace Prisma {
      */
     select?: correlativoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
+    /**
      * Filter, which correlativo to fetch.
      */
     where: correlativoWhereUniqueInput
@@ -6274,6 +6411,10 @@ export namespace Prisma {
      */
     select?: correlativoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
+    /**
      * Filter, which correlativo to fetch.
      */
     where: correlativoWhereUniqueInput
@@ -6287,6 +6428,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the correlativo
      */
     select?: correlativoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
     /**
      * Filter, which correlativo to fetch.
      */
@@ -6332,6 +6477,10 @@ export namespace Prisma {
      */
     select?: correlativoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
+    /**
      * Filter, which correlativo to fetch.
      */
     where?: correlativoWhereInput
@@ -6376,6 +6525,10 @@ export namespace Prisma {
      */
     select?: correlativoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
+    /**
      * Filter, which correlativos to fetch.
      */
     where?: correlativoWhereInput
@@ -6415,6 +6568,10 @@ export namespace Prisma {
      */
     select?: correlativoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
+    /**
      * The data needed to create a correlativo.
      */
     data?: XOR<correlativoCreateInput, correlativoUncheckedCreateInput>
@@ -6439,6 +6596,10 @@ export namespace Prisma {
      */
     select?: correlativoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
+    /**
      * The data needed to update a correlativo.
      */
     data: XOR<correlativoUpdateInput, correlativoUncheckedUpdateInput>
@@ -6460,6 +6621,10 @@ export namespace Prisma {
      * Filter which correlativos to update
      */
     where?: correlativoWhereInput
+    /**
+     * Limit how many correlativos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -6470,6 +6635,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the correlativo
      */
     select?: correlativoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
     /**
      * The filter to search for the correlativo to update in case it exists.
      */
@@ -6493,6 +6662,10 @@ export namespace Prisma {
      */
     select?: correlativoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
+    /**
      * Filter which correlativo to delete.
      */
     where: correlativoWhereUniqueInput
@@ -6506,6 +6679,10 @@ export namespace Prisma {
      * Filter which correlativos to delete
      */
     where?: correlativoWhereInput
+    /**
+     * Limit how many correlativos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -6516,6 +6693,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the correlativo
      */
     select?: correlativoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the correlativo
+     */
+    omit?: correlativoOmit<ExtArgs> | null
   }
 
 
@@ -6712,6 +6893,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["env_x_sellar"]>
 
 
+
   export type env_x_sellarSelectScalar = {
     id?: boolean
     cod_envop?: boolean
@@ -6719,6 +6901,7 @@ export namespace Prisma {
     cod_exp?: boolean
   }
 
+  export type env_x_sellarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cod_envop" | "cod_esp" | "cod_exp", ExtArgs["result"]["env_x_sellar"]>
 
   export type $env_x_sellarPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "env_x_sellar"
@@ -6734,12 +6917,12 @@ export namespace Prisma {
 
   type env_x_sellarGetPayload<S extends boolean | null | undefined | env_x_sellarDefaultArgs> = $Result.GetResult<Prisma.$env_x_sellarPayload, S>
 
-  type env_x_sellarCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<env_x_sellarFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type env_x_sellarCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<env_x_sellarFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Env_x_sellarCountAggregateInputType | true
     }
 
-  export interface env_x_sellarDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface env_x_sellarDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['env_x_sellar'], meta: { name: 'env_x_sellar' } }
     /**
      * Find zero or one Env_x_sellar that matches the filter.
@@ -6752,10 +6935,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends env_x_sellarFindUniqueArgs>(args: SelectSubset<T, env_x_sellarFindUniqueArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends env_x_sellarFindUniqueArgs>(args: SelectSubset<T, env_x_sellarFindUniqueArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Env_x_sellar that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Env_x_sellar that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {env_x_sellarFindUniqueOrThrowArgs} args - Arguments to find a Env_x_sellar
      * @example
@@ -6766,7 +6949,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends env_x_sellarFindUniqueOrThrowArgs>(args: SelectSubset<T, env_x_sellarFindUniqueOrThrowArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends env_x_sellarFindUniqueOrThrowArgs>(args: SelectSubset<T, env_x_sellarFindUniqueOrThrowArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Env_x_sellar that matches the filter.
@@ -6781,7 +6964,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends env_x_sellarFindFirstArgs>(args?: SelectSubset<T, env_x_sellarFindFirstArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends env_x_sellarFindFirstArgs>(args?: SelectSubset<T, env_x_sellarFindFirstArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Env_x_sellar that matches the filter or
@@ -6797,7 +6980,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends env_x_sellarFindFirstOrThrowArgs>(args?: SelectSubset<T, env_x_sellarFindFirstOrThrowArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends env_x_sellarFindFirstOrThrowArgs>(args?: SelectSubset<T, env_x_sellarFindFirstOrThrowArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Env_x_sellars that matches the filter.
@@ -6815,7 +6998,7 @@ export namespace Prisma {
      * const env_x_sellarWithIdOnly = await prisma.env_x_sellar.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends env_x_sellarFindManyArgs>(args?: SelectSubset<T, env_x_sellarFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends env_x_sellarFindManyArgs>(args?: SelectSubset<T, env_x_sellarFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Env_x_sellar.
@@ -6829,7 +7012,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends env_x_sellarCreateArgs>(args: SelectSubset<T, env_x_sellarCreateArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends env_x_sellarCreateArgs>(args: SelectSubset<T, env_x_sellarCreateArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Env_x_sellars.
@@ -6857,7 +7040,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends env_x_sellarDeleteArgs>(args: SelectSubset<T, env_x_sellarDeleteArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends env_x_sellarDeleteArgs>(args: SelectSubset<T, env_x_sellarDeleteArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Env_x_sellar.
@@ -6874,7 +7057,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends env_x_sellarUpdateArgs>(args: SelectSubset<T, env_x_sellarUpdateArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends env_x_sellarUpdateArgs>(args: SelectSubset<T, env_x_sellarUpdateArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Env_x_sellars.
@@ -6926,7 +7109,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends env_x_sellarUpsertArgs>(args: SelectSubset<T, env_x_sellarUpsertArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends env_x_sellarUpsertArgs>(args: SelectSubset<T, env_x_sellarUpsertArgs<ExtArgs>>): Prisma__env_x_sellarClient<$Result.GetResult<Prisma.$env_x_sellarPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -7066,7 +7249,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__env_x_sellarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__env_x_sellarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7095,7 +7278,7 @@ export namespace Prisma {
 
   /**
    * Fields of the env_x_sellar model
-   */ 
+   */
   interface env_x_sellarFieldRefs {
     readonly id: FieldRef<"env_x_sellar", 'Int'>
     readonly cod_envop: FieldRef<"env_x_sellar", 'String'>
@@ -7114,6 +7297,10 @@ export namespace Prisma {
      */
     select?: env_x_sellarSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
+    /**
      * Filter, which env_x_sellar to fetch.
      */
     where: env_x_sellarWhereUniqueInput
@@ -7128,6 +7315,10 @@ export namespace Prisma {
      */
     select?: env_x_sellarSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
+    /**
      * Filter, which env_x_sellar to fetch.
      */
     where: env_x_sellarWhereUniqueInput
@@ -7141,6 +7332,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the env_x_sellar
      */
     select?: env_x_sellarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
     /**
      * Filter, which env_x_sellar to fetch.
      */
@@ -7186,6 +7381,10 @@ export namespace Prisma {
      */
     select?: env_x_sellarSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
+    /**
      * Filter, which env_x_sellar to fetch.
      */
     where?: env_x_sellarWhereInput
@@ -7230,6 +7429,10 @@ export namespace Prisma {
      */
     select?: env_x_sellarSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
+    /**
      * Filter, which env_x_sellars to fetch.
      */
     where?: env_x_sellarWhereInput
@@ -7269,6 +7472,10 @@ export namespace Prisma {
      */
     select?: env_x_sellarSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
+    /**
      * The data needed to create a env_x_sellar.
      */
     data: XOR<env_x_sellarCreateInput, env_x_sellarUncheckedCreateInput>
@@ -7293,6 +7500,10 @@ export namespace Prisma {
      */
     select?: env_x_sellarSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
+    /**
      * The data needed to update a env_x_sellar.
      */
     data: XOR<env_x_sellarUpdateInput, env_x_sellarUncheckedUpdateInput>
@@ -7314,6 +7525,10 @@ export namespace Prisma {
      * Filter which env_x_sellars to update
      */
     where?: env_x_sellarWhereInput
+    /**
+     * Limit how many env_x_sellars to update.
+     */
+    limit?: number
   }
 
   /**
@@ -7324,6 +7539,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the env_x_sellar
      */
     select?: env_x_sellarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
     /**
      * The filter to search for the env_x_sellar to update in case it exists.
      */
@@ -7347,6 +7566,10 @@ export namespace Prisma {
      */
     select?: env_x_sellarSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
+    /**
      * Filter which env_x_sellar to delete.
      */
     where: env_x_sellarWhereUniqueInput
@@ -7360,6 +7583,10 @@ export namespace Prisma {
      * Filter which env_x_sellars to delete
      */
     where?: env_x_sellarWhereInput
+    /**
+     * Limit how many env_x_sellars to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -7370,6 +7597,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the env_x_sellar
      */
     select?: env_x_sellarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the env_x_sellar
+     */
+    omit?: env_x_sellarOmit<ExtArgs> | null
   }
 
 
@@ -7570,6 +7801,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["estados"]>
 
 
+
   export type estadosSelectScalar = {
     id_est_ins?: boolean
     des_est_ins?: boolean
@@ -7577,6 +7809,7 @@ export namespace Prisma {
     id_tip_ins?: boolean
   }
 
+  export type estadosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_est_ins" | "des_est_ins" | "tip_sdt" | "id_tip_ins", ExtArgs["result"]["estados"]>
 
   export type $estadosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "estados"
@@ -7592,12 +7825,12 @@ export namespace Prisma {
 
   type estadosGetPayload<S extends boolean | null | undefined | estadosDefaultArgs> = $Result.GetResult<Prisma.$estadosPayload, S>
 
-  type estadosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<estadosFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type estadosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<estadosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: EstadosCountAggregateInputType | true
     }
 
-  export interface estadosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface estadosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['estados'], meta: { name: 'estados' } }
     /**
      * Find zero or one Estados that matches the filter.
@@ -7610,10 +7843,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends estadosFindUniqueArgs>(args: SelectSubset<T, estadosFindUniqueArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends estadosFindUniqueArgs>(args: SelectSubset<T, estadosFindUniqueArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Estados that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Estados that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {estadosFindUniqueOrThrowArgs} args - Arguments to find a Estados
      * @example
@@ -7624,7 +7857,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends estadosFindUniqueOrThrowArgs>(args: SelectSubset<T, estadosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends estadosFindUniqueOrThrowArgs>(args: SelectSubset<T, estadosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Estados that matches the filter.
@@ -7639,7 +7872,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends estadosFindFirstArgs>(args?: SelectSubset<T, estadosFindFirstArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends estadosFindFirstArgs>(args?: SelectSubset<T, estadosFindFirstArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Estados that matches the filter or
@@ -7655,7 +7888,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends estadosFindFirstOrThrowArgs>(args?: SelectSubset<T, estadosFindFirstOrThrowArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends estadosFindFirstOrThrowArgs>(args?: SelectSubset<T, estadosFindFirstOrThrowArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Estados that matches the filter.
@@ -7673,7 +7906,7 @@ export namespace Prisma {
      * const estadosWithId_est_insOnly = await prisma.estados.findMany({ select: { id_est_ins: true } })
      * 
      */
-    findMany<T extends estadosFindManyArgs>(args?: SelectSubset<T, estadosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends estadosFindManyArgs>(args?: SelectSubset<T, estadosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Estados.
@@ -7687,7 +7920,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends estadosCreateArgs>(args: SelectSubset<T, estadosCreateArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends estadosCreateArgs>(args: SelectSubset<T, estadosCreateArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Estados.
@@ -7715,7 +7948,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends estadosDeleteArgs>(args: SelectSubset<T, estadosDeleteArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends estadosDeleteArgs>(args: SelectSubset<T, estadosDeleteArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Estados.
@@ -7732,7 +7965,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends estadosUpdateArgs>(args: SelectSubset<T, estadosUpdateArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends estadosUpdateArgs>(args: SelectSubset<T, estadosUpdateArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Estados.
@@ -7784,7 +8017,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends estadosUpsertArgs>(args: SelectSubset<T, estadosUpsertArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends estadosUpsertArgs>(args: SelectSubset<T, estadosUpsertArgs<ExtArgs>>): Prisma__estadosClient<$Result.GetResult<Prisma.$estadosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -7924,7 +8157,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__estadosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__estadosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7953,7 +8186,7 @@ export namespace Prisma {
 
   /**
    * Fields of the estados model
-   */ 
+   */
   interface estadosFieldRefs {
     readonly id_est_ins: FieldRef<"estados", 'Int'>
     readonly des_est_ins: FieldRef<"estados", 'String'>
@@ -7972,6 +8205,10 @@ export namespace Prisma {
      */
     select?: estadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
+    /**
      * Filter, which estados to fetch.
      */
     where: estadosWhereUniqueInput
@@ -7986,6 +8223,10 @@ export namespace Prisma {
      */
     select?: estadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
+    /**
      * Filter, which estados to fetch.
      */
     where: estadosWhereUniqueInput
@@ -7999,6 +8240,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the estados
      */
     select?: estadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
     /**
      * Filter, which estados to fetch.
      */
@@ -8044,6 +8289,10 @@ export namespace Prisma {
      */
     select?: estadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
+    /**
      * Filter, which estados to fetch.
      */
     where?: estadosWhereInput
@@ -8088,6 +8337,10 @@ export namespace Prisma {
      */
     select?: estadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
+    /**
      * Filter, which estados to fetch.
      */
     where?: estadosWhereInput
@@ -8127,6 +8380,10 @@ export namespace Prisma {
      */
     select?: estadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
+    /**
      * The data needed to create a estados.
      */
     data?: XOR<estadosCreateInput, estadosUncheckedCreateInput>
@@ -8151,6 +8408,10 @@ export namespace Prisma {
      */
     select?: estadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
+    /**
      * The data needed to update a estados.
      */
     data: XOR<estadosUpdateInput, estadosUncheckedUpdateInput>
@@ -8172,6 +8433,10 @@ export namespace Prisma {
      * Filter which estados to update
      */
     where?: estadosWhereInput
+    /**
+     * Limit how many estados to update.
+     */
+    limit?: number
   }
 
   /**
@@ -8182,6 +8447,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the estados
      */
     select?: estadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
     /**
      * The filter to search for the estados to update in case it exists.
      */
@@ -8205,6 +8474,10 @@ export namespace Prisma {
      */
     select?: estadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
+    /**
      * Filter which estados to delete.
      */
     where: estadosWhereUniqueInput
@@ -8218,6 +8491,10 @@ export namespace Prisma {
      * Filter which estados to delete
      */
     where?: estadosWhereInput
+    /**
+     * Limit how many estados to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -8228,6 +8505,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the estados
      */
     select?: estadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the estados
+     */
+    omit?: estadosOmit<ExtArgs> | null
   }
 
 
@@ -8448,6 +8729,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["folios"]>
 
 
+
   export type foliosSelectScalar = {
     folio?: boolean
     nom_var?: boolean
@@ -8458,6 +8740,7 @@ export namespace Prisma {
     embalaje?: boolean
   }
 
+  export type foliosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"folio" | "nom_var" | "cod_var" | "cajas" | "fecha" | "calibre" | "embalaje", ExtArgs["result"]["folios"]>
 
   export type $foliosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "folios"
@@ -8476,12 +8759,12 @@ export namespace Prisma {
 
   type foliosGetPayload<S extends boolean | null | undefined | foliosDefaultArgs> = $Result.GetResult<Prisma.$foliosPayload, S>
 
-  type foliosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<foliosFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type foliosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<foliosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: FoliosCountAggregateInputType | true
     }
 
-  export interface foliosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface foliosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['folios'], meta: { name: 'folios' } }
     /**
      * Find zero or one Folios that matches the filter.
@@ -8494,10 +8777,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends foliosFindUniqueArgs>(args: SelectSubset<T, foliosFindUniqueArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends foliosFindUniqueArgs>(args: SelectSubset<T, foliosFindUniqueArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Folios that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Folios that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {foliosFindUniqueOrThrowArgs} args - Arguments to find a Folios
      * @example
@@ -8508,7 +8791,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends foliosFindUniqueOrThrowArgs>(args: SelectSubset<T, foliosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends foliosFindUniqueOrThrowArgs>(args: SelectSubset<T, foliosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios that matches the filter.
@@ -8523,7 +8806,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends foliosFindFirstArgs>(args?: SelectSubset<T, foliosFindFirstArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends foliosFindFirstArgs>(args?: SelectSubset<T, foliosFindFirstArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios that matches the filter or
@@ -8539,7 +8822,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends foliosFindFirstOrThrowArgs>(args?: SelectSubset<T, foliosFindFirstOrThrowArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends foliosFindFirstOrThrowArgs>(args?: SelectSubset<T, foliosFindFirstOrThrowArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Folios that matches the filter.
@@ -8557,7 +8840,7 @@ export namespace Prisma {
      * const foliosWithFolioOnly = await prisma.folios.findMany({ select: { folio: true } })
      * 
      */
-    findMany<T extends foliosFindManyArgs>(args?: SelectSubset<T, foliosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends foliosFindManyArgs>(args?: SelectSubset<T, foliosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Folios.
@@ -8571,7 +8854,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends foliosCreateArgs>(args: SelectSubset<T, foliosCreateArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends foliosCreateArgs>(args: SelectSubset<T, foliosCreateArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Folios.
@@ -8599,7 +8882,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends foliosDeleteArgs>(args: SelectSubset<T, foliosDeleteArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends foliosDeleteArgs>(args: SelectSubset<T, foliosDeleteArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Folios.
@@ -8616,7 +8899,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends foliosUpdateArgs>(args: SelectSubset<T, foliosUpdateArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends foliosUpdateArgs>(args: SelectSubset<T, foliosUpdateArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Folios.
@@ -8668,7 +8951,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends foliosUpsertArgs>(args: SelectSubset<T, foliosUpsertArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends foliosUpsertArgs>(args: SelectSubset<T, foliosUpsertArgs<ExtArgs>>): Prisma__foliosClient<$Result.GetResult<Prisma.$foliosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -8808,7 +9091,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__foliosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__foliosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8837,7 +9120,7 @@ export namespace Prisma {
 
   /**
    * Fields of the folios model
-   */ 
+   */
   interface foliosFieldRefs {
     readonly folio: FieldRef<"folios", 'String'>
     readonly nom_var: FieldRef<"folios", 'String'>
@@ -8859,6 +9142,10 @@ export namespace Prisma {
      */
     select?: foliosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
+    /**
      * Filter, which folios to fetch.
      */
     where: foliosWhereUniqueInput
@@ -8873,6 +9160,10 @@ export namespace Prisma {
      */
     select?: foliosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
+    /**
      * Filter, which folios to fetch.
      */
     where: foliosWhereUniqueInput
@@ -8886,6 +9177,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios
      */
     select?: foliosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
     /**
      * Filter, which folios to fetch.
      */
@@ -8931,6 +9226,10 @@ export namespace Prisma {
      */
     select?: foliosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
+    /**
      * Filter, which folios to fetch.
      */
     where?: foliosWhereInput
@@ -8975,6 +9274,10 @@ export namespace Prisma {
      */
     select?: foliosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
+    /**
      * Filter, which folios to fetch.
      */
     where?: foliosWhereInput
@@ -9014,6 +9317,10 @@ export namespace Prisma {
      */
     select?: foliosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
+    /**
      * The data needed to create a folios.
      */
     data: XOR<foliosCreateInput, foliosUncheckedCreateInput>
@@ -9038,6 +9345,10 @@ export namespace Prisma {
      */
     select?: foliosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
+    /**
      * The data needed to update a folios.
      */
     data: XOR<foliosUpdateInput, foliosUncheckedUpdateInput>
@@ -9059,6 +9370,10 @@ export namespace Prisma {
      * Filter which folios to update
      */
     where?: foliosWhereInput
+    /**
+     * Limit how many folios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -9069,6 +9384,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios
      */
     select?: foliosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
     /**
      * The filter to search for the folios to update in case it exists.
      */
@@ -9092,6 +9411,10 @@ export namespace Prisma {
      */
     select?: foliosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
+    /**
      * Filter which folios to delete.
      */
     where: foliosWhereUniqueInput
@@ -9105,6 +9428,10 @@ export namespace Prisma {
      * Filter which folios to delete
      */
     where?: foliosWhereInput
+    /**
+     * Limit how many folios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -9115,6 +9442,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios
      */
     select?: foliosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios
+     */
+    omit?: foliosOmit<ExtArgs> | null
   }
 
 
@@ -9335,6 +9666,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["folios_frio"]>
 
 
+
   export type folios_frioSelectScalar = {
     folio?: boolean
     nom_var?: boolean
@@ -9345,6 +9677,7 @@ export namespace Prisma {
     embalaje?: boolean
   }
 
+  export type folios_frioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"folio" | "nom_var" | "cod_var" | "cajas" | "fecha" | "calibre" | "embalaje", ExtArgs["result"]["folios_frio"]>
 
   export type $folios_frioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "folios_frio"
@@ -9363,12 +9696,12 @@ export namespace Prisma {
 
   type folios_frioGetPayload<S extends boolean | null | undefined | folios_frioDefaultArgs> = $Result.GetResult<Prisma.$folios_frioPayload, S>
 
-  type folios_frioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<folios_frioFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type folios_frioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<folios_frioFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Folios_frioCountAggregateInputType | true
     }
 
-  export interface folios_frioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface folios_frioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['folios_frio'], meta: { name: 'folios_frio' } }
     /**
      * Find zero or one Folios_frio that matches the filter.
@@ -9381,10 +9714,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends folios_frioFindUniqueArgs>(args: SelectSubset<T, folios_frioFindUniqueArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends folios_frioFindUniqueArgs>(args: SelectSubset<T, folios_frioFindUniqueArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Folios_frio that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Folios_frio that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {folios_frioFindUniqueOrThrowArgs} args - Arguments to find a Folios_frio
      * @example
@@ -9395,7 +9728,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends folios_frioFindUniqueOrThrowArgs>(args: SelectSubset<T, folios_frioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends folios_frioFindUniqueOrThrowArgs>(args: SelectSubset<T, folios_frioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios_frio that matches the filter.
@@ -9410,7 +9743,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends folios_frioFindFirstArgs>(args?: SelectSubset<T, folios_frioFindFirstArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends folios_frioFindFirstArgs>(args?: SelectSubset<T, folios_frioFindFirstArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios_frio that matches the filter or
@@ -9426,7 +9759,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends folios_frioFindFirstOrThrowArgs>(args?: SelectSubset<T, folios_frioFindFirstOrThrowArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends folios_frioFindFirstOrThrowArgs>(args?: SelectSubset<T, folios_frioFindFirstOrThrowArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Folios_frios that matches the filter.
@@ -9444,7 +9777,7 @@ export namespace Prisma {
      * const folios_frioWithFolioOnly = await prisma.folios_frio.findMany({ select: { folio: true } })
      * 
      */
-    findMany<T extends folios_frioFindManyArgs>(args?: SelectSubset<T, folios_frioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends folios_frioFindManyArgs>(args?: SelectSubset<T, folios_frioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Folios_frio.
@@ -9458,7 +9791,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends folios_frioCreateArgs>(args: SelectSubset<T, folios_frioCreateArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends folios_frioCreateArgs>(args: SelectSubset<T, folios_frioCreateArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Folios_frios.
@@ -9486,7 +9819,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends folios_frioDeleteArgs>(args: SelectSubset<T, folios_frioDeleteArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends folios_frioDeleteArgs>(args: SelectSubset<T, folios_frioDeleteArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Folios_frio.
@@ -9503,7 +9836,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends folios_frioUpdateArgs>(args: SelectSubset<T, folios_frioUpdateArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends folios_frioUpdateArgs>(args: SelectSubset<T, folios_frioUpdateArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Folios_frios.
@@ -9555,7 +9888,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends folios_frioUpsertArgs>(args: SelectSubset<T, folios_frioUpsertArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends folios_frioUpsertArgs>(args: SelectSubset<T, folios_frioUpsertArgs<ExtArgs>>): Prisma__folios_frioClient<$Result.GetResult<Prisma.$folios_frioPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -9695,7 +10028,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__folios_frioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__folios_frioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9724,7 +10057,7 @@ export namespace Prisma {
 
   /**
    * Fields of the folios_frio model
-   */ 
+   */
   interface folios_frioFieldRefs {
     readonly folio: FieldRef<"folios_frio", 'String'>
     readonly nom_var: FieldRef<"folios_frio", 'String'>
@@ -9746,6 +10079,10 @@ export namespace Prisma {
      */
     select?: folios_frioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
+    /**
      * Filter, which folios_frio to fetch.
      */
     where: folios_frioWhereUniqueInput
@@ -9760,6 +10097,10 @@ export namespace Prisma {
      */
     select?: folios_frioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
+    /**
      * Filter, which folios_frio to fetch.
      */
     where: folios_frioWhereUniqueInput
@@ -9773,6 +10114,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_frio
      */
     select?: folios_frioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
     /**
      * Filter, which folios_frio to fetch.
      */
@@ -9818,6 +10163,10 @@ export namespace Prisma {
      */
     select?: folios_frioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
+    /**
      * Filter, which folios_frio to fetch.
      */
     where?: folios_frioWhereInput
@@ -9862,6 +10211,10 @@ export namespace Prisma {
      */
     select?: folios_frioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
+    /**
      * Filter, which folios_frios to fetch.
      */
     where?: folios_frioWhereInput
@@ -9901,6 +10254,10 @@ export namespace Prisma {
      */
     select?: folios_frioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
+    /**
      * The data needed to create a folios_frio.
      */
     data: XOR<folios_frioCreateInput, folios_frioUncheckedCreateInput>
@@ -9925,6 +10282,10 @@ export namespace Prisma {
      */
     select?: folios_frioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
+    /**
      * The data needed to update a folios_frio.
      */
     data: XOR<folios_frioUpdateInput, folios_frioUncheckedUpdateInput>
@@ -9946,6 +10307,10 @@ export namespace Prisma {
      * Filter which folios_frios to update
      */
     where?: folios_frioWhereInput
+    /**
+     * Limit how many folios_frios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -9956,6 +10321,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_frio
      */
     select?: folios_frioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
     /**
      * The filter to search for the folios_frio to update in case it exists.
      */
@@ -9979,6 +10348,10 @@ export namespace Prisma {
      */
     select?: folios_frioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
+    /**
      * Filter which folios_frio to delete.
      */
     where: folios_frioWhereUniqueInput
@@ -9992,6 +10365,10 @@ export namespace Prisma {
      * Filter which folios_frios to delete
      */
     where?: folios_frioWhereInput
+    /**
+     * Limit how many folios_frios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -10002,6 +10379,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_frio
      */
     select?: folios_frioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_frio
+     */
+    omit?: folios_frioOmit<ExtArgs> | null
   }
 
 
@@ -10222,6 +10603,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["folios_pack"]>
 
 
+
   export type folios_packSelectScalar = {
     folio?: boolean
     nom_var?: boolean
@@ -10232,6 +10614,7 @@ export namespace Prisma {
     embalaje?: boolean
   }
 
+  export type folios_packOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"folio" | "nom_var" | "cod_var" | "cajas" | "fecha" | "calibre" | "embalaje", ExtArgs["result"]["folios_pack"]>
 
   export type $folios_packPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "folios_pack"
@@ -10250,12 +10633,12 @@ export namespace Prisma {
 
   type folios_packGetPayload<S extends boolean | null | undefined | folios_packDefaultArgs> = $Result.GetResult<Prisma.$folios_packPayload, S>
 
-  type folios_packCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<folios_packFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type folios_packCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<folios_packFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Folios_packCountAggregateInputType | true
     }
 
-  export interface folios_packDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface folios_packDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['folios_pack'], meta: { name: 'folios_pack' } }
     /**
      * Find zero or one Folios_pack that matches the filter.
@@ -10268,10 +10651,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends folios_packFindUniqueArgs>(args: SelectSubset<T, folios_packFindUniqueArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends folios_packFindUniqueArgs>(args: SelectSubset<T, folios_packFindUniqueArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Folios_pack that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Folios_pack that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {folios_packFindUniqueOrThrowArgs} args - Arguments to find a Folios_pack
      * @example
@@ -10282,7 +10665,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends folios_packFindUniqueOrThrowArgs>(args: SelectSubset<T, folios_packFindUniqueOrThrowArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends folios_packFindUniqueOrThrowArgs>(args: SelectSubset<T, folios_packFindUniqueOrThrowArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios_pack that matches the filter.
@@ -10297,7 +10680,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends folios_packFindFirstArgs>(args?: SelectSubset<T, folios_packFindFirstArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends folios_packFindFirstArgs>(args?: SelectSubset<T, folios_packFindFirstArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios_pack that matches the filter or
@@ -10313,7 +10696,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends folios_packFindFirstOrThrowArgs>(args?: SelectSubset<T, folios_packFindFirstOrThrowArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends folios_packFindFirstOrThrowArgs>(args?: SelectSubset<T, folios_packFindFirstOrThrowArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Folios_packs that matches the filter.
@@ -10331,7 +10714,7 @@ export namespace Prisma {
      * const folios_packWithFolioOnly = await prisma.folios_pack.findMany({ select: { folio: true } })
      * 
      */
-    findMany<T extends folios_packFindManyArgs>(args?: SelectSubset<T, folios_packFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends folios_packFindManyArgs>(args?: SelectSubset<T, folios_packFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Folios_pack.
@@ -10345,7 +10728,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends folios_packCreateArgs>(args: SelectSubset<T, folios_packCreateArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends folios_packCreateArgs>(args: SelectSubset<T, folios_packCreateArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Folios_packs.
@@ -10373,7 +10756,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends folios_packDeleteArgs>(args: SelectSubset<T, folios_packDeleteArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends folios_packDeleteArgs>(args: SelectSubset<T, folios_packDeleteArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Folios_pack.
@@ -10390,7 +10773,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends folios_packUpdateArgs>(args: SelectSubset<T, folios_packUpdateArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends folios_packUpdateArgs>(args: SelectSubset<T, folios_packUpdateArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Folios_packs.
@@ -10442,7 +10825,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends folios_packUpsertArgs>(args: SelectSubset<T, folios_packUpsertArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends folios_packUpsertArgs>(args: SelectSubset<T, folios_packUpsertArgs<ExtArgs>>): Prisma__folios_packClient<$Result.GetResult<Prisma.$folios_packPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -10582,7 +10965,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__folios_packClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__folios_packClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10611,7 +10994,7 @@ export namespace Prisma {
 
   /**
    * Fields of the folios_pack model
-   */ 
+   */
   interface folios_packFieldRefs {
     readonly folio: FieldRef<"folios_pack", 'String'>
     readonly nom_var: FieldRef<"folios_pack", 'String'>
@@ -10633,6 +11016,10 @@ export namespace Prisma {
      */
     select?: folios_packSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
+    /**
      * Filter, which folios_pack to fetch.
      */
     where: folios_packWhereUniqueInput
@@ -10647,6 +11034,10 @@ export namespace Prisma {
      */
     select?: folios_packSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
+    /**
      * Filter, which folios_pack to fetch.
      */
     where: folios_packWhereUniqueInput
@@ -10660,6 +11051,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_pack
      */
     select?: folios_packSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
     /**
      * Filter, which folios_pack to fetch.
      */
@@ -10705,6 +11100,10 @@ export namespace Prisma {
      */
     select?: folios_packSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
+    /**
      * Filter, which folios_pack to fetch.
      */
     where?: folios_packWhereInput
@@ -10749,6 +11148,10 @@ export namespace Prisma {
      */
     select?: folios_packSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
+    /**
      * Filter, which folios_packs to fetch.
      */
     where?: folios_packWhereInput
@@ -10788,6 +11191,10 @@ export namespace Prisma {
      */
     select?: folios_packSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
+    /**
      * The data needed to create a folios_pack.
      */
     data: XOR<folios_packCreateInput, folios_packUncheckedCreateInput>
@@ -10812,6 +11219,10 @@ export namespace Prisma {
      */
     select?: folios_packSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
+    /**
      * The data needed to update a folios_pack.
      */
     data: XOR<folios_packUpdateInput, folios_packUncheckedUpdateInput>
@@ -10833,6 +11244,10 @@ export namespace Prisma {
      * Filter which folios_packs to update
      */
     where?: folios_packWhereInput
+    /**
+     * Limit how many folios_packs to update.
+     */
+    limit?: number
   }
 
   /**
@@ -10843,6 +11258,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_pack
      */
     select?: folios_packSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
     /**
      * The filter to search for the folios_pack to update in case it exists.
      */
@@ -10866,6 +11285,10 @@ export namespace Prisma {
      */
     select?: folios_packSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
+    /**
      * Filter which folios_pack to delete.
      */
     where: folios_packWhereUniqueInput
@@ -10879,6 +11302,10 @@ export namespace Prisma {
      * Filter which folios_packs to delete
      */
     where?: folios_packWhereInput
+    /**
+     * Limit how many folios_packs to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -10889,6 +11316,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_pack
      */
     select?: folios_packSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_pack
+     */
+    omit?: folios_packOmit<ExtArgs> | null
   }
 
 
@@ -11109,6 +11540,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["folios_se"]>
 
 
+
   export type folios_seSelectScalar = {
     folio?: boolean
     nom_var?: boolean
@@ -11119,6 +11551,7 @@ export namespace Prisma {
     embalaje?: boolean
   }
 
+  export type folios_seOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"folio" | "nom_var" | "cod_var" | "cajas" | "fecha" | "calibre" | "embalaje", ExtArgs["result"]["folios_se"]>
 
   export type $folios_sePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "folios_se"
@@ -11137,12 +11570,12 @@ export namespace Prisma {
 
   type folios_seGetPayload<S extends boolean | null | undefined | folios_seDefaultArgs> = $Result.GetResult<Prisma.$folios_sePayload, S>
 
-  type folios_seCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<folios_seFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type folios_seCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<folios_seFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Folios_seCountAggregateInputType | true
     }
 
-  export interface folios_seDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface folios_seDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['folios_se'], meta: { name: 'folios_se' } }
     /**
      * Find zero or one Folios_se that matches the filter.
@@ -11155,10 +11588,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends folios_seFindUniqueArgs>(args: SelectSubset<T, folios_seFindUniqueArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends folios_seFindUniqueArgs>(args: SelectSubset<T, folios_seFindUniqueArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Folios_se that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Folios_se that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {folios_seFindUniqueOrThrowArgs} args - Arguments to find a Folios_se
      * @example
@@ -11169,7 +11602,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends folios_seFindUniqueOrThrowArgs>(args: SelectSubset<T, folios_seFindUniqueOrThrowArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends folios_seFindUniqueOrThrowArgs>(args: SelectSubset<T, folios_seFindUniqueOrThrowArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios_se that matches the filter.
@@ -11184,7 +11617,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends folios_seFindFirstArgs>(args?: SelectSubset<T, folios_seFindFirstArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends folios_seFindFirstArgs>(args?: SelectSubset<T, folios_seFindFirstArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Folios_se that matches the filter or
@@ -11200,7 +11633,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends folios_seFindFirstOrThrowArgs>(args?: SelectSubset<T, folios_seFindFirstOrThrowArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends folios_seFindFirstOrThrowArgs>(args?: SelectSubset<T, folios_seFindFirstOrThrowArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Folios_ses that matches the filter.
@@ -11218,7 +11651,7 @@ export namespace Prisma {
      * const folios_seWithFolioOnly = await prisma.folios_se.findMany({ select: { folio: true } })
      * 
      */
-    findMany<T extends folios_seFindManyArgs>(args?: SelectSubset<T, folios_seFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findMany">>
+    findMany<T extends folios_seFindManyArgs>(args?: SelectSubset<T, folios_seFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Folios_se.
@@ -11232,7 +11665,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends folios_seCreateArgs>(args: SelectSubset<T, folios_seCreateArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends folios_seCreateArgs>(args: SelectSubset<T, folios_seCreateArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Folios_ses.
@@ -11260,7 +11693,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends folios_seDeleteArgs>(args: SelectSubset<T, folios_seDeleteArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends folios_seDeleteArgs>(args: SelectSubset<T, folios_seDeleteArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Folios_se.
@@ -11277,7 +11710,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends folios_seUpdateArgs>(args: SelectSubset<T, folios_seUpdateArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends folios_seUpdateArgs>(args: SelectSubset<T, folios_seUpdateArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Folios_ses.
@@ -11329,7 +11762,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends folios_seUpsertArgs>(args: SelectSubset<T, folios_seUpsertArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends folios_seUpsertArgs>(args: SelectSubset<T, folios_seUpsertArgs<ExtArgs>>): Prisma__folios_seClient<$Result.GetResult<Prisma.$folios_sePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -11469,7 +11902,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__folios_seClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__folios_seClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -11498,7 +11931,7 @@ export namespace Prisma {
 
   /**
    * Fields of the folios_se model
-   */ 
+   */
   interface folios_seFieldRefs {
     readonly folio: FieldRef<"folios_se", 'String'>
     readonly nom_var: FieldRef<"folios_se", 'String'>
@@ -11520,6 +11953,10 @@ export namespace Prisma {
      */
     select?: folios_seSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
+    /**
      * Filter, which folios_se to fetch.
      */
     where: folios_seWhereUniqueInput
@@ -11534,6 +11971,10 @@ export namespace Prisma {
      */
     select?: folios_seSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
+    /**
      * Filter, which folios_se to fetch.
      */
     where: folios_seWhereUniqueInput
@@ -11547,6 +11988,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_se
      */
     select?: folios_seSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
     /**
      * Filter, which folios_se to fetch.
      */
@@ -11592,6 +12037,10 @@ export namespace Prisma {
      */
     select?: folios_seSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
+    /**
      * Filter, which folios_se to fetch.
      */
     where?: folios_seWhereInput
@@ -11636,6 +12085,10 @@ export namespace Prisma {
      */
     select?: folios_seSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
+    /**
      * Filter, which folios_ses to fetch.
      */
     where?: folios_seWhereInput
@@ -11675,6 +12128,10 @@ export namespace Prisma {
      */
     select?: folios_seSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
+    /**
      * The data needed to create a folios_se.
      */
     data: XOR<folios_seCreateInput, folios_seUncheckedCreateInput>
@@ -11699,6 +12156,10 @@ export namespace Prisma {
      */
     select?: folios_seSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
+    /**
      * The data needed to update a folios_se.
      */
     data: XOR<folios_seUpdateInput, folios_seUncheckedUpdateInput>
@@ -11720,6 +12181,10 @@ export namespace Prisma {
      * Filter which folios_ses to update
      */
     where?: folios_seWhereInput
+    /**
+     * Limit how many folios_ses to update.
+     */
+    limit?: number
   }
 
   /**
@@ -11730,6 +12195,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_se
      */
     select?: folios_seSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
     /**
      * The filter to search for the folios_se to update in case it exists.
      */
@@ -11753,6 +12222,10 @@ export namespace Prisma {
      */
     select?: folios_seSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
+    /**
      * Filter which folios_se to delete.
      */
     where: folios_seWhereUniqueInput
@@ -11766,6 +12239,10 @@ export namespace Prisma {
      * Filter which folios_ses to delete
      */
     where?: folios_seWhereInput
+    /**
+     * Limit how many folios_ses to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -11776,6 +12253,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the folios_se
      */
     select?: folios_seSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the folios_se
+     */
+    omit?: folios_seOmit<ExtArgs> | null
   }
 
 
@@ -11810,7 +12291,7 @@ export namespace Prisma {
     fr_cod_pac: string | null
     fr_cod_fri: string | null
     fr_usu: string | null
-    fr_rep_sag: Buffer | null
+    fr_rep_sag: Uint8Array | null
     fr_cod_tem: string | null
     fr_cod_emp: string | null
     fr_tra_sdt: string | null
@@ -11825,7 +12306,7 @@ export namespace Prisma {
     fr_cod_pac: string | null
     fr_cod_fri: string | null
     fr_usu: string | null
-    fr_rep_sag: Buffer | null
+    fr_rep_sag: Uint8Array | null
     fr_cod_tem: string | null
     fr_cod_emp: string | null
     fr_tra_sdt: string | null
@@ -12001,7 +12482,7 @@ export namespace Prisma {
     fr_cod_pac: string | null
     fr_cod_fri: string | null
     fr_usu: string | null
-    fr_rep_sag: Buffer | null
+    fr_rep_sag: Uint8Array | null
     fr_cod_tem: string | null
     fr_cod_emp: string | null
     fr_tra_sdt: string | null
@@ -12044,6 +12525,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["fr_repa_cab"]>
 
 
+
   export type fr_repa_cabSelectScalar = {
     id?: boolean
     fec_rep?: boolean
@@ -12059,6 +12541,7 @@ export namespace Prisma {
     fr_cod_esp?: boolean
   }
 
+  export type fr_repa_cabOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fec_rep" | "id_tip_rep" | "fr_cod_pac" | "fr_cod_fri" | "fr_usu" | "fr_rep_sag" | "fr_cod_tem" | "fr_cod_emp" | "fr_tra_sdt" | "fr_nro_rep" | "fr_cod_esp", ExtArgs["result"]["fr_repa_cab"]>
 
   export type $fr_repa_cabPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "fr_repa_cab"
@@ -12070,7 +12553,7 @@ export namespace Prisma {
       fr_cod_pac: string | null
       fr_cod_fri: string | null
       fr_usu: string | null
-      fr_rep_sag: Buffer | null
+      fr_rep_sag: Uint8Array | null
       fr_cod_tem: string | null
       fr_cod_emp: string | null
       fr_tra_sdt: string | null
@@ -12082,12 +12565,12 @@ export namespace Prisma {
 
   type fr_repa_cabGetPayload<S extends boolean | null | undefined | fr_repa_cabDefaultArgs> = $Result.GetResult<Prisma.$fr_repa_cabPayload, S>
 
-  type fr_repa_cabCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<fr_repa_cabFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type fr_repa_cabCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<fr_repa_cabFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Fr_repa_cabCountAggregateInputType | true
     }
 
-  export interface fr_repa_cabDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface fr_repa_cabDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['fr_repa_cab'], meta: { name: 'fr_repa_cab' } }
     /**
      * Find zero or one Fr_repa_cab that matches the filter.
@@ -12100,10 +12583,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends fr_repa_cabFindUniqueArgs>(args: SelectSubset<T, fr_repa_cabFindUniqueArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends fr_repa_cabFindUniqueArgs>(args: SelectSubset<T, fr_repa_cabFindUniqueArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Fr_repa_cab that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Fr_repa_cab that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {fr_repa_cabFindUniqueOrThrowArgs} args - Arguments to find a Fr_repa_cab
      * @example
@@ -12114,7 +12597,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends fr_repa_cabFindUniqueOrThrowArgs>(args: SelectSubset<T, fr_repa_cabFindUniqueOrThrowArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends fr_repa_cabFindUniqueOrThrowArgs>(args: SelectSubset<T, fr_repa_cabFindUniqueOrThrowArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Fr_repa_cab that matches the filter.
@@ -12129,7 +12612,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends fr_repa_cabFindFirstArgs>(args?: SelectSubset<T, fr_repa_cabFindFirstArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends fr_repa_cabFindFirstArgs>(args?: SelectSubset<T, fr_repa_cabFindFirstArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Fr_repa_cab that matches the filter or
@@ -12145,7 +12628,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends fr_repa_cabFindFirstOrThrowArgs>(args?: SelectSubset<T, fr_repa_cabFindFirstOrThrowArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends fr_repa_cabFindFirstOrThrowArgs>(args?: SelectSubset<T, fr_repa_cabFindFirstOrThrowArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Fr_repa_cabs that matches the filter.
@@ -12163,7 +12646,7 @@ export namespace Prisma {
      * const fr_repa_cabWithIdOnly = await prisma.fr_repa_cab.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends fr_repa_cabFindManyArgs>(args?: SelectSubset<T, fr_repa_cabFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends fr_repa_cabFindManyArgs>(args?: SelectSubset<T, fr_repa_cabFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Fr_repa_cab.
@@ -12177,7 +12660,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends fr_repa_cabCreateArgs>(args: SelectSubset<T, fr_repa_cabCreateArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends fr_repa_cabCreateArgs>(args: SelectSubset<T, fr_repa_cabCreateArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Fr_repa_cabs.
@@ -12205,7 +12688,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends fr_repa_cabDeleteArgs>(args: SelectSubset<T, fr_repa_cabDeleteArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends fr_repa_cabDeleteArgs>(args: SelectSubset<T, fr_repa_cabDeleteArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Fr_repa_cab.
@@ -12222,7 +12705,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends fr_repa_cabUpdateArgs>(args: SelectSubset<T, fr_repa_cabUpdateArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends fr_repa_cabUpdateArgs>(args: SelectSubset<T, fr_repa_cabUpdateArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Fr_repa_cabs.
@@ -12274,7 +12757,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends fr_repa_cabUpsertArgs>(args: SelectSubset<T, fr_repa_cabUpsertArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends fr_repa_cabUpsertArgs>(args: SelectSubset<T, fr_repa_cabUpsertArgs<ExtArgs>>): Prisma__fr_repa_cabClient<$Result.GetResult<Prisma.$fr_repa_cabPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -12414,7 +12897,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__fr_repa_cabClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__fr_repa_cabClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12443,7 +12926,7 @@ export namespace Prisma {
 
   /**
    * Fields of the fr_repa_cab model
-   */ 
+   */
   interface fr_repa_cabFieldRefs {
     readonly id: FieldRef<"fr_repa_cab", 'Int'>
     readonly fec_rep: FieldRef<"fr_repa_cab", 'DateTime'>
@@ -12470,6 +12953,10 @@ export namespace Prisma {
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_cab to fetch.
      */
     where: fr_repa_cabWhereUniqueInput
@@ -12484,6 +12971,10 @@ export namespace Prisma {
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_cab to fetch.
      */
     where: fr_repa_cabWhereUniqueInput
@@ -12497,6 +12988,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the fr_repa_cab
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
     /**
      * Filter, which fr_repa_cab to fetch.
      */
@@ -12542,6 +13037,10 @@ export namespace Prisma {
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_cab to fetch.
      */
     where?: fr_repa_cabWhereInput
@@ -12586,6 +13085,10 @@ export namespace Prisma {
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_cabs to fetch.
      */
     where?: fr_repa_cabWhereInput
@@ -12625,6 +13128,10 @@ export namespace Prisma {
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
+    /**
      * The data needed to create a fr_repa_cab.
      */
     data?: XOR<fr_repa_cabCreateInput, fr_repa_cabUncheckedCreateInput>
@@ -12649,6 +13156,10 @@ export namespace Prisma {
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
+    /**
      * The data needed to update a fr_repa_cab.
      */
     data: XOR<fr_repa_cabUpdateInput, fr_repa_cabUncheckedUpdateInput>
@@ -12670,6 +13181,10 @@ export namespace Prisma {
      * Filter which fr_repa_cabs to update
      */
     where?: fr_repa_cabWhereInput
+    /**
+     * Limit how many fr_repa_cabs to update.
+     */
+    limit?: number
   }
 
   /**
@@ -12680,6 +13195,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the fr_repa_cab
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
     /**
      * The filter to search for the fr_repa_cab to update in case it exists.
      */
@@ -12703,6 +13222,10 @@ export namespace Prisma {
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
+    /**
      * Filter which fr_repa_cab to delete.
      */
     where: fr_repa_cabWhereUniqueInput
@@ -12716,6 +13239,10 @@ export namespace Prisma {
      * Filter which fr_repa_cabs to delete
      */
     where?: fr_repa_cabWhereInput
+    /**
+     * Limit how many fr_repa_cabs to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -12726,6 +13253,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the fr_repa_cab
      */
     select?: fr_repa_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the fr_repa_cab
+     */
+    omit?: fr_repa_cabOmit<ExtArgs> | null
   }
 
 
@@ -13410,6 +13941,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["fr_repa_det"]>
 
 
+
   export type fr_repa_detSelectScalar = {
     id?: boolean
     id_rep_cab?: boolean
@@ -13471,6 +14003,7 @@ export namespace Prisma {
     fr_peso_original?: boolean
   }
 
+  export type fr_repa_detOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_rep_cab" | "fr_lote" | "fr_cor_sdt" | "fr_pla_sdt" | "fr_est_sdt" | "fr_fec_pac" | "fr_fec_rpa" | "fr_gui_sdt" | "fr_cod_pro" | "fr_cod_esp" | "fr_cod_var" | "fr_hor_rec" | "fr_con" | "fr_tip_lot" | "fr_alt_pal" | "fr_cod_env" | "fr_cod_eti" | "fr_cod_emb" | "fr_cod_envop" | "fr_plu" | "fr_caj" | "fr_cod_cat" | "fr_cod_cal" | "fr_nro_mix" | "fr_fec_sem" | "fr_cod_bp" | "fr_cod_pre" | "fr_cod_cua" | "fr_proceso" | "fr_con_fri" | "fr_fol_ori" | "fr_cod_var_eti" | "fr_cod_tip_tra" | "fr_cod_pro_eti" | "fr_cod_exp" | "fr_pk_ori" | "id_tip_io" | "fr_caj_usa" | "fr_tip_mov" | "fr_fec_sag" | "fr_guia_sag" | "fr_cer_sag" | "fr_sol_sag" | "fr_tip_sag" | "fr_cod_mer" | "fr_cod_mer1" | "fr_cod_mer2" | "fr_cod_mer3" | "fr_cod_mer4" | "fr_fec_fum" | "fr_guia_fum" | "fr_cer_fum" | "fr_cod_tipo_fum" | "fr_pfrio" | "fr_correlativo_rec" | "fr_cod_linea" | "fr_peso_original", ExtArgs["result"]["fr_repa_det"]>
 
   export type $fr_repa_detPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "fr_repa_det"
@@ -13540,12 +14073,12 @@ export namespace Prisma {
 
   type fr_repa_detGetPayload<S extends boolean | null | undefined | fr_repa_detDefaultArgs> = $Result.GetResult<Prisma.$fr_repa_detPayload, S>
 
-  type fr_repa_detCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<fr_repa_detFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type fr_repa_detCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<fr_repa_detFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Fr_repa_detCountAggregateInputType | true
     }
 
-  export interface fr_repa_detDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface fr_repa_detDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['fr_repa_det'], meta: { name: 'fr_repa_det' } }
     /**
      * Find zero or one Fr_repa_det that matches the filter.
@@ -13558,10 +14091,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends fr_repa_detFindUniqueArgs>(args: SelectSubset<T, fr_repa_detFindUniqueArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends fr_repa_detFindUniqueArgs>(args: SelectSubset<T, fr_repa_detFindUniqueArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Fr_repa_det that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Fr_repa_det that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {fr_repa_detFindUniqueOrThrowArgs} args - Arguments to find a Fr_repa_det
      * @example
@@ -13572,7 +14105,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends fr_repa_detFindUniqueOrThrowArgs>(args: SelectSubset<T, fr_repa_detFindUniqueOrThrowArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends fr_repa_detFindUniqueOrThrowArgs>(args: SelectSubset<T, fr_repa_detFindUniqueOrThrowArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Fr_repa_det that matches the filter.
@@ -13587,7 +14120,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends fr_repa_detFindFirstArgs>(args?: SelectSubset<T, fr_repa_detFindFirstArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends fr_repa_detFindFirstArgs>(args?: SelectSubset<T, fr_repa_detFindFirstArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Fr_repa_det that matches the filter or
@@ -13603,7 +14136,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends fr_repa_detFindFirstOrThrowArgs>(args?: SelectSubset<T, fr_repa_detFindFirstOrThrowArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends fr_repa_detFindFirstOrThrowArgs>(args?: SelectSubset<T, fr_repa_detFindFirstOrThrowArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Fr_repa_dets that matches the filter.
@@ -13621,7 +14154,7 @@ export namespace Prisma {
      * const fr_repa_detWithIdOnly = await prisma.fr_repa_det.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends fr_repa_detFindManyArgs>(args?: SelectSubset<T, fr_repa_detFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends fr_repa_detFindManyArgs>(args?: SelectSubset<T, fr_repa_detFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Fr_repa_det.
@@ -13635,7 +14168,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends fr_repa_detCreateArgs>(args: SelectSubset<T, fr_repa_detCreateArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends fr_repa_detCreateArgs>(args: SelectSubset<T, fr_repa_detCreateArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Fr_repa_dets.
@@ -13663,7 +14196,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends fr_repa_detDeleteArgs>(args: SelectSubset<T, fr_repa_detDeleteArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends fr_repa_detDeleteArgs>(args: SelectSubset<T, fr_repa_detDeleteArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Fr_repa_det.
@@ -13680,7 +14213,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends fr_repa_detUpdateArgs>(args: SelectSubset<T, fr_repa_detUpdateArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends fr_repa_detUpdateArgs>(args: SelectSubset<T, fr_repa_detUpdateArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Fr_repa_dets.
@@ -13732,7 +14265,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends fr_repa_detUpsertArgs>(args: SelectSubset<T, fr_repa_detUpsertArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends fr_repa_detUpsertArgs>(args: SelectSubset<T, fr_repa_detUpsertArgs<ExtArgs>>): Prisma__fr_repa_detClient<$Result.GetResult<Prisma.$fr_repa_detPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -13872,7 +14405,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__fr_repa_detClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__fr_repa_detClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -13901,7 +14434,7 @@ export namespace Prisma {
 
   /**
    * Fields of the fr_repa_det model
-   */ 
+   */
   interface fr_repa_detFieldRefs {
     readonly id: FieldRef<"fr_repa_det", 'Int'>
     readonly id_rep_cab: FieldRef<"fr_repa_det", 'Int'>
@@ -13974,6 +14507,10 @@ export namespace Prisma {
      */
     select?: fr_repa_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_det to fetch.
      */
     where: fr_repa_detWhereUniqueInput
@@ -13988,6 +14525,10 @@ export namespace Prisma {
      */
     select?: fr_repa_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_det to fetch.
      */
     where: fr_repa_detWhereUniqueInput
@@ -14001,6 +14542,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the fr_repa_det
      */
     select?: fr_repa_detSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
     /**
      * Filter, which fr_repa_det to fetch.
      */
@@ -14046,6 +14591,10 @@ export namespace Prisma {
      */
     select?: fr_repa_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_det to fetch.
      */
     where?: fr_repa_detWhereInput
@@ -14090,6 +14639,10 @@ export namespace Prisma {
      */
     select?: fr_repa_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
+    /**
      * Filter, which fr_repa_dets to fetch.
      */
     where?: fr_repa_detWhereInput
@@ -14129,6 +14682,10 @@ export namespace Prisma {
      */
     select?: fr_repa_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
+    /**
      * The data needed to create a fr_repa_det.
      */
     data?: XOR<fr_repa_detCreateInput, fr_repa_detUncheckedCreateInput>
@@ -14153,6 +14710,10 @@ export namespace Prisma {
      */
     select?: fr_repa_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
+    /**
      * The data needed to update a fr_repa_det.
      */
     data: XOR<fr_repa_detUpdateInput, fr_repa_detUncheckedUpdateInput>
@@ -14174,6 +14735,10 @@ export namespace Prisma {
      * Filter which fr_repa_dets to update
      */
     where?: fr_repa_detWhereInput
+    /**
+     * Limit how many fr_repa_dets to update.
+     */
+    limit?: number
   }
 
   /**
@@ -14184,6 +14749,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the fr_repa_det
      */
     select?: fr_repa_detSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
     /**
      * The filter to search for the fr_repa_det to update in case it exists.
      */
@@ -14207,6 +14776,10 @@ export namespace Prisma {
      */
     select?: fr_repa_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
+    /**
      * Filter which fr_repa_det to delete.
      */
     where: fr_repa_detWhereUniqueInput
@@ -14220,6 +14793,10 @@ export namespace Prisma {
      * Filter which fr_repa_dets to delete
      */
     where?: fr_repa_detWhereInput
+    /**
+     * Limit how many fr_repa_dets to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -14230,6 +14807,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the fr_repa_det
      */
     select?: fr_repa_detSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the fr_repa_det
+     */
+    omit?: fr_repa_detOmit<ExtArgs> | null
   }
 
 
@@ -14422,12 +15003,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["gr_Tipo_Cobro"]>
 
 
+
   export type Gr_Tipo_CobroSelectScalar = {
     id?: boolean
     Descripcion?: boolean
     tipo_c?: boolean
   }
 
+  export type Gr_Tipo_CobroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Descripcion" | "tipo_c", ExtArgs["result"]["gr_Tipo_Cobro"]>
 
   export type $Gr_Tipo_CobroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Gr_Tipo_Cobro"
@@ -14442,12 +15025,12 @@ export namespace Prisma {
 
   type Gr_Tipo_CobroGetPayload<S extends boolean | null | undefined | Gr_Tipo_CobroDefaultArgs> = $Result.GetResult<Prisma.$Gr_Tipo_CobroPayload, S>
 
-  type Gr_Tipo_CobroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<Gr_Tipo_CobroFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type Gr_Tipo_CobroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<Gr_Tipo_CobroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Gr_Tipo_CobroCountAggregateInputType | true
     }
 
-  export interface Gr_Tipo_CobroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface Gr_Tipo_CobroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Gr_Tipo_Cobro'], meta: { name: 'Gr_Tipo_Cobro' } }
     /**
      * Find zero or one Gr_Tipo_Cobro that matches the filter.
@@ -14460,10 +15043,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends Gr_Tipo_CobroFindUniqueArgs>(args: SelectSubset<T, Gr_Tipo_CobroFindUniqueArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends Gr_Tipo_CobroFindUniqueArgs>(args: SelectSubset<T, Gr_Tipo_CobroFindUniqueArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Gr_Tipo_Cobro that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Gr_Tipo_Cobro that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {Gr_Tipo_CobroFindUniqueOrThrowArgs} args - Arguments to find a Gr_Tipo_Cobro
      * @example
@@ -14474,7 +15057,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends Gr_Tipo_CobroFindUniqueOrThrowArgs>(args: SelectSubset<T, Gr_Tipo_CobroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends Gr_Tipo_CobroFindUniqueOrThrowArgs>(args: SelectSubset<T, Gr_Tipo_CobroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Gr_Tipo_Cobro that matches the filter.
@@ -14489,7 +15072,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends Gr_Tipo_CobroFindFirstArgs>(args?: SelectSubset<T, Gr_Tipo_CobroFindFirstArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends Gr_Tipo_CobroFindFirstArgs>(args?: SelectSubset<T, Gr_Tipo_CobroFindFirstArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Gr_Tipo_Cobro that matches the filter or
@@ -14505,7 +15088,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends Gr_Tipo_CobroFindFirstOrThrowArgs>(args?: SelectSubset<T, Gr_Tipo_CobroFindFirstOrThrowArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends Gr_Tipo_CobroFindFirstOrThrowArgs>(args?: SelectSubset<T, Gr_Tipo_CobroFindFirstOrThrowArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Gr_Tipo_Cobros that matches the filter.
@@ -14523,7 +15106,7 @@ export namespace Prisma {
      * const gr_Tipo_CobroWithIdOnly = await prisma.gr_Tipo_Cobro.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends Gr_Tipo_CobroFindManyArgs>(args?: SelectSubset<T, Gr_Tipo_CobroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends Gr_Tipo_CobroFindManyArgs>(args?: SelectSubset<T, Gr_Tipo_CobroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Gr_Tipo_Cobro.
@@ -14537,7 +15120,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends Gr_Tipo_CobroCreateArgs>(args: SelectSubset<T, Gr_Tipo_CobroCreateArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends Gr_Tipo_CobroCreateArgs>(args: SelectSubset<T, Gr_Tipo_CobroCreateArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Gr_Tipo_Cobros.
@@ -14565,7 +15148,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends Gr_Tipo_CobroDeleteArgs>(args: SelectSubset<T, Gr_Tipo_CobroDeleteArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends Gr_Tipo_CobroDeleteArgs>(args: SelectSubset<T, Gr_Tipo_CobroDeleteArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Gr_Tipo_Cobro.
@@ -14582,7 +15165,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends Gr_Tipo_CobroUpdateArgs>(args: SelectSubset<T, Gr_Tipo_CobroUpdateArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends Gr_Tipo_CobroUpdateArgs>(args: SelectSubset<T, Gr_Tipo_CobroUpdateArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Gr_Tipo_Cobros.
@@ -14634,7 +15217,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends Gr_Tipo_CobroUpsertArgs>(args: SelectSubset<T, Gr_Tipo_CobroUpsertArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends Gr_Tipo_CobroUpsertArgs>(args: SelectSubset<T, Gr_Tipo_CobroUpsertArgs<ExtArgs>>): Prisma__Gr_Tipo_CobroClient<$Result.GetResult<Prisma.$Gr_Tipo_CobroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -14774,7 +15357,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__Gr_Tipo_CobroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__Gr_Tipo_CobroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -14803,7 +15386,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Gr_Tipo_Cobro model
-   */ 
+   */
   interface Gr_Tipo_CobroFieldRefs {
     readonly id: FieldRef<"Gr_Tipo_Cobro", 'Int'>
     readonly Descripcion: FieldRef<"Gr_Tipo_Cobro", 'String'>
@@ -14821,6 +15404,10 @@ export namespace Prisma {
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
+    /**
      * Filter, which Gr_Tipo_Cobro to fetch.
      */
     where: Gr_Tipo_CobroWhereUniqueInput
@@ -14835,6 +15422,10 @@ export namespace Prisma {
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
+    /**
      * Filter, which Gr_Tipo_Cobro to fetch.
      */
     where: Gr_Tipo_CobroWhereUniqueInput
@@ -14848,6 +15439,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Gr_Tipo_Cobro
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
     /**
      * Filter, which Gr_Tipo_Cobro to fetch.
      */
@@ -14893,6 +15488,10 @@ export namespace Prisma {
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
+    /**
      * Filter, which Gr_Tipo_Cobro to fetch.
      */
     where?: Gr_Tipo_CobroWhereInput
@@ -14937,6 +15536,10 @@ export namespace Prisma {
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
+    /**
      * Filter, which Gr_Tipo_Cobros to fetch.
      */
     where?: Gr_Tipo_CobroWhereInput
@@ -14976,6 +15579,10 @@ export namespace Prisma {
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
+    /**
      * The data needed to create a Gr_Tipo_Cobro.
      */
     data?: XOR<Gr_Tipo_CobroCreateInput, Gr_Tipo_CobroUncheckedCreateInput>
@@ -15000,6 +15607,10 @@ export namespace Prisma {
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
+    /**
      * The data needed to update a Gr_Tipo_Cobro.
      */
     data: XOR<Gr_Tipo_CobroUpdateInput, Gr_Tipo_CobroUncheckedUpdateInput>
@@ -15021,6 +15632,10 @@ export namespace Prisma {
      * Filter which Gr_Tipo_Cobros to update
      */
     where?: Gr_Tipo_CobroWhereInput
+    /**
+     * Limit how many Gr_Tipo_Cobros to update.
+     */
+    limit?: number
   }
 
   /**
@@ -15031,6 +15646,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Gr_Tipo_Cobro
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
     /**
      * The filter to search for the Gr_Tipo_Cobro to update in case it exists.
      */
@@ -15054,6 +15673,10 @@ export namespace Prisma {
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
+    /**
      * Filter which Gr_Tipo_Cobro to delete.
      */
     where: Gr_Tipo_CobroWhereUniqueInput
@@ -15067,6 +15690,10 @@ export namespace Prisma {
      * Filter which Gr_Tipo_Cobros to delete
      */
     where?: Gr_Tipo_CobroWhereInput
+    /**
+     * Limit how many Gr_Tipo_Cobros to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -15077,6 +15704,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Gr_Tipo_Cobro
      */
     select?: Gr_Tipo_CobroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Gr_Tipo_Cobro
+     */
+    omit?: Gr_Tipo_CobroOmit<ExtArgs> | null
   }
 
 
@@ -15357,6 +15988,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["insp_cab"]>
 
 
+
   export type insp_cabSelectScalar = {
     id_ins?: boolean
     nro_sag?: boolean
@@ -15373,6 +16005,7 @@ export namespace Prisma {
     id_est_ins?: boolean
   }
 
+  export type insp_cabOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_ins" | "nro_sag" | "cod_csp" | "id_tip_ins" | "fec_doc" | "fec_ins" | "id_usuario" | "cod_mer" | "cod_mer1" | "cod_mer2" | "cod_mer3" | "obs_insp" | "id_est_ins", ExtArgs["result"]["insp_cab"]>
 
   export type $insp_cabPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "insp_cab"
@@ -15397,12 +16030,12 @@ export namespace Prisma {
 
   type insp_cabGetPayload<S extends boolean | null | undefined | insp_cabDefaultArgs> = $Result.GetResult<Prisma.$insp_cabPayload, S>
 
-  type insp_cabCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<insp_cabFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type insp_cabCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<insp_cabFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Insp_cabCountAggregateInputType | true
     }
 
-  export interface insp_cabDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface insp_cabDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['insp_cab'], meta: { name: 'insp_cab' } }
     /**
      * Find zero or one Insp_cab that matches the filter.
@@ -15415,10 +16048,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends insp_cabFindUniqueArgs>(args: SelectSubset<T, insp_cabFindUniqueArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends insp_cabFindUniqueArgs>(args: SelectSubset<T, insp_cabFindUniqueArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Insp_cab that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Insp_cab that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {insp_cabFindUniqueOrThrowArgs} args - Arguments to find a Insp_cab
      * @example
@@ -15429,7 +16062,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends insp_cabFindUniqueOrThrowArgs>(args: SelectSubset<T, insp_cabFindUniqueOrThrowArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends insp_cabFindUniqueOrThrowArgs>(args: SelectSubset<T, insp_cabFindUniqueOrThrowArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Insp_cab that matches the filter.
@@ -15444,7 +16077,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends insp_cabFindFirstArgs>(args?: SelectSubset<T, insp_cabFindFirstArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends insp_cabFindFirstArgs>(args?: SelectSubset<T, insp_cabFindFirstArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Insp_cab that matches the filter or
@@ -15460,7 +16093,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends insp_cabFindFirstOrThrowArgs>(args?: SelectSubset<T, insp_cabFindFirstOrThrowArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends insp_cabFindFirstOrThrowArgs>(args?: SelectSubset<T, insp_cabFindFirstOrThrowArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Insp_cabs that matches the filter.
@@ -15478,7 +16111,7 @@ export namespace Prisma {
      * const insp_cabWithId_insOnly = await prisma.insp_cab.findMany({ select: { id_ins: true } })
      * 
      */
-    findMany<T extends insp_cabFindManyArgs>(args?: SelectSubset<T, insp_cabFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends insp_cabFindManyArgs>(args?: SelectSubset<T, insp_cabFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Insp_cab.
@@ -15492,7 +16125,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends insp_cabCreateArgs>(args: SelectSubset<T, insp_cabCreateArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends insp_cabCreateArgs>(args: SelectSubset<T, insp_cabCreateArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Insp_cabs.
@@ -15520,7 +16153,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends insp_cabDeleteArgs>(args: SelectSubset<T, insp_cabDeleteArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends insp_cabDeleteArgs>(args: SelectSubset<T, insp_cabDeleteArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Insp_cab.
@@ -15537,7 +16170,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends insp_cabUpdateArgs>(args: SelectSubset<T, insp_cabUpdateArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends insp_cabUpdateArgs>(args: SelectSubset<T, insp_cabUpdateArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Insp_cabs.
@@ -15589,7 +16222,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends insp_cabUpsertArgs>(args: SelectSubset<T, insp_cabUpsertArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends insp_cabUpsertArgs>(args: SelectSubset<T, insp_cabUpsertArgs<ExtArgs>>): Prisma__insp_cabClient<$Result.GetResult<Prisma.$insp_cabPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -15729,7 +16362,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__insp_cabClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__insp_cabClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -15758,7 +16391,7 @@ export namespace Prisma {
 
   /**
    * Fields of the insp_cab model
-   */ 
+   */
   interface insp_cabFieldRefs {
     readonly id_ins: FieldRef<"insp_cab", 'Int'>
     readonly nro_sag: FieldRef<"insp_cab", 'Int'>
@@ -15786,6 +16419,10 @@ export namespace Prisma {
      */
     select?: insp_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
+    /**
      * Filter, which insp_cab to fetch.
      */
     where: insp_cabWhereUniqueInput
@@ -15800,6 +16437,10 @@ export namespace Prisma {
      */
     select?: insp_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
+    /**
      * Filter, which insp_cab to fetch.
      */
     where: insp_cabWhereUniqueInput
@@ -15813,6 +16454,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the insp_cab
      */
     select?: insp_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
     /**
      * Filter, which insp_cab to fetch.
      */
@@ -15858,6 +16503,10 @@ export namespace Prisma {
      */
     select?: insp_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
+    /**
      * Filter, which insp_cab to fetch.
      */
     where?: insp_cabWhereInput
@@ -15902,6 +16551,10 @@ export namespace Prisma {
      */
     select?: insp_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
+    /**
      * Filter, which insp_cabs to fetch.
      */
     where?: insp_cabWhereInput
@@ -15941,6 +16594,10 @@ export namespace Prisma {
      */
     select?: insp_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
+    /**
      * The data needed to create a insp_cab.
      */
     data?: XOR<insp_cabCreateInput, insp_cabUncheckedCreateInput>
@@ -15965,6 +16622,10 @@ export namespace Prisma {
      */
     select?: insp_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
+    /**
      * The data needed to update a insp_cab.
      */
     data: XOR<insp_cabUpdateInput, insp_cabUncheckedUpdateInput>
@@ -15986,6 +16647,10 @@ export namespace Prisma {
      * Filter which insp_cabs to update
      */
     where?: insp_cabWhereInput
+    /**
+     * Limit how many insp_cabs to update.
+     */
+    limit?: number
   }
 
   /**
@@ -15996,6 +16661,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the insp_cab
      */
     select?: insp_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
     /**
      * The filter to search for the insp_cab to update in case it exists.
      */
@@ -16019,6 +16688,10 @@ export namespace Prisma {
      */
     select?: insp_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
+    /**
      * Filter which insp_cab to delete.
      */
     where: insp_cabWhereUniqueInput
@@ -16032,6 +16705,10 @@ export namespace Prisma {
      * Filter which insp_cabs to delete
      */
     where?: insp_cabWhereInput
+    /**
+     * Limit how many insp_cabs to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -16042,6 +16719,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the insp_cab
      */
     select?: insp_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the insp_cab
+     */
+    omit?: insp_cabOmit<ExtArgs> | null
   }
 
 
@@ -16180,10 +16861,12 @@ export namespace Prisma {
   }, ExtArgs["result"]["mae_sta_elena"]>
 
 
+
   export type mae_sta_elenaSelectScalar = {
     cod_emb?: boolean
   }
 
+  export type mae_sta_elenaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod_emb", ExtArgs["result"]["mae_sta_elena"]>
 
   export type $mae_sta_elenaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "mae_sta_elena"
@@ -16196,12 +16879,12 @@ export namespace Prisma {
 
   type mae_sta_elenaGetPayload<S extends boolean | null | undefined | mae_sta_elenaDefaultArgs> = $Result.GetResult<Prisma.$mae_sta_elenaPayload, S>
 
-  type mae_sta_elenaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<mae_sta_elenaFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type mae_sta_elenaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<mae_sta_elenaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Mae_sta_elenaCountAggregateInputType | true
     }
 
-  export interface mae_sta_elenaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface mae_sta_elenaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['mae_sta_elena'], meta: { name: 'mae_sta_elena' } }
     /**
      * Find zero or one Mae_sta_elena that matches the filter.
@@ -16214,10 +16897,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends mae_sta_elenaFindUniqueArgs>(args: SelectSubset<T, mae_sta_elenaFindUniqueArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends mae_sta_elenaFindUniqueArgs>(args: SelectSubset<T, mae_sta_elenaFindUniqueArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Mae_sta_elena that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Mae_sta_elena that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {mae_sta_elenaFindUniqueOrThrowArgs} args - Arguments to find a Mae_sta_elena
      * @example
@@ -16228,7 +16911,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends mae_sta_elenaFindUniqueOrThrowArgs>(args: SelectSubset<T, mae_sta_elenaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends mae_sta_elenaFindUniqueOrThrowArgs>(args: SelectSubset<T, mae_sta_elenaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Mae_sta_elena that matches the filter.
@@ -16243,7 +16926,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends mae_sta_elenaFindFirstArgs>(args?: SelectSubset<T, mae_sta_elenaFindFirstArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends mae_sta_elenaFindFirstArgs>(args?: SelectSubset<T, mae_sta_elenaFindFirstArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Mae_sta_elena that matches the filter or
@@ -16259,7 +16942,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends mae_sta_elenaFindFirstOrThrowArgs>(args?: SelectSubset<T, mae_sta_elenaFindFirstOrThrowArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends mae_sta_elenaFindFirstOrThrowArgs>(args?: SelectSubset<T, mae_sta_elenaFindFirstOrThrowArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Mae_sta_elenas that matches the filter.
@@ -16277,7 +16960,7 @@ export namespace Prisma {
      * const mae_sta_elenaWithCod_embOnly = await prisma.mae_sta_elena.findMany({ select: { cod_emb: true } })
      * 
      */
-    findMany<T extends mae_sta_elenaFindManyArgs>(args?: SelectSubset<T, mae_sta_elenaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends mae_sta_elenaFindManyArgs>(args?: SelectSubset<T, mae_sta_elenaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Mae_sta_elena.
@@ -16291,7 +16974,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends mae_sta_elenaCreateArgs>(args: SelectSubset<T, mae_sta_elenaCreateArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends mae_sta_elenaCreateArgs>(args: SelectSubset<T, mae_sta_elenaCreateArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Mae_sta_elenas.
@@ -16319,7 +17002,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends mae_sta_elenaDeleteArgs>(args: SelectSubset<T, mae_sta_elenaDeleteArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends mae_sta_elenaDeleteArgs>(args: SelectSubset<T, mae_sta_elenaDeleteArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Mae_sta_elena.
@@ -16336,7 +17019,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends mae_sta_elenaUpdateArgs>(args: SelectSubset<T, mae_sta_elenaUpdateArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends mae_sta_elenaUpdateArgs>(args: SelectSubset<T, mae_sta_elenaUpdateArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Mae_sta_elenas.
@@ -16388,7 +17071,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends mae_sta_elenaUpsertArgs>(args: SelectSubset<T, mae_sta_elenaUpsertArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends mae_sta_elenaUpsertArgs>(args: SelectSubset<T, mae_sta_elenaUpsertArgs<ExtArgs>>): Prisma__mae_sta_elenaClient<$Result.GetResult<Prisma.$mae_sta_elenaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -16528,7 +17211,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__mae_sta_elenaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__mae_sta_elenaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16557,7 +17240,7 @@ export namespace Prisma {
 
   /**
    * Fields of the mae_sta_elena model
-   */ 
+   */
   interface mae_sta_elenaFieldRefs {
     readonly cod_emb: FieldRef<"mae_sta_elena", 'String'>
   }
@@ -16573,6 +17256,10 @@ export namespace Prisma {
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
+    /**
      * Filter, which mae_sta_elena to fetch.
      */
     where: mae_sta_elenaWhereUniqueInput
@@ -16587,6 +17274,10 @@ export namespace Prisma {
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
+    /**
      * Filter, which mae_sta_elena to fetch.
      */
     where: mae_sta_elenaWhereUniqueInput
@@ -16600,6 +17291,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the mae_sta_elena
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
     /**
      * Filter, which mae_sta_elena to fetch.
      */
@@ -16645,6 +17340,10 @@ export namespace Prisma {
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
+    /**
      * Filter, which mae_sta_elena to fetch.
      */
     where?: mae_sta_elenaWhereInput
@@ -16689,6 +17388,10 @@ export namespace Prisma {
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
+    /**
      * Filter, which mae_sta_elenas to fetch.
      */
     where?: mae_sta_elenaWhereInput
@@ -16728,6 +17431,10 @@ export namespace Prisma {
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
+    /**
      * The data needed to create a mae_sta_elena.
      */
     data: XOR<mae_sta_elenaCreateInput, mae_sta_elenaUncheckedCreateInput>
@@ -16752,6 +17459,10 @@ export namespace Prisma {
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
+    /**
      * The data needed to update a mae_sta_elena.
      */
     data: XOR<mae_sta_elenaUpdateInput, mae_sta_elenaUncheckedUpdateInput>
@@ -16773,6 +17484,10 @@ export namespace Prisma {
      * Filter which mae_sta_elenas to update
      */
     where?: mae_sta_elenaWhereInput
+    /**
+     * Limit how many mae_sta_elenas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -16783,6 +17498,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the mae_sta_elena
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
     /**
      * The filter to search for the mae_sta_elena to update in case it exists.
      */
@@ -16806,6 +17525,10 @@ export namespace Prisma {
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
+    /**
      * Filter which mae_sta_elena to delete.
      */
     where: mae_sta_elenaWhereUniqueInput
@@ -16819,6 +17542,10 @@ export namespace Prisma {
      * Filter which mae_sta_elenas to delete
      */
     where?: mae_sta_elenaWhereInput
+    /**
+     * Limit how many mae_sta_elenas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -16829,6 +17556,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the mae_sta_elena
      */
     select?: mae_sta_elenaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mae_sta_elena
+     */
+    omit?: mae_sta_elenaOmit<ExtArgs> | null
   }
 
 
@@ -16983,12 +17714,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["maestro_plu"]>
 
 
+
   export type maestro_pluSelectScalar = {
     cod_envop?: boolean
     cod_cal?: boolean
     cod_plu?: boolean
   }
 
+  export type maestro_pluOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod_envop" | "cod_cal" | "cod_plu", ExtArgs["result"]["maestro_plu"]>
 
   export type $maestro_pluPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "maestro_plu"
@@ -17003,12 +17736,12 @@ export namespace Prisma {
 
   type maestro_pluGetPayload<S extends boolean | null | undefined | maestro_pluDefaultArgs> = $Result.GetResult<Prisma.$maestro_pluPayload, S>
 
-  type maestro_pluCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<maestro_pluFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type maestro_pluCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<maestro_pluFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Maestro_pluCountAggregateInputType | true
     }
 
-  export interface maestro_pluDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface maestro_pluDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['maestro_plu'], meta: { name: 'maestro_plu' } }
     /**
      * Find zero or one Maestro_plu that matches the filter.
@@ -17021,10 +17754,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends maestro_pluFindUniqueArgs>(args: SelectSubset<T, maestro_pluFindUniqueArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends maestro_pluFindUniqueArgs>(args: SelectSubset<T, maestro_pluFindUniqueArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Maestro_plu that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Maestro_plu that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {maestro_pluFindUniqueOrThrowArgs} args - Arguments to find a Maestro_plu
      * @example
@@ -17035,7 +17768,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends maestro_pluFindUniqueOrThrowArgs>(args: SelectSubset<T, maestro_pluFindUniqueOrThrowArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends maestro_pluFindUniqueOrThrowArgs>(args: SelectSubset<T, maestro_pluFindUniqueOrThrowArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Maestro_plu that matches the filter.
@@ -17050,7 +17783,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends maestro_pluFindFirstArgs>(args?: SelectSubset<T, maestro_pluFindFirstArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends maestro_pluFindFirstArgs>(args?: SelectSubset<T, maestro_pluFindFirstArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Maestro_plu that matches the filter or
@@ -17066,7 +17799,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends maestro_pluFindFirstOrThrowArgs>(args?: SelectSubset<T, maestro_pluFindFirstOrThrowArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends maestro_pluFindFirstOrThrowArgs>(args?: SelectSubset<T, maestro_pluFindFirstOrThrowArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Maestro_plus that matches the filter.
@@ -17084,7 +17817,7 @@ export namespace Prisma {
      * const maestro_pluWithCod_envopOnly = await prisma.maestro_plu.findMany({ select: { cod_envop: true } })
      * 
      */
-    findMany<T extends maestro_pluFindManyArgs>(args?: SelectSubset<T, maestro_pluFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends maestro_pluFindManyArgs>(args?: SelectSubset<T, maestro_pluFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Maestro_plu.
@@ -17098,7 +17831,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends maestro_pluCreateArgs>(args: SelectSubset<T, maestro_pluCreateArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends maestro_pluCreateArgs>(args: SelectSubset<T, maestro_pluCreateArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Maestro_plus.
@@ -17126,7 +17859,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends maestro_pluDeleteArgs>(args: SelectSubset<T, maestro_pluDeleteArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends maestro_pluDeleteArgs>(args: SelectSubset<T, maestro_pluDeleteArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Maestro_plu.
@@ -17143,7 +17876,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends maestro_pluUpdateArgs>(args: SelectSubset<T, maestro_pluUpdateArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends maestro_pluUpdateArgs>(args: SelectSubset<T, maestro_pluUpdateArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Maestro_plus.
@@ -17195,7 +17928,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends maestro_pluUpsertArgs>(args: SelectSubset<T, maestro_pluUpsertArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends maestro_pluUpsertArgs>(args: SelectSubset<T, maestro_pluUpsertArgs<ExtArgs>>): Prisma__maestro_pluClient<$Result.GetResult<Prisma.$maestro_pluPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -17335,7 +18068,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__maestro_pluClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__maestro_pluClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -17364,7 +18097,7 @@ export namespace Prisma {
 
   /**
    * Fields of the maestro_plu model
-   */ 
+   */
   interface maestro_pluFieldRefs {
     readonly cod_envop: FieldRef<"maestro_plu", 'String'>
     readonly cod_cal: FieldRef<"maestro_plu", 'String'>
@@ -17382,6 +18115,10 @@ export namespace Prisma {
      */
     select?: maestro_pluSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
+    /**
      * Filter, which maestro_plu to fetch.
      */
     where: maestro_pluWhereUniqueInput
@@ -17396,6 +18133,10 @@ export namespace Prisma {
      */
     select?: maestro_pluSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
+    /**
      * Filter, which maestro_plu to fetch.
      */
     where: maestro_pluWhereUniqueInput
@@ -17409,6 +18150,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the maestro_plu
      */
     select?: maestro_pluSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
     /**
      * Filter, which maestro_plu to fetch.
      */
@@ -17454,6 +18199,10 @@ export namespace Prisma {
      */
     select?: maestro_pluSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
+    /**
      * Filter, which maestro_plu to fetch.
      */
     where?: maestro_pluWhereInput
@@ -17498,6 +18247,10 @@ export namespace Prisma {
      */
     select?: maestro_pluSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
+    /**
      * Filter, which maestro_plus to fetch.
      */
     where?: maestro_pluWhereInput
@@ -17537,6 +18290,10 @@ export namespace Prisma {
      */
     select?: maestro_pluSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
+    /**
      * The data needed to create a maestro_plu.
      */
     data: XOR<maestro_pluCreateInput, maestro_pluUncheckedCreateInput>
@@ -17561,6 +18318,10 @@ export namespace Prisma {
      */
     select?: maestro_pluSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
+    /**
      * The data needed to update a maestro_plu.
      */
     data: XOR<maestro_pluUpdateInput, maestro_pluUncheckedUpdateInput>
@@ -17582,6 +18343,10 @@ export namespace Prisma {
      * Filter which maestro_plus to update
      */
     where?: maestro_pluWhereInput
+    /**
+     * Limit how many maestro_plus to update.
+     */
+    limit?: number
   }
 
   /**
@@ -17592,6 +18357,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the maestro_plu
      */
     select?: maestro_pluSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
     /**
      * The filter to search for the maestro_plu to update in case it exists.
      */
@@ -17615,6 +18384,10 @@ export namespace Prisma {
      */
     select?: maestro_pluSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
+    /**
      * Filter which maestro_plu to delete.
      */
     where: maestro_pluWhereUniqueInput
@@ -17628,6 +18401,10 @@ export namespace Prisma {
      * Filter which maestro_plus to delete
      */
     where?: maestro_pluWhereInput
+    /**
+     * Limit how many maestro_plus to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -17638,6 +18415,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the maestro_plu
      */
     select?: maestro_pluSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the maestro_plu
+     */
+    omit?: maestro_pluOmit<ExtArgs> | null
   }
 
 
@@ -17886,6 +18667,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["pk_desver_cab"]>
 
 
+
   export type pk_desver_cabSelectScalar = {
     id?: boolean
     pro_nro?: boolean
@@ -17898,6 +18680,7 @@ export namespace Prisma {
     fec_ven?: boolean
   }
 
+  export type pk_desver_cabOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pro_nro" | "fec_ini" | "fec_fin" | "usu_res" | "pes_ini" | "pes_fin" | "cod_esp" | "fec_ven", ExtArgs["result"]["pk_desver_cab"]>
 
   export type $pk_desver_cabPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "pk_desver_cab"
@@ -17918,12 +18701,12 @@ export namespace Prisma {
 
   type pk_desver_cabGetPayload<S extends boolean | null | undefined | pk_desver_cabDefaultArgs> = $Result.GetResult<Prisma.$pk_desver_cabPayload, S>
 
-  type pk_desver_cabCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<pk_desver_cabFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type pk_desver_cabCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<pk_desver_cabFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Pk_desver_cabCountAggregateInputType | true
     }
 
-  export interface pk_desver_cabDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface pk_desver_cabDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pk_desver_cab'], meta: { name: 'pk_desver_cab' } }
     /**
      * Find zero or one Pk_desver_cab that matches the filter.
@@ -17936,10 +18719,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends pk_desver_cabFindUniqueArgs>(args: SelectSubset<T, pk_desver_cabFindUniqueArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends pk_desver_cabFindUniqueArgs>(args: SelectSubset<T, pk_desver_cabFindUniqueArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Pk_desver_cab that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Pk_desver_cab that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {pk_desver_cabFindUniqueOrThrowArgs} args - Arguments to find a Pk_desver_cab
      * @example
@@ -17950,7 +18733,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends pk_desver_cabFindUniqueOrThrowArgs>(args: SelectSubset<T, pk_desver_cabFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends pk_desver_cabFindUniqueOrThrowArgs>(args: SelectSubset<T, pk_desver_cabFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Pk_desver_cab that matches the filter.
@@ -17965,7 +18748,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends pk_desver_cabFindFirstArgs>(args?: SelectSubset<T, pk_desver_cabFindFirstArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends pk_desver_cabFindFirstArgs>(args?: SelectSubset<T, pk_desver_cabFindFirstArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Pk_desver_cab that matches the filter or
@@ -17981,7 +18764,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends pk_desver_cabFindFirstOrThrowArgs>(args?: SelectSubset<T, pk_desver_cabFindFirstOrThrowArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends pk_desver_cabFindFirstOrThrowArgs>(args?: SelectSubset<T, pk_desver_cabFindFirstOrThrowArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Pk_desver_cabs that matches the filter.
@@ -17999,7 +18782,7 @@ export namespace Prisma {
      * const pk_desver_cabWithIdOnly = await prisma.pk_desver_cab.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends pk_desver_cabFindManyArgs>(args?: SelectSubset<T, pk_desver_cabFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends pk_desver_cabFindManyArgs>(args?: SelectSubset<T, pk_desver_cabFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Pk_desver_cab.
@@ -18013,7 +18796,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends pk_desver_cabCreateArgs>(args: SelectSubset<T, pk_desver_cabCreateArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends pk_desver_cabCreateArgs>(args: SelectSubset<T, pk_desver_cabCreateArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Pk_desver_cabs.
@@ -18041,7 +18824,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends pk_desver_cabDeleteArgs>(args: SelectSubset<T, pk_desver_cabDeleteArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends pk_desver_cabDeleteArgs>(args: SelectSubset<T, pk_desver_cabDeleteArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Pk_desver_cab.
@@ -18058,7 +18841,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends pk_desver_cabUpdateArgs>(args: SelectSubset<T, pk_desver_cabUpdateArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends pk_desver_cabUpdateArgs>(args: SelectSubset<T, pk_desver_cabUpdateArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Pk_desver_cabs.
@@ -18110,7 +18893,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends pk_desver_cabUpsertArgs>(args: SelectSubset<T, pk_desver_cabUpsertArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends pk_desver_cabUpsertArgs>(args: SelectSubset<T, pk_desver_cabUpsertArgs<ExtArgs>>): Prisma__pk_desver_cabClient<$Result.GetResult<Prisma.$pk_desver_cabPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -18250,7 +19033,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__pk_desver_cabClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__pk_desver_cabClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -18279,7 +19062,7 @@ export namespace Prisma {
 
   /**
    * Fields of the pk_desver_cab model
-   */ 
+   */
   interface pk_desver_cabFieldRefs {
     readonly id: FieldRef<"pk_desver_cab", 'Int'>
     readonly pro_nro: FieldRef<"pk_desver_cab", 'Int'>
@@ -18303,6 +19086,10 @@ export namespace Prisma {
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_cab to fetch.
      */
     where: pk_desver_cabWhereUniqueInput
@@ -18317,6 +19104,10 @@ export namespace Prisma {
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_cab to fetch.
      */
     where: pk_desver_cabWhereUniqueInput
@@ -18330,6 +19121,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the pk_desver_cab
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
     /**
      * Filter, which pk_desver_cab to fetch.
      */
@@ -18375,6 +19170,10 @@ export namespace Prisma {
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_cab to fetch.
      */
     where?: pk_desver_cabWhereInput
@@ -18419,6 +19218,10 @@ export namespace Prisma {
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_cabs to fetch.
      */
     where?: pk_desver_cabWhereInput
@@ -18458,6 +19261,10 @@ export namespace Prisma {
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
+    /**
      * The data needed to create a pk_desver_cab.
      */
     data?: XOR<pk_desver_cabCreateInput, pk_desver_cabUncheckedCreateInput>
@@ -18482,6 +19289,10 @@ export namespace Prisma {
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
+    /**
      * The data needed to update a pk_desver_cab.
      */
     data: XOR<pk_desver_cabUpdateInput, pk_desver_cabUncheckedUpdateInput>
@@ -18503,6 +19314,10 @@ export namespace Prisma {
      * Filter which pk_desver_cabs to update
      */
     where?: pk_desver_cabWhereInput
+    /**
+     * Limit how many pk_desver_cabs to update.
+     */
+    limit?: number
   }
 
   /**
@@ -18513,6 +19328,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the pk_desver_cab
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
     /**
      * The filter to search for the pk_desver_cab to update in case it exists.
      */
@@ -18536,6 +19355,10 @@ export namespace Prisma {
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
+    /**
      * Filter which pk_desver_cab to delete.
      */
     where: pk_desver_cabWhereUniqueInput
@@ -18549,6 +19372,10 @@ export namespace Prisma {
      * Filter which pk_desver_cabs to delete
      */
     where?: pk_desver_cabWhereInput
+    /**
+     * Limit how many pk_desver_cabs to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -18559,6 +19386,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the pk_desver_cab
      */
     select?: pk_desver_cabSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pk_desver_cab
+     */
+    omit?: pk_desver_cabOmit<ExtArgs> | null
   }
 
 
@@ -18799,6 +19630,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["pk_desver_det"]>
 
 
+
   export type pk_desver_detSelectScalar = {
     id?: boolean
     id_cab?: boolean
@@ -18810,6 +19642,7 @@ export namespace Prisma {
     cod_cal?: boolean
   }
 
+  export type pk_desver_detOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_cab" | "folio" | "cod_var" | "cod_esp" | "peso_neto" | "peso_fin" | "cod_cal", ExtArgs["result"]["pk_desver_det"]>
 
   export type $pk_desver_detPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "pk_desver_det"
@@ -18829,12 +19662,12 @@ export namespace Prisma {
 
   type pk_desver_detGetPayload<S extends boolean | null | undefined | pk_desver_detDefaultArgs> = $Result.GetResult<Prisma.$pk_desver_detPayload, S>
 
-  type pk_desver_detCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<pk_desver_detFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type pk_desver_detCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<pk_desver_detFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Pk_desver_detCountAggregateInputType | true
     }
 
-  export interface pk_desver_detDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface pk_desver_detDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pk_desver_det'], meta: { name: 'pk_desver_det' } }
     /**
      * Find zero or one Pk_desver_det that matches the filter.
@@ -18847,10 +19680,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends pk_desver_detFindUniqueArgs>(args: SelectSubset<T, pk_desver_detFindUniqueArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends pk_desver_detFindUniqueArgs>(args: SelectSubset<T, pk_desver_detFindUniqueArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Pk_desver_det that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Pk_desver_det that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {pk_desver_detFindUniqueOrThrowArgs} args - Arguments to find a Pk_desver_det
      * @example
@@ -18861,7 +19694,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends pk_desver_detFindUniqueOrThrowArgs>(args: SelectSubset<T, pk_desver_detFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends pk_desver_detFindUniqueOrThrowArgs>(args: SelectSubset<T, pk_desver_detFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Pk_desver_det that matches the filter.
@@ -18876,7 +19709,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends pk_desver_detFindFirstArgs>(args?: SelectSubset<T, pk_desver_detFindFirstArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends pk_desver_detFindFirstArgs>(args?: SelectSubset<T, pk_desver_detFindFirstArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Pk_desver_det that matches the filter or
@@ -18892,7 +19725,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends pk_desver_detFindFirstOrThrowArgs>(args?: SelectSubset<T, pk_desver_detFindFirstOrThrowArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends pk_desver_detFindFirstOrThrowArgs>(args?: SelectSubset<T, pk_desver_detFindFirstOrThrowArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Pk_desver_dets that matches the filter.
@@ -18910,7 +19743,7 @@ export namespace Prisma {
      * const pk_desver_detWithIdOnly = await prisma.pk_desver_det.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends pk_desver_detFindManyArgs>(args?: SelectSubset<T, pk_desver_detFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends pk_desver_detFindManyArgs>(args?: SelectSubset<T, pk_desver_detFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Pk_desver_det.
@@ -18924,7 +19757,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends pk_desver_detCreateArgs>(args: SelectSubset<T, pk_desver_detCreateArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends pk_desver_detCreateArgs>(args: SelectSubset<T, pk_desver_detCreateArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Pk_desver_dets.
@@ -18952,7 +19785,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends pk_desver_detDeleteArgs>(args: SelectSubset<T, pk_desver_detDeleteArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends pk_desver_detDeleteArgs>(args: SelectSubset<T, pk_desver_detDeleteArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Pk_desver_det.
@@ -18969,7 +19802,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends pk_desver_detUpdateArgs>(args: SelectSubset<T, pk_desver_detUpdateArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends pk_desver_detUpdateArgs>(args: SelectSubset<T, pk_desver_detUpdateArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Pk_desver_dets.
@@ -19021,7 +19854,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends pk_desver_detUpsertArgs>(args: SelectSubset<T, pk_desver_detUpsertArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends pk_desver_detUpsertArgs>(args: SelectSubset<T, pk_desver_detUpsertArgs<ExtArgs>>): Prisma__pk_desver_detClient<$Result.GetResult<Prisma.$pk_desver_detPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -19161,7 +19994,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__pk_desver_detClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__pk_desver_detClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -19190,7 +20023,7 @@ export namespace Prisma {
 
   /**
    * Fields of the pk_desver_det model
-   */ 
+   */
   interface pk_desver_detFieldRefs {
     readonly id: FieldRef<"pk_desver_det", 'Int'>
     readonly id_cab: FieldRef<"pk_desver_det", 'Int'>
@@ -19213,6 +20046,10 @@ export namespace Prisma {
      */
     select?: pk_desver_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_det to fetch.
      */
     where: pk_desver_detWhereUniqueInput
@@ -19227,6 +20064,10 @@ export namespace Prisma {
      */
     select?: pk_desver_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_det to fetch.
      */
     where: pk_desver_detWhereUniqueInput
@@ -19240,6 +20081,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the pk_desver_det
      */
     select?: pk_desver_detSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
     /**
      * Filter, which pk_desver_det to fetch.
      */
@@ -19285,6 +20130,10 @@ export namespace Prisma {
      */
     select?: pk_desver_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_det to fetch.
      */
     where?: pk_desver_detWhereInput
@@ -19329,6 +20178,10 @@ export namespace Prisma {
      */
     select?: pk_desver_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
+    /**
      * Filter, which pk_desver_dets to fetch.
      */
     where?: pk_desver_detWhereInput
@@ -19368,6 +20221,10 @@ export namespace Prisma {
      */
     select?: pk_desver_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
+    /**
      * The data needed to create a pk_desver_det.
      */
     data?: XOR<pk_desver_detCreateInput, pk_desver_detUncheckedCreateInput>
@@ -19392,6 +20249,10 @@ export namespace Prisma {
      */
     select?: pk_desver_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
+    /**
      * The data needed to update a pk_desver_det.
      */
     data: XOR<pk_desver_detUpdateInput, pk_desver_detUncheckedUpdateInput>
@@ -19413,6 +20274,10 @@ export namespace Prisma {
      * Filter which pk_desver_dets to update
      */
     where?: pk_desver_detWhereInput
+    /**
+     * Limit how many pk_desver_dets to update.
+     */
+    limit?: number
   }
 
   /**
@@ -19423,6 +20288,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the pk_desver_det
      */
     select?: pk_desver_detSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
     /**
      * The filter to search for the pk_desver_det to update in case it exists.
      */
@@ -19446,6 +20315,10 @@ export namespace Prisma {
      */
     select?: pk_desver_detSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
+    /**
      * Filter which pk_desver_det to delete.
      */
     where: pk_desver_detWhereUniqueInput
@@ -19459,6 +20332,10 @@ export namespace Prisma {
      * Filter which pk_desver_dets to delete
      */
     where?: pk_desver_detWhereInput
+    /**
+     * Limit how many pk_desver_dets to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -19469,6 +20346,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the pk_desver_det
      */
     select?: pk_desver_detSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pk_desver_det
+     */
+    omit?: pk_desver_detOmit<ExtArgs> | null
   }
 
 
@@ -19689,6 +20570,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["sys_log"]>
 
 
+
   export type sys_logSelectScalar = {
     id?: boolean
     tip_eve?: boolean
@@ -19699,6 +20581,7 @@ export namespace Prisma {
     modulo?: boolean
   }
 
+  export type sys_logOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tip_eve" | "usu_sys" | "ip_pc" | "fecha_log" | "folio" | "modulo", ExtArgs["result"]["sys_log"]>
 
   export type $sys_logPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "sys_log"
@@ -19717,12 +20600,12 @@ export namespace Prisma {
 
   type sys_logGetPayload<S extends boolean | null | undefined | sys_logDefaultArgs> = $Result.GetResult<Prisma.$sys_logPayload, S>
 
-  type sys_logCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<sys_logFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type sys_logCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sys_logFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Sys_logCountAggregateInputType | true
     }
 
-  export interface sys_logDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface sys_logDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['sys_log'], meta: { name: 'sys_log' } }
     /**
      * Find zero or one Sys_log that matches the filter.
@@ -19735,10 +20618,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends sys_logFindUniqueArgs>(args: SelectSubset<T, sys_logFindUniqueArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends sys_logFindUniqueArgs>(args: SelectSubset<T, sys_logFindUniqueArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Sys_log that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Sys_log that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {sys_logFindUniqueOrThrowArgs} args - Arguments to find a Sys_log
      * @example
@@ -19749,7 +20632,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends sys_logFindUniqueOrThrowArgs>(args: SelectSubset<T, sys_logFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends sys_logFindUniqueOrThrowArgs>(args: SelectSubset<T, sys_logFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Sys_log that matches the filter.
@@ -19764,7 +20647,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends sys_logFindFirstArgs>(args?: SelectSubset<T, sys_logFindFirstArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends sys_logFindFirstArgs>(args?: SelectSubset<T, sys_logFindFirstArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Sys_log that matches the filter or
@@ -19780,7 +20663,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends sys_logFindFirstOrThrowArgs>(args?: SelectSubset<T, sys_logFindFirstOrThrowArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends sys_logFindFirstOrThrowArgs>(args?: SelectSubset<T, sys_logFindFirstOrThrowArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Sys_logs that matches the filter.
@@ -19798,7 +20681,7 @@ export namespace Prisma {
      * const sys_logWithIdOnly = await prisma.sys_log.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends sys_logFindManyArgs>(args?: SelectSubset<T, sys_logFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends sys_logFindManyArgs>(args?: SelectSubset<T, sys_logFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Sys_log.
@@ -19812,7 +20695,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends sys_logCreateArgs>(args: SelectSubset<T, sys_logCreateArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends sys_logCreateArgs>(args: SelectSubset<T, sys_logCreateArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Sys_logs.
@@ -19840,7 +20723,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends sys_logDeleteArgs>(args: SelectSubset<T, sys_logDeleteArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends sys_logDeleteArgs>(args: SelectSubset<T, sys_logDeleteArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Sys_log.
@@ -19857,7 +20740,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends sys_logUpdateArgs>(args: SelectSubset<T, sys_logUpdateArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends sys_logUpdateArgs>(args: SelectSubset<T, sys_logUpdateArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Sys_logs.
@@ -19909,7 +20792,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends sys_logUpsertArgs>(args: SelectSubset<T, sys_logUpsertArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends sys_logUpsertArgs>(args: SelectSubset<T, sys_logUpsertArgs<ExtArgs>>): Prisma__sys_logClient<$Result.GetResult<Prisma.$sys_logPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -20049,7 +20932,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__sys_logClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__sys_logClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -20078,7 +20961,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sys_log model
-   */ 
+   */
   interface sys_logFieldRefs {
     readonly id: FieldRef<"sys_log", 'Int'>
     readonly tip_eve: FieldRef<"sys_log", 'String'>
@@ -20100,6 +20983,10 @@ export namespace Prisma {
      */
     select?: sys_logSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
+    /**
      * Filter, which sys_log to fetch.
      */
     where: sys_logWhereUniqueInput
@@ -20114,6 +21001,10 @@ export namespace Prisma {
      */
     select?: sys_logSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
+    /**
      * Filter, which sys_log to fetch.
      */
     where: sys_logWhereUniqueInput
@@ -20127,6 +21018,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the sys_log
      */
     select?: sys_logSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
     /**
      * Filter, which sys_log to fetch.
      */
@@ -20172,6 +21067,10 @@ export namespace Prisma {
      */
     select?: sys_logSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
+    /**
      * Filter, which sys_log to fetch.
      */
     where?: sys_logWhereInput
@@ -20216,6 +21115,10 @@ export namespace Prisma {
      */
     select?: sys_logSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
+    /**
      * Filter, which sys_logs to fetch.
      */
     where?: sys_logWhereInput
@@ -20255,6 +21158,10 @@ export namespace Prisma {
      */
     select?: sys_logSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
+    /**
      * The data needed to create a sys_log.
      */
     data?: XOR<sys_logCreateInput, sys_logUncheckedCreateInput>
@@ -20279,6 +21186,10 @@ export namespace Prisma {
      */
     select?: sys_logSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
+    /**
      * The data needed to update a sys_log.
      */
     data: XOR<sys_logUpdateInput, sys_logUncheckedUpdateInput>
@@ -20300,6 +21211,10 @@ export namespace Prisma {
      * Filter which sys_logs to update
      */
     where?: sys_logWhereInput
+    /**
+     * Limit how many sys_logs to update.
+     */
+    limit?: number
   }
 
   /**
@@ -20310,6 +21225,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the sys_log
      */
     select?: sys_logSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
     /**
      * The filter to search for the sys_log to update in case it exists.
      */
@@ -20333,6 +21252,10 @@ export namespace Prisma {
      */
     select?: sys_logSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
+    /**
      * Filter which sys_log to delete.
      */
     where: sys_logWhereUniqueInput
@@ -20346,6 +21269,10 @@ export namespace Prisma {
      * Filter which sys_logs to delete
      */
     where?: sys_logWhereInput
+    /**
+     * Limit how many sys_logs to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -20356,6 +21283,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the sys_log
      */
     select?: sys_logSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_log
+     */
+    omit?: sys_logOmit<ExtArgs> | null
   }
 
 
@@ -20388,7 +21319,7 @@ export namespace Prisma {
     principal_id: number | null
     diagram_id: number | null
     version: number | null
-    definition: Buffer | null
+    definition: Uint8Array | null
   }
 
   export type SysdiagramsMaxAggregateOutputType = {
@@ -20396,7 +21327,7 @@ export namespace Prisma {
     principal_id: number | null
     diagram_id: number | null
     version: number | null
-    definition: Buffer | null
+    definition: Uint8Array | null
   }
 
   export type SysdiagramsCountAggregateOutputType = {
@@ -20537,7 +21468,7 @@ export namespace Prisma {
     principal_id: number
     diagram_id: number
     version: number | null
-    definition: Buffer | null
+    definition: Uint8Array | null
     _count: SysdiagramsCountAggregateOutputType | null
     _avg: SysdiagramsAvgAggregateOutputType | null
     _sum: SysdiagramsSumAggregateOutputType | null
@@ -20568,6 +21499,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["sysdiagrams"]>
 
 
+
   export type sysdiagramsSelectScalar = {
     name?: boolean
     principal_id?: boolean
@@ -20576,6 +21508,7 @@ export namespace Prisma {
     definition?: boolean
   }
 
+  export type sysdiagramsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"name" | "principal_id" | "diagram_id" | "version" | "definition", ExtArgs["result"]["sysdiagrams"]>
 
   export type $sysdiagramsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "sysdiagrams"
@@ -20585,19 +21518,19 @@ export namespace Prisma {
       principal_id: number
       diagram_id: number
       version: number | null
-      definition: Buffer | null
+      definition: Uint8Array | null
     }, ExtArgs["result"]["sysdiagrams"]>
     composites: {}
   }
 
   type sysdiagramsGetPayload<S extends boolean | null | undefined | sysdiagramsDefaultArgs> = $Result.GetResult<Prisma.$sysdiagramsPayload, S>
 
-  type sysdiagramsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<sysdiagramsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type sysdiagramsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sysdiagramsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: SysdiagramsCountAggregateInputType | true
     }
 
-  export interface sysdiagramsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface sysdiagramsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['sysdiagrams'], meta: { name: 'sysdiagrams' } }
     /**
      * Find zero or one Sysdiagrams that matches the filter.
@@ -20610,10 +21543,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends sysdiagramsFindUniqueArgs>(args: SelectSubset<T, sysdiagramsFindUniqueArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends sysdiagramsFindUniqueArgs>(args: SelectSubset<T, sysdiagramsFindUniqueArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Sysdiagrams that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Sysdiagrams that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {sysdiagramsFindUniqueOrThrowArgs} args - Arguments to find a Sysdiagrams
      * @example
@@ -20624,7 +21557,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends sysdiagramsFindUniqueOrThrowArgs>(args: SelectSubset<T, sysdiagramsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends sysdiagramsFindUniqueOrThrowArgs>(args: SelectSubset<T, sysdiagramsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Sysdiagrams that matches the filter.
@@ -20639,7 +21572,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends sysdiagramsFindFirstArgs>(args?: SelectSubset<T, sysdiagramsFindFirstArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends sysdiagramsFindFirstArgs>(args?: SelectSubset<T, sysdiagramsFindFirstArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Sysdiagrams that matches the filter or
@@ -20655,7 +21588,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends sysdiagramsFindFirstOrThrowArgs>(args?: SelectSubset<T, sysdiagramsFindFirstOrThrowArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends sysdiagramsFindFirstOrThrowArgs>(args?: SelectSubset<T, sysdiagramsFindFirstOrThrowArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Sysdiagrams that matches the filter.
@@ -20673,7 +21606,7 @@ export namespace Prisma {
      * const sysdiagramsWithNameOnly = await prisma.sysdiagrams.findMany({ select: { name: true } })
      * 
      */
-    findMany<T extends sysdiagramsFindManyArgs>(args?: SelectSubset<T, sysdiagramsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends sysdiagramsFindManyArgs>(args?: SelectSubset<T, sysdiagramsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Sysdiagrams.
@@ -20687,7 +21620,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends sysdiagramsCreateArgs>(args: SelectSubset<T, sysdiagramsCreateArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends sysdiagramsCreateArgs>(args: SelectSubset<T, sysdiagramsCreateArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Sysdiagrams.
@@ -20715,7 +21648,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends sysdiagramsDeleteArgs>(args: SelectSubset<T, sysdiagramsDeleteArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends sysdiagramsDeleteArgs>(args: SelectSubset<T, sysdiagramsDeleteArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Sysdiagrams.
@@ -20732,7 +21665,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends sysdiagramsUpdateArgs>(args: SelectSubset<T, sysdiagramsUpdateArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends sysdiagramsUpdateArgs>(args: SelectSubset<T, sysdiagramsUpdateArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Sysdiagrams.
@@ -20784,7 +21717,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends sysdiagramsUpsertArgs>(args: SelectSubset<T, sysdiagramsUpsertArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends sysdiagramsUpsertArgs>(args: SelectSubset<T, sysdiagramsUpsertArgs<ExtArgs>>): Prisma__sysdiagramsClient<$Result.GetResult<Prisma.$sysdiagramsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -20924,7 +21857,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__sysdiagramsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__sysdiagramsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -20953,7 +21886,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sysdiagrams model
-   */ 
+   */
   interface sysdiagramsFieldRefs {
     readonly name: FieldRef<"sysdiagrams", 'String'>
     readonly principal_id: FieldRef<"sysdiagrams", 'Int'>
@@ -20973,6 +21906,10 @@ export namespace Prisma {
      */
     select?: sysdiagramsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
+    /**
      * Filter, which sysdiagrams to fetch.
      */
     where: sysdiagramsWhereUniqueInput
@@ -20987,6 +21924,10 @@ export namespace Prisma {
      */
     select?: sysdiagramsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
+    /**
      * Filter, which sysdiagrams to fetch.
      */
     where: sysdiagramsWhereUniqueInput
@@ -21000,6 +21941,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the sysdiagrams
      */
     select?: sysdiagramsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
     /**
      * Filter, which sysdiagrams to fetch.
      */
@@ -21045,6 +21990,10 @@ export namespace Prisma {
      */
     select?: sysdiagramsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
+    /**
      * Filter, which sysdiagrams to fetch.
      */
     where?: sysdiagramsWhereInput
@@ -21089,6 +22038,10 @@ export namespace Prisma {
      */
     select?: sysdiagramsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
+    /**
      * Filter, which sysdiagrams to fetch.
      */
     where?: sysdiagramsWhereInput
@@ -21128,6 +22081,10 @@ export namespace Prisma {
      */
     select?: sysdiagramsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
+    /**
      * The data needed to create a sysdiagrams.
      */
     data: XOR<sysdiagramsCreateInput, sysdiagramsUncheckedCreateInput>
@@ -21152,6 +22109,10 @@ export namespace Prisma {
      */
     select?: sysdiagramsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
+    /**
      * The data needed to update a sysdiagrams.
      */
     data: XOR<sysdiagramsUpdateInput, sysdiagramsUncheckedUpdateInput>
@@ -21173,6 +22134,10 @@ export namespace Prisma {
      * Filter which sysdiagrams to update
      */
     where?: sysdiagramsWhereInput
+    /**
+     * Limit how many sysdiagrams to update.
+     */
+    limit?: number
   }
 
   /**
@@ -21183,6 +22148,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the sysdiagrams
      */
     select?: sysdiagramsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
     /**
      * The filter to search for the sysdiagrams to update in case it exists.
      */
@@ -21206,6 +22175,10 @@ export namespace Prisma {
      */
     select?: sysdiagramsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
+    /**
      * Filter which sysdiagrams to delete.
      */
     where: sysdiagramsWhereUniqueInput
@@ -21219,6 +22192,10 @@ export namespace Prisma {
      * Filter which sysdiagrams to delete
      */
     where?: sysdiagramsWhereInput
+    /**
+     * Limit how many sysdiagrams to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -21229,6 +22206,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the sysdiagrams
      */
     select?: sysdiagramsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sysdiagrams
+     */
+    omit?: sysdiagramsOmit<ExtArgs> | null
   }
 
 
@@ -21409,11 +22390,13 @@ export namespace Prisma {
   }, ExtArgs["result"]["tipo_ins"]>
 
 
+
   export type tipo_insSelectScalar = {
     id_tip_ins?: boolean
     des_tip_ins?: boolean
   }
 
+  export type tipo_insOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_tip_ins" | "des_tip_ins", ExtArgs["result"]["tipo_ins"]>
 
   export type $tipo_insPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "tipo_ins"
@@ -21427,12 +22410,12 @@ export namespace Prisma {
 
   type tipo_insGetPayload<S extends boolean | null | undefined | tipo_insDefaultArgs> = $Result.GetResult<Prisma.$tipo_insPayload, S>
 
-  type tipo_insCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<tipo_insFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type tipo_insCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<tipo_insFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Tipo_insCountAggregateInputType | true
     }
 
-  export interface tipo_insDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface tipo_insDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['tipo_ins'], meta: { name: 'tipo_ins' } }
     /**
      * Find zero or one Tipo_ins that matches the filter.
@@ -21445,10 +22428,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends tipo_insFindUniqueArgs>(args: SelectSubset<T, tipo_insFindUniqueArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends tipo_insFindUniqueArgs>(args: SelectSubset<T, tipo_insFindUniqueArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Tipo_ins that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Tipo_ins that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {tipo_insFindUniqueOrThrowArgs} args - Arguments to find a Tipo_ins
      * @example
@@ -21459,7 +22442,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends tipo_insFindUniqueOrThrowArgs>(args: SelectSubset<T, tipo_insFindUniqueOrThrowArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends tipo_insFindUniqueOrThrowArgs>(args: SelectSubset<T, tipo_insFindUniqueOrThrowArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Tipo_ins that matches the filter.
@@ -21474,7 +22457,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends tipo_insFindFirstArgs>(args?: SelectSubset<T, tipo_insFindFirstArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends tipo_insFindFirstArgs>(args?: SelectSubset<T, tipo_insFindFirstArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Tipo_ins that matches the filter or
@@ -21490,7 +22473,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends tipo_insFindFirstOrThrowArgs>(args?: SelectSubset<T, tipo_insFindFirstOrThrowArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends tipo_insFindFirstOrThrowArgs>(args?: SelectSubset<T, tipo_insFindFirstOrThrowArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Tipo_ins that matches the filter.
@@ -21508,7 +22491,7 @@ export namespace Prisma {
      * const tipo_insWithId_tip_insOnly = await prisma.tipo_ins.findMany({ select: { id_tip_ins: true } })
      * 
      */
-    findMany<T extends tipo_insFindManyArgs>(args?: SelectSubset<T, tipo_insFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends tipo_insFindManyArgs>(args?: SelectSubset<T, tipo_insFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Tipo_ins.
@@ -21522,7 +22505,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends tipo_insCreateArgs>(args: SelectSubset<T, tipo_insCreateArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends tipo_insCreateArgs>(args: SelectSubset<T, tipo_insCreateArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Tipo_ins.
@@ -21550,7 +22533,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends tipo_insDeleteArgs>(args: SelectSubset<T, tipo_insDeleteArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends tipo_insDeleteArgs>(args: SelectSubset<T, tipo_insDeleteArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Tipo_ins.
@@ -21567,7 +22550,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends tipo_insUpdateArgs>(args: SelectSubset<T, tipo_insUpdateArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends tipo_insUpdateArgs>(args: SelectSubset<T, tipo_insUpdateArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Tipo_ins.
@@ -21619,7 +22602,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends tipo_insUpsertArgs>(args: SelectSubset<T, tipo_insUpsertArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends tipo_insUpsertArgs>(args: SelectSubset<T, tipo_insUpsertArgs<ExtArgs>>): Prisma__tipo_insClient<$Result.GetResult<Prisma.$tipo_insPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -21759,7 +22742,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__tipo_insClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__tipo_insClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -21788,7 +22771,7 @@ export namespace Prisma {
 
   /**
    * Fields of the tipo_ins model
-   */ 
+   */
   interface tipo_insFieldRefs {
     readonly id_tip_ins: FieldRef<"tipo_ins", 'Int'>
     readonly des_tip_ins: FieldRef<"tipo_ins", 'String'>
@@ -21805,6 +22788,10 @@ export namespace Prisma {
      */
     select?: tipo_insSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
+    /**
      * Filter, which tipo_ins to fetch.
      */
     where: tipo_insWhereUniqueInput
@@ -21819,6 +22806,10 @@ export namespace Prisma {
      */
     select?: tipo_insSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
+    /**
      * Filter, which tipo_ins to fetch.
      */
     where: tipo_insWhereUniqueInput
@@ -21832,6 +22823,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the tipo_ins
      */
     select?: tipo_insSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
     /**
      * Filter, which tipo_ins to fetch.
      */
@@ -21877,6 +22872,10 @@ export namespace Prisma {
      */
     select?: tipo_insSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
+    /**
      * Filter, which tipo_ins to fetch.
      */
     where?: tipo_insWhereInput
@@ -21921,6 +22920,10 @@ export namespace Prisma {
      */
     select?: tipo_insSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
+    /**
      * Filter, which tipo_ins to fetch.
      */
     where?: tipo_insWhereInput
@@ -21960,6 +22963,10 @@ export namespace Prisma {
      */
     select?: tipo_insSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
+    /**
      * The data needed to create a tipo_ins.
      */
     data?: XOR<tipo_insCreateInput, tipo_insUncheckedCreateInput>
@@ -21984,6 +22991,10 @@ export namespace Prisma {
      */
     select?: tipo_insSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
+    /**
      * The data needed to update a tipo_ins.
      */
     data: XOR<tipo_insUpdateInput, tipo_insUncheckedUpdateInput>
@@ -22005,6 +23016,10 @@ export namespace Prisma {
      * Filter which tipo_ins to update
      */
     where?: tipo_insWhereInput
+    /**
+     * Limit how many tipo_ins to update.
+     */
+    limit?: number
   }
 
   /**
@@ -22015,6 +23030,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the tipo_ins
      */
     select?: tipo_insSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
     /**
      * The filter to search for the tipo_ins to update in case it exists.
      */
@@ -22038,6 +23057,10 @@ export namespace Prisma {
      */
     select?: tipo_insSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
+    /**
      * Filter which tipo_ins to delete.
      */
     where: tipo_insWhereUniqueInput
@@ -22051,6 +23074,10 @@ export namespace Prisma {
      * Filter which tipo_ins to delete
      */
     where?: tipo_insWhereInput
+    /**
+     * Limit how many tipo_ins to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -22061,6 +23088,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the tipo_ins
      */
     select?: tipo_insSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tipo_ins
+     */
+    omit?: tipo_insOmit<ExtArgs> | null
   }
 
 
@@ -22269,6 +23300,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["traductor_calibre"]>
 
 
+
   export type traductor_calibreSelectScalar = {
     id?: boolean
     n_calibre_std?: boolean
@@ -22277,6 +23309,7 @@ export namespace Prisma {
     n_calibre?: boolean
   }
 
+  export type traductor_calibreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "n_calibre_std" | "val_calibre" | "cod_exp" | "n_calibre", ExtArgs["result"]["traductor_calibre"]>
 
   export type $traductor_calibrePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "traductor_calibre"
@@ -22293,12 +23326,12 @@ export namespace Prisma {
 
   type traductor_calibreGetPayload<S extends boolean | null | undefined | traductor_calibreDefaultArgs> = $Result.GetResult<Prisma.$traductor_calibrePayload, S>
 
-  type traductor_calibreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<traductor_calibreFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type traductor_calibreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<traductor_calibreFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Traductor_calibreCountAggregateInputType | true
     }
 
-  export interface traductor_calibreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface traductor_calibreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['traductor_calibre'], meta: { name: 'traductor_calibre' } }
     /**
      * Find zero or one Traductor_calibre that matches the filter.
@@ -22311,10 +23344,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends traductor_calibreFindUniqueArgs>(args: SelectSubset<T, traductor_calibreFindUniqueArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends traductor_calibreFindUniqueArgs>(args: SelectSubset<T, traductor_calibreFindUniqueArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Traductor_calibre that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Traductor_calibre that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {traductor_calibreFindUniqueOrThrowArgs} args - Arguments to find a Traductor_calibre
      * @example
@@ -22325,7 +23358,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends traductor_calibreFindUniqueOrThrowArgs>(args: SelectSubset<T, traductor_calibreFindUniqueOrThrowArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends traductor_calibreFindUniqueOrThrowArgs>(args: SelectSubset<T, traductor_calibreFindUniqueOrThrowArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Traductor_calibre that matches the filter.
@@ -22340,7 +23373,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends traductor_calibreFindFirstArgs>(args?: SelectSubset<T, traductor_calibreFindFirstArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends traductor_calibreFindFirstArgs>(args?: SelectSubset<T, traductor_calibreFindFirstArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Traductor_calibre that matches the filter or
@@ -22356,7 +23389,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends traductor_calibreFindFirstOrThrowArgs>(args?: SelectSubset<T, traductor_calibreFindFirstOrThrowArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends traductor_calibreFindFirstOrThrowArgs>(args?: SelectSubset<T, traductor_calibreFindFirstOrThrowArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Traductor_calibres that matches the filter.
@@ -22374,7 +23407,7 @@ export namespace Prisma {
      * const traductor_calibreWithIdOnly = await prisma.traductor_calibre.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends traductor_calibreFindManyArgs>(args?: SelectSubset<T, traductor_calibreFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findMany">>
+    findMany<T extends traductor_calibreFindManyArgs>(args?: SelectSubset<T, traductor_calibreFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Traductor_calibre.
@@ -22388,7 +23421,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends traductor_calibreCreateArgs>(args: SelectSubset<T, traductor_calibreCreateArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends traductor_calibreCreateArgs>(args: SelectSubset<T, traductor_calibreCreateArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Traductor_calibres.
@@ -22416,7 +23449,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends traductor_calibreDeleteArgs>(args: SelectSubset<T, traductor_calibreDeleteArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends traductor_calibreDeleteArgs>(args: SelectSubset<T, traductor_calibreDeleteArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Traductor_calibre.
@@ -22433,7 +23466,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends traductor_calibreUpdateArgs>(args: SelectSubset<T, traductor_calibreUpdateArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends traductor_calibreUpdateArgs>(args: SelectSubset<T, traductor_calibreUpdateArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Traductor_calibres.
@@ -22485,7 +23518,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends traductor_calibreUpsertArgs>(args: SelectSubset<T, traductor_calibreUpsertArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends traductor_calibreUpsertArgs>(args: SelectSubset<T, traductor_calibreUpsertArgs<ExtArgs>>): Prisma__traductor_calibreClient<$Result.GetResult<Prisma.$traductor_calibrePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -22625,7 +23658,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__traductor_calibreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__traductor_calibreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -22654,7 +23687,7 @@ export namespace Prisma {
 
   /**
    * Fields of the traductor_calibre model
-   */ 
+   */
   interface traductor_calibreFieldRefs {
     readonly id: FieldRef<"traductor_calibre", 'Int'>
     readonly n_calibre_std: FieldRef<"traductor_calibre", 'String'>
@@ -22674,6 +23707,10 @@ export namespace Prisma {
      */
     select?: traductor_calibreSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
+    /**
      * Filter, which traductor_calibre to fetch.
      */
     where: traductor_calibreWhereUniqueInput
@@ -22688,6 +23725,10 @@ export namespace Prisma {
      */
     select?: traductor_calibreSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
+    /**
      * Filter, which traductor_calibre to fetch.
      */
     where: traductor_calibreWhereUniqueInput
@@ -22701,6 +23742,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the traductor_calibre
      */
     select?: traductor_calibreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
     /**
      * Filter, which traductor_calibre to fetch.
      */
@@ -22746,6 +23791,10 @@ export namespace Prisma {
      */
     select?: traductor_calibreSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
+    /**
      * Filter, which traductor_calibre to fetch.
      */
     where?: traductor_calibreWhereInput
@@ -22790,6 +23839,10 @@ export namespace Prisma {
      */
     select?: traductor_calibreSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
+    /**
      * Filter, which traductor_calibres to fetch.
      */
     where?: traductor_calibreWhereInput
@@ -22829,6 +23882,10 @@ export namespace Prisma {
      */
     select?: traductor_calibreSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
+    /**
      * The data needed to create a traductor_calibre.
      */
     data?: XOR<traductor_calibreCreateInput, traductor_calibreUncheckedCreateInput>
@@ -22853,6 +23910,10 @@ export namespace Prisma {
      */
     select?: traductor_calibreSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
+    /**
      * The data needed to update a traductor_calibre.
      */
     data: XOR<traductor_calibreUpdateInput, traductor_calibreUncheckedUpdateInput>
@@ -22874,6 +23935,10 @@ export namespace Prisma {
      * Filter which traductor_calibres to update
      */
     where?: traductor_calibreWhereInput
+    /**
+     * Limit how many traductor_calibres to update.
+     */
+    limit?: number
   }
 
   /**
@@ -22884,6 +23949,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the traductor_calibre
      */
     select?: traductor_calibreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
     /**
      * The filter to search for the traductor_calibre to update in case it exists.
      */
@@ -22907,6 +23976,10 @@ export namespace Prisma {
      */
     select?: traductor_calibreSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
+    /**
      * Filter which traductor_calibre to delete.
      */
     where: traductor_calibreWhereUniqueInput
@@ -22920,6 +23993,10 @@ export namespace Prisma {
      * Filter which traductor_calibres to delete
      */
     where?: traductor_calibreWhereInput
+    /**
+     * Limit how many traductor_calibres to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -22930,6 +24007,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the traductor_calibre
      */
     select?: traductor_calibreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the traductor_calibre
+     */
+    omit?: traductor_calibreOmit<ExtArgs> | null
   }
 
 
@@ -23122,12 +24203,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["validacion_pallets"]>
 
 
+
   export type validacion_palletsSelectScalar = {
     id?: boolean
     numero_pallet?: boolean
     temporada?: boolean
   }
 
+  export type validacion_palletsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "numero_pallet" | "temporada", ExtArgs["result"]["validacion_pallets"]>
 
   export type $validacion_palletsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "validacion_pallets"
@@ -23142,12 +24225,12 @@ export namespace Prisma {
 
   type validacion_palletsGetPayload<S extends boolean | null | undefined | validacion_palletsDefaultArgs> = $Result.GetResult<Prisma.$validacion_palletsPayload, S>
 
-  type validacion_palletsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<validacion_palletsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type validacion_palletsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<validacion_palletsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Validacion_palletsCountAggregateInputType | true
     }
 
-  export interface validacion_palletsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface validacion_palletsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['validacion_pallets'], meta: { name: 'validacion_pallets' } }
     /**
      * Find zero or one Validacion_pallets that matches the filter.
@@ -23160,10 +24243,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends validacion_palletsFindUniqueArgs>(args: SelectSubset<T, validacion_palletsFindUniqueArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends validacion_palletsFindUniqueArgs>(args: SelectSubset<T, validacion_palletsFindUniqueArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Validacion_pallets that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Validacion_pallets that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {validacion_palletsFindUniqueOrThrowArgs} args - Arguments to find a Validacion_pallets
      * @example
@@ -23174,7 +24257,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends validacion_palletsFindUniqueOrThrowArgs>(args: SelectSubset<T, validacion_palletsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends validacion_palletsFindUniqueOrThrowArgs>(args: SelectSubset<T, validacion_palletsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Validacion_pallets that matches the filter.
@@ -23189,7 +24272,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends validacion_palletsFindFirstArgs>(args?: SelectSubset<T, validacion_palletsFindFirstArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends validacion_palletsFindFirstArgs>(args?: SelectSubset<T, validacion_palletsFindFirstArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Validacion_pallets that matches the filter or
@@ -23205,7 +24288,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends validacion_palletsFindFirstOrThrowArgs>(args?: SelectSubset<T, validacion_palletsFindFirstOrThrowArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends validacion_palletsFindFirstOrThrowArgs>(args?: SelectSubset<T, validacion_palletsFindFirstOrThrowArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Validacion_pallets that matches the filter.
@@ -23223,7 +24306,7 @@ export namespace Prisma {
      * const validacion_palletsWithIdOnly = await prisma.validacion_pallets.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends validacion_palletsFindManyArgs>(args?: SelectSubset<T, validacion_palletsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends validacion_palletsFindManyArgs>(args?: SelectSubset<T, validacion_palletsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Validacion_pallets.
@@ -23237,7 +24320,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends validacion_palletsCreateArgs>(args: SelectSubset<T, validacion_palletsCreateArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends validacion_palletsCreateArgs>(args: SelectSubset<T, validacion_palletsCreateArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Validacion_pallets.
@@ -23265,7 +24348,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends validacion_palletsDeleteArgs>(args: SelectSubset<T, validacion_palletsDeleteArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends validacion_palletsDeleteArgs>(args: SelectSubset<T, validacion_palletsDeleteArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Validacion_pallets.
@@ -23282,7 +24365,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends validacion_palletsUpdateArgs>(args: SelectSubset<T, validacion_palletsUpdateArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends validacion_palletsUpdateArgs>(args: SelectSubset<T, validacion_palletsUpdateArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Validacion_pallets.
@@ -23334,7 +24417,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends validacion_palletsUpsertArgs>(args: SelectSubset<T, validacion_palletsUpsertArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends validacion_palletsUpsertArgs>(args: SelectSubset<T, validacion_palletsUpsertArgs<ExtArgs>>): Prisma__validacion_palletsClient<$Result.GetResult<Prisma.$validacion_palletsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -23474,7 +24557,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__validacion_palletsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__validacion_palletsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -23503,7 +24586,7 @@ export namespace Prisma {
 
   /**
    * Fields of the validacion_pallets model
-   */ 
+   */
   interface validacion_palletsFieldRefs {
     readonly id: FieldRef<"validacion_pallets", 'Int'>
     readonly numero_pallet: FieldRef<"validacion_pallets", 'String'>
@@ -23521,6 +24604,10 @@ export namespace Prisma {
      */
     select?: validacion_palletsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
+    /**
      * Filter, which validacion_pallets to fetch.
      */
     where: validacion_palletsWhereUniqueInput
@@ -23535,6 +24622,10 @@ export namespace Prisma {
      */
     select?: validacion_palletsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
+    /**
      * Filter, which validacion_pallets to fetch.
      */
     where: validacion_palletsWhereUniqueInput
@@ -23548,6 +24639,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the validacion_pallets
      */
     select?: validacion_palletsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
     /**
      * Filter, which validacion_pallets to fetch.
      */
@@ -23593,6 +24688,10 @@ export namespace Prisma {
      */
     select?: validacion_palletsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
+    /**
      * Filter, which validacion_pallets to fetch.
      */
     where?: validacion_palletsWhereInput
@@ -23637,6 +24736,10 @@ export namespace Prisma {
      */
     select?: validacion_palletsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
+    /**
      * Filter, which validacion_pallets to fetch.
      */
     where?: validacion_palletsWhereInput
@@ -23676,6 +24779,10 @@ export namespace Prisma {
      */
     select?: validacion_palletsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
+    /**
      * The data needed to create a validacion_pallets.
      */
     data?: XOR<validacion_palletsCreateInput, validacion_palletsUncheckedCreateInput>
@@ -23700,6 +24807,10 @@ export namespace Prisma {
      */
     select?: validacion_palletsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
+    /**
      * The data needed to update a validacion_pallets.
      */
     data: XOR<validacion_palletsUpdateInput, validacion_palletsUncheckedUpdateInput>
@@ -23721,6 +24832,10 @@ export namespace Prisma {
      * Filter which validacion_pallets to update
      */
     where?: validacion_palletsWhereInput
+    /**
+     * Limit how many validacion_pallets to update.
+     */
+    limit?: number
   }
 
   /**
@@ -23731,6 +24846,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the validacion_pallets
      */
     select?: validacion_palletsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
     /**
      * The filter to search for the validacion_pallets to update in case it exists.
      */
@@ -23754,6 +24873,10 @@ export namespace Prisma {
      */
     select?: validacion_palletsSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
+    /**
      * Filter which validacion_pallets to delete.
      */
     where: validacion_palletsWhereUniqueInput
@@ -23767,6 +24890,10 @@ export namespace Prisma {
      * Filter which validacion_pallets to delete
      */
     where?: validacion_palletsWhereInput
+    /**
+     * Limit how many validacion_pallets to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -23777,6 +24904,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the validacion_pallets
      */
     select?: validacion_palletsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the validacion_pallets
+     */
+    omit?: validacion_palletsOmit<ExtArgs> | null
   }
 
 
@@ -23803,6 +24934,7 @@ export namespace Prisma {
   }
 
   export type Existencias_cajasMinAggregateOutputType = {
+    Temporada: string | null
     Camara: string | null
     Especie: string | null
     Fecha_packing: Date | null
@@ -23824,6 +24956,7 @@ export namespace Prisma {
   }
 
   export type Existencias_cajasMaxAggregateOutputType = {
+    Temporada: string | null
     Camara: string | null
     Especie: string | null
     Fecha_packing: Date | null
@@ -23845,6 +24978,7 @@ export namespace Prisma {
   }
 
   export type Existencias_cajasCountAggregateOutputType = {
+    Temporada: number
     Camara: number
     Especie: number
     Fecha_packing: number
@@ -23878,6 +25012,7 @@ export namespace Prisma {
   }
 
   export type Existencias_cajasMinAggregateInputType = {
+    Temporada?: true
     Camara?: true
     Especie?: true
     Fecha_packing?: true
@@ -23899,6 +25034,7 @@ export namespace Prisma {
   }
 
   export type Existencias_cajasMaxAggregateInputType = {
+    Temporada?: true
     Camara?: true
     Especie?: true
     Fecha_packing?: true
@@ -23920,6 +25056,7 @@ export namespace Prisma {
   }
 
   export type Existencias_cajasCountAggregateInputType = {
+    Temporada?: true
     Camara?: true
     Especie?: true
     Fecha_packing?: true
@@ -24028,6 +25165,7 @@ export namespace Prisma {
   }
 
   export type Existencias_cajasGroupByOutputType = {
+    Temporada: string | null
     Camara: string | null
     Especie: string | null
     Fecha_packing: Date | null
@@ -24068,6 +25206,7 @@ export namespace Prisma {
 
 
   export type existencias_cajasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Temporada?: boolean
     Camara?: boolean
     Especie?: boolean
     Fecha_packing?: boolean
@@ -24089,7 +25228,9 @@ export namespace Prisma {
   }, ExtArgs["result"]["existencias_cajas"]>
 
 
+
   export type existencias_cajasSelectScalar = {
+    Temporada?: boolean
     Camara?: boolean
     Especie?: boolean
     Fecha_packing?: boolean
@@ -24110,11 +25251,13 @@ export namespace Prisma {
     Proceso?: boolean
   }
 
+  export type existencias_cajasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Temporada" | "Camara" | "Especie" | "Fecha_packing" | "Hora_Packing" | "Packing" | "Folio" | "Productor" | "CSG" | "Marca" | "Embalaje" | "Linea" | "Exportadora" | "Jornada" | "Variedad" | "Calibre" | "Categoria" | "Cajas" | "Proceso", ExtArgs["result"]["existencias_cajas"]>
 
   export type $existencias_cajasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "existencias_cajas"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
+      Temporada: string | null
       Camara: string | null
       Especie: string | null
       Fecha_packing: Date | null
@@ -24139,12 +25282,12 @@ export namespace Prisma {
 
   type existencias_cajasGetPayload<S extends boolean | null | undefined | existencias_cajasDefaultArgs> = $Result.GetResult<Prisma.$existencias_cajasPayload, S>
 
-  type existencias_cajasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<existencias_cajasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type existencias_cajasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<existencias_cajasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Existencias_cajasCountAggregateInputType | true
     }
 
-  export interface existencias_cajasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface existencias_cajasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['existencias_cajas'], meta: { name: 'existencias_cajas' } }
     /**
      * Find zero or one Existencias_cajas that matches the filter.
@@ -24157,10 +25300,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends existencias_cajasFindUniqueArgs>(args: SelectSubset<T, existencias_cajasFindUniqueArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends existencias_cajasFindUniqueArgs>(args: SelectSubset<T, existencias_cajasFindUniqueArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Existencias_cajas that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Existencias_cajas that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {existencias_cajasFindUniqueOrThrowArgs} args - Arguments to find a Existencias_cajas
      * @example
@@ -24171,7 +25314,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends existencias_cajasFindUniqueOrThrowArgs>(args: SelectSubset<T, existencias_cajasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends existencias_cajasFindUniqueOrThrowArgs>(args: SelectSubset<T, existencias_cajasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Existencias_cajas that matches the filter.
@@ -24186,7 +25329,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends existencias_cajasFindFirstArgs>(args?: SelectSubset<T, existencias_cajasFindFirstArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends existencias_cajasFindFirstArgs>(args?: SelectSubset<T, existencias_cajasFindFirstArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Existencias_cajas that matches the filter or
@@ -24202,7 +25345,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends existencias_cajasFindFirstOrThrowArgs>(args?: SelectSubset<T, existencias_cajasFindFirstOrThrowArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends existencias_cajasFindFirstOrThrowArgs>(args?: SelectSubset<T, existencias_cajasFindFirstOrThrowArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Existencias_cajas that matches the filter.
@@ -24216,122 +25359,11 @@ export namespace Prisma {
      * // Get first 10 Existencias_cajas
      * const existencias_cajas = await prisma.existencias_cajas.findMany({ take: 10 })
      * 
-     * // Only select the `Camara`
-     * const existencias_cajasWithCamaraOnly = await prisma.existencias_cajas.findMany({ select: { Camara: true } })
+     * // Only select the `Temporada`
+     * const existencias_cajasWithTemporadaOnly = await prisma.existencias_cajas.findMany({ select: { Temporada: true } })
      * 
      */
-    findMany<T extends existencias_cajasFindManyArgs>(args?: SelectSubset<T, existencias_cajasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Existencias_cajas.
-     * @param {existencias_cajasCreateArgs} args - Arguments to create a Existencias_cajas.
-     * @example
-     * // Create one Existencias_cajas
-     * const Existencias_cajas = await prisma.existencias_cajas.create({
-     *   data: {
-     *     // ... data to create a Existencias_cajas
-     *   }
-     * })
-     * 
-     */
-    create<T extends existencias_cajasCreateArgs>(args: SelectSubset<T, existencias_cajasCreateArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Existencias_cajas.
-     * @param {existencias_cajasCreateManyArgs} args - Arguments to create many Existencias_cajas.
-     * @example
-     * // Create many Existencias_cajas
-     * const existencias_cajas = await prisma.existencias_cajas.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends existencias_cajasCreateManyArgs>(args?: SelectSubset<T, existencias_cajasCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Existencias_cajas.
-     * @param {existencias_cajasDeleteArgs} args - Arguments to delete one Existencias_cajas.
-     * @example
-     * // Delete one Existencias_cajas
-     * const Existencias_cajas = await prisma.existencias_cajas.delete({
-     *   where: {
-     *     // ... filter to delete one Existencias_cajas
-     *   }
-     * })
-     * 
-     */
-    delete<T extends existencias_cajasDeleteArgs>(args: SelectSubset<T, existencias_cajasDeleteArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Existencias_cajas.
-     * @param {existencias_cajasUpdateArgs} args - Arguments to update one Existencias_cajas.
-     * @example
-     * // Update one Existencias_cajas
-     * const existencias_cajas = await prisma.existencias_cajas.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends existencias_cajasUpdateArgs>(args: SelectSubset<T, existencias_cajasUpdateArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Existencias_cajas.
-     * @param {existencias_cajasDeleteManyArgs} args - Arguments to filter Existencias_cajas to delete.
-     * @example
-     * // Delete a few Existencias_cajas
-     * const { count } = await prisma.existencias_cajas.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends existencias_cajasDeleteManyArgs>(args?: SelectSubset<T, existencias_cajasDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Existencias_cajas.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {existencias_cajasUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Existencias_cajas
-     * const existencias_cajas = await prisma.existencias_cajas.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends existencias_cajasUpdateManyArgs>(args: SelectSubset<T, existencias_cajasUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Existencias_cajas.
-     * @param {existencias_cajasUpsertArgs} args - Arguments to update or create a Existencias_cajas.
-     * @example
-     * // Update or create a Existencias_cajas
-     * const existencias_cajas = await prisma.existencias_cajas.upsert({
-     *   create: {
-     *     // ... data to create a Existencias_cajas
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Existencias_cajas we want to update
-     *   }
-     * })
-     */
-    upsert<T extends existencias_cajasUpsertArgs>(args: SelectSubset<T, existencias_cajasUpsertArgs<ExtArgs>>): Prisma__existencias_cajasClient<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    findMany<T extends existencias_cajasFindManyArgs>(args?: SelectSubset<T, existencias_cajasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$existencias_cajasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
 
     /**
@@ -24471,7 +25503,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__existencias_cajasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__existencias_cajasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -24500,8 +25532,9 @@ export namespace Prisma {
 
   /**
    * Fields of the existencias_cajas model
-   */ 
+   */
   interface existencias_cajasFieldRefs {
+    readonly Temporada: FieldRef<"existencias_cajas", 'String'>
     readonly Camara: FieldRef<"existencias_cajas", 'String'>
     readonly Especie: FieldRef<"existencias_cajas", 'String'>
     readonly Fecha_packing: FieldRef<"existencias_cajas", 'DateTime'>
@@ -24533,6 +25566,10 @@ export namespace Prisma {
      */
     select?: existencias_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existencias_cajas
+     */
+    omit?: existencias_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existencias_cajas to fetch.
      */
     where: existencias_cajasWhereUniqueInput
@@ -24547,6 +25584,10 @@ export namespace Prisma {
      */
     select?: existencias_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existencias_cajas
+     */
+    omit?: existencias_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existencias_cajas to fetch.
      */
     where: existencias_cajasWhereUniqueInput
@@ -24560,6 +25601,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the existencias_cajas
      */
     select?: existencias_cajasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the existencias_cajas
+     */
+    omit?: existencias_cajasOmit<ExtArgs> | null
     /**
      * Filter, which existencias_cajas to fetch.
      */
@@ -24605,6 +25650,10 @@ export namespace Prisma {
      */
     select?: existencias_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existencias_cajas
+     */
+    omit?: existencias_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existencias_cajas to fetch.
      */
     where?: existencias_cajasWhereInput
@@ -24649,6 +25698,10 @@ export namespace Prisma {
      */
     select?: existencias_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existencias_cajas
+     */
+    omit?: existencias_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existencias_cajas to fetch.
      */
     where?: existencias_cajasWhereInput
@@ -24680,108 +25733,6 @@ export namespace Prisma {
   }
 
   /**
-   * existencias_cajas create
-   */
-  export type existencias_cajasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existencias_cajas
-     */
-    select?: existencias_cajasSelect<ExtArgs> | null
-    /**
-     * The data needed to create a existencias_cajas.
-     */
-    data: XOR<existencias_cajasCreateInput, existencias_cajasUncheckedCreateInput>
-  }
-
-  /**
-   * existencias_cajas createMany
-   */
-  export type existencias_cajasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many existencias_cajas.
-     */
-    data: existencias_cajasCreateManyInput | existencias_cajasCreateManyInput[]
-  }
-
-  /**
-   * existencias_cajas update
-   */
-  export type existencias_cajasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existencias_cajas
-     */
-    select?: existencias_cajasSelect<ExtArgs> | null
-    /**
-     * The data needed to update a existencias_cajas.
-     */
-    data: XOR<existencias_cajasUpdateInput, existencias_cajasUncheckedUpdateInput>
-    /**
-     * Choose, which existencias_cajas to update.
-     */
-    where: existencias_cajasWhereUniqueInput
-  }
-
-  /**
-   * existencias_cajas updateMany
-   */
-  export type existencias_cajasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update existencias_cajas.
-     */
-    data: XOR<existencias_cajasUpdateManyMutationInput, existencias_cajasUncheckedUpdateManyInput>
-    /**
-     * Filter which existencias_cajas to update
-     */
-    where?: existencias_cajasWhereInput
-  }
-
-  /**
-   * existencias_cajas upsert
-   */
-  export type existencias_cajasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existencias_cajas
-     */
-    select?: existencias_cajasSelect<ExtArgs> | null
-    /**
-     * The filter to search for the existencias_cajas to update in case it exists.
-     */
-    where: existencias_cajasWhereUniqueInput
-    /**
-     * In case the existencias_cajas found by the `where` argument doesn't exist, create a new existencias_cajas with this data.
-     */
-    create: XOR<existencias_cajasCreateInput, existencias_cajasUncheckedCreateInput>
-    /**
-     * In case the existencias_cajas was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<existencias_cajasUpdateInput, existencias_cajasUncheckedUpdateInput>
-  }
-
-  /**
-   * existencias_cajas delete
-   */
-  export type existencias_cajasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existencias_cajas
-     */
-    select?: existencias_cajasSelect<ExtArgs> | null
-    /**
-     * Filter which existencias_cajas to delete.
-     */
-    where: existencias_cajasWhereUniqueInput
-  }
-
-  /**
-   * existencias_cajas deleteMany
-   */
-  export type existencias_cajasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which existencias_cajas to delete
-     */
-    where?: existencias_cajasWhereInput
-  }
-
-  /**
    * existencias_cajas without action
    */
   export type existencias_cajasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -24789,6 +25740,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the existencias_cajas
      */
     select?: existencias_cajasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the existencias_cajas
+     */
+    omit?: existencias_cajasOmit<ExtArgs> | null
   }
 
 
@@ -24815,6 +25770,7 @@ export namespace Prisma {
   }
 
   export type Existenciamix_cajasMinAggregateOutputType = {
+    Temporada: string | null
     Camara: string | null
     Fecha_Packing: string | null
     Hora_Packing: string | null
@@ -24833,6 +25789,7 @@ export namespace Prisma {
   }
 
   export type Existenciamix_cajasMaxAggregateOutputType = {
+    Temporada: string | null
     Camara: string | null
     Fecha_Packing: string | null
     Hora_Packing: string | null
@@ -24851,6 +25808,7 @@ export namespace Prisma {
   }
 
   export type Existenciamix_cajasCountAggregateOutputType = {
+    Temporada: number
     Camara: number
     Fecha_Packing: number
     Hora_Packing: number
@@ -24881,6 +25839,7 @@ export namespace Prisma {
   }
 
   export type Existenciamix_cajasMinAggregateInputType = {
+    Temporada?: true
     Camara?: true
     Fecha_Packing?: true
     Hora_Packing?: true
@@ -24899,6 +25858,7 @@ export namespace Prisma {
   }
 
   export type Existenciamix_cajasMaxAggregateInputType = {
+    Temporada?: true
     Camara?: true
     Fecha_Packing?: true
     Hora_Packing?: true
@@ -24917,6 +25877,7 @@ export namespace Prisma {
   }
 
   export type Existenciamix_cajasCountAggregateInputType = {
+    Temporada?: true
     Camara?: true
     Fecha_Packing?: true
     Hora_Packing?: true
@@ -25022,6 +25983,7 @@ export namespace Prisma {
   }
 
   export type Existenciamix_cajasGroupByOutputType = {
+    Temporada: string | null
     Camara: string | null
     Fecha_Packing: string | null
     Hora_Packing: string | null
@@ -25059,6 +26021,7 @@ export namespace Prisma {
 
 
   export type existenciamix_cajasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Temporada?: boolean
     Camara?: boolean
     Fecha_Packing?: boolean
     Hora_Packing?: boolean
@@ -25077,7 +26040,9 @@ export namespace Prisma {
   }, ExtArgs["result"]["existenciamix_cajas"]>
 
 
+
   export type existenciamix_cajasSelectScalar = {
+    Temporada?: boolean
     Camara?: boolean
     Fecha_Packing?: boolean
     Hora_Packing?: boolean
@@ -25095,11 +26060,13 @@ export namespace Prisma {
     Proceso?: boolean
   }
 
+  export type existenciamix_cajasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Temporada" | "Camara" | "Fecha_Packing" | "Hora_Packing" | "Packing" | "Folio" | "Productor" | "CSG" | "Cuartel" | "Variedad" | "Embalaje" | "Etiqueta" | "Calibre" | "Categoria" | "Cajas" | "Proceso", ExtArgs["result"]["existenciamix_cajas"]>
 
   export type $existenciamix_cajasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "existenciamix_cajas"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
+      Temporada: string | null
       Camara: string | null
       Fecha_Packing: string | null
       Hora_Packing: string | null
@@ -25121,12 +26088,12 @@ export namespace Prisma {
 
   type existenciamix_cajasGetPayload<S extends boolean | null | undefined | existenciamix_cajasDefaultArgs> = $Result.GetResult<Prisma.$existenciamix_cajasPayload, S>
 
-  type existenciamix_cajasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<existenciamix_cajasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type existenciamix_cajasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<existenciamix_cajasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Existenciamix_cajasCountAggregateInputType | true
     }
 
-  export interface existenciamix_cajasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface existenciamix_cajasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['existenciamix_cajas'], meta: { name: 'existenciamix_cajas' } }
     /**
      * Find zero or one Existenciamix_cajas that matches the filter.
@@ -25139,10 +26106,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends existenciamix_cajasFindUniqueArgs>(args: SelectSubset<T, existenciamix_cajasFindUniqueArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends existenciamix_cajasFindUniqueArgs>(args: SelectSubset<T, existenciamix_cajasFindUniqueArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Existenciamix_cajas that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Existenciamix_cajas that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {existenciamix_cajasFindUniqueOrThrowArgs} args - Arguments to find a Existenciamix_cajas
      * @example
@@ -25153,7 +26120,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends existenciamix_cajasFindUniqueOrThrowArgs>(args: SelectSubset<T, existenciamix_cajasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends existenciamix_cajasFindUniqueOrThrowArgs>(args: SelectSubset<T, existenciamix_cajasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Existenciamix_cajas that matches the filter.
@@ -25168,7 +26135,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends existenciamix_cajasFindFirstArgs>(args?: SelectSubset<T, existenciamix_cajasFindFirstArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends existenciamix_cajasFindFirstArgs>(args?: SelectSubset<T, existenciamix_cajasFindFirstArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Existenciamix_cajas that matches the filter or
@@ -25184,7 +26151,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends existenciamix_cajasFindFirstOrThrowArgs>(args?: SelectSubset<T, existenciamix_cajasFindFirstOrThrowArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends existenciamix_cajasFindFirstOrThrowArgs>(args?: SelectSubset<T, existenciamix_cajasFindFirstOrThrowArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Existenciamix_cajas that matches the filter.
@@ -25198,122 +26165,11 @@ export namespace Prisma {
      * // Get first 10 Existenciamix_cajas
      * const existenciamix_cajas = await prisma.existenciamix_cajas.findMany({ take: 10 })
      * 
-     * // Only select the `Camara`
-     * const existenciamix_cajasWithCamaraOnly = await prisma.existenciamix_cajas.findMany({ select: { Camara: true } })
+     * // Only select the `Temporada`
+     * const existenciamix_cajasWithTemporadaOnly = await prisma.existenciamix_cajas.findMany({ select: { Temporada: true } })
      * 
      */
-    findMany<T extends existenciamix_cajasFindManyArgs>(args?: SelectSubset<T, existenciamix_cajasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Existenciamix_cajas.
-     * @param {existenciamix_cajasCreateArgs} args - Arguments to create a Existenciamix_cajas.
-     * @example
-     * // Create one Existenciamix_cajas
-     * const Existenciamix_cajas = await prisma.existenciamix_cajas.create({
-     *   data: {
-     *     // ... data to create a Existenciamix_cajas
-     *   }
-     * })
-     * 
-     */
-    create<T extends existenciamix_cajasCreateArgs>(args: SelectSubset<T, existenciamix_cajasCreateArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Existenciamix_cajas.
-     * @param {existenciamix_cajasCreateManyArgs} args - Arguments to create many Existenciamix_cajas.
-     * @example
-     * // Create many Existenciamix_cajas
-     * const existenciamix_cajas = await prisma.existenciamix_cajas.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends existenciamix_cajasCreateManyArgs>(args?: SelectSubset<T, existenciamix_cajasCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Existenciamix_cajas.
-     * @param {existenciamix_cajasDeleteArgs} args - Arguments to delete one Existenciamix_cajas.
-     * @example
-     * // Delete one Existenciamix_cajas
-     * const Existenciamix_cajas = await prisma.existenciamix_cajas.delete({
-     *   where: {
-     *     // ... filter to delete one Existenciamix_cajas
-     *   }
-     * })
-     * 
-     */
-    delete<T extends existenciamix_cajasDeleteArgs>(args: SelectSubset<T, existenciamix_cajasDeleteArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Existenciamix_cajas.
-     * @param {existenciamix_cajasUpdateArgs} args - Arguments to update one Existenciamix_cajas.
-     * @example
-     * // Update one Existenciamix_cajas
-     * const existenciamix_cajas = await prisma.existenciamix_cajas.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends existenciamix_cajasUpdateArgs>(args: SelectSubset<T, existenciamix_cajasUpdateArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Existenciamix_cajas.
-     * @param {existenciamix_cajasDeleteManyArgs} args - Arguments to filter Existenciamix_cajas to delete.
-     * @example
-     * // Delete a few Existenciamix_cajas
-     * const { count } = await prisma.existenciamix_cajas.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends existenciamix_cajasDeleteManyArgs>(args?: SelectSubset<T, existenciamix_cajasDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Existenciamix_cajas.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {existenciamix_cajasUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Existenciamix_cajas
-     * const existenciamix_cajas = await prisma.existenciamix_cajas.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends existenciamix_cajasUpdateManyArgs>(args: SelectSubset<T, existenciamix_cajasUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Existenciamix_cajas.
-     * @param {existenciamix_cajasUpsertArgs} args - Arguments to update or create a Existenciamix_cajas.
-     * @example
-     * // Update or create a Existenciamix_cajas
-     * const existenciamix_cajas = await prisma.existenciamix_cajas.upsert({
-     *   create: {
-     *     // ... data to create a Existenciamix_cajas
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Existenciamix_cajas we want to update
-     *   }
-     * })
-     */
-    upsert<T extends existenciamix_cajasUpsertArgs>(args: SelectSubset<T, existenciamix_cajasUpsertArgs<ExtArgs>>): Prisma__existenciamix_cajasClient<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    findMany<T extends existenciamix_cajasFindManyArgs>(args?: SelectSubset<T, existenciamix_cajasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$existenciamix_cajasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
 
     /**
@@ -25453,7 +26309,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__existenciamix_cajasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__existenciamix_cajasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -25482,8 +26338,9 @@ export namespace Prisma {
 
   /**
    * Fields of the existenciamix_cajas model
-   */ 
+   */
   interface existenciamix_cajasFieldRefs {
+    readonly Temporada: FieldRef<"existenciamix_cajas", 'String'>
     readonly Camara: FieldRef<"existenciamix_cajas", 'String'>
     readonly Fecha_Packing: FieldRef<"existenciamix_cajas", 'String'>
     readonly Hora_Packing: FieldRef<"existenciamix_cajas", 'String'>
@@ -25512,6 +26369,10 @@ export namespace Prisma {
      */
     select?: existenciamix_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existenciamix_cajas
+     */
+    omit?: existenciamix_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existenciamix_cajas to fetch.
      */
     where: existenciamix_cajasWhereUniqueInput
@@ -25526,6 +26387,10 @@ export namespace Prisma {
      */
     select?: existenciamix_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existenciamix_cajas
+     */
+    omit?: existenciamix_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existenciamix_cajas to fetch.
      */
     where: existenciamix_cajasWhereUniqueInput
@@ -25539,6 +26404,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the existenciamix_cajas
      */
     select?: existenciamix_cajasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the existenciamix_cajas
+     */
+    omit?: existenciamix_cajasOmit<ExtArgs> | null
     /**
      * Filter, which existenciamix_cajas to fetch.
      */
@@ -25584,6 +26453,10 @@ export namespace Prisma {
      */
     select?: existenciamix_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existenciamix_cajas
+     */
+    omit?: existenciamix_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existenciamix_cajas to fetch.
      */
     where?: existenciamix_cajasWhereInput
@@ -25628,6 +26501,10 @@ export namespace Prisma {
      */
     select?: existenciamix_cajasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the existenciamix_cajas
+     */
+    omit?: existenciamix_cajasOmit<ExtArgs> | null
+    /**
      * Filter, which existenciamix_cajas to fetch.
      */
     where?: existenciamix_cajasWhereInput
@@ -25659,108 +26536,6 @@ export namespace Prisma {
   }
 
   /**
-   * existenciamix_cajas create
-   */
-  export type existenciamix_cajasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existenciamix_cajas
-     */
-    select?: existenciamix_cajasSelect<ExtArgs> | null
-    /**
-     * The data needed to create a existenciamix_cajas.
-     */
-    data: XOR<existenciamix_cajasCreateInput, existenciamix_cajasUncheckedCreateInput>
-  }
-
-  /**
-   * existenciamix_cajas createMany
-   */
-  export type existenciamix_cajasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many existenciamix_cajas.
-     */
-    data: existenciamix_cajasCreateManyInput | existenciamix_cajasCreateManyInput[]
-  }
-
-  /**
-   * existenciamix_cajas update
-   */
-  export type existenciamix_cajasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existenciamix_cajas
-     */
-    select?: existenciamix_cajasSelect<ExtArgs> | null
-    /**
-     * The data needed to update a existenciamix_cajas.
-     */
-    data: XOR<existenciamix_cajasUpdateInput, existenciamix_cajasUncheckedUpdateInput>
-    /**
-     * Choose, which existenciamix_cajas to update.
-     */
-    where: existenciamix_cajasWhereUniqueInput
-  }
-
-  /**
-   * existenciamix_cajas updateMany
-   */
-  export type existenciamix_cajasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update existenciamix_cajas.
-     */
-    data: XOR<existenciamix_cajasUpdateManyMutationInput, existenciamix_cajasUncheckedUpdateManyInput>
-    /**
-     * Filter which existenciamix_cajas to update
-     */
-    where?: existenciamix_cajasWhereInput
-  }
-
-  /**
-   * existenciamix_cajas upsert
-   */
-  export type existenciamix_cajasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existenciamix_cajas
-     */
-    select?: existenciamix_cajasSelect<ExtArgs> | null
-    /**
-     * The filter to search for the existenciamix_cajas to update in case it exists.
-     */
-    where: existenciamix_cajasWhereUniqueInput
-    /**
-     * In case the existenciamix_cajas found by the `where` argument doesn't exist, create a new existenciamix_cajas with this data.
-     */
-    create: XOR<existenciamix_cajasCreateInput, existenciamix_cajasUncheckedCreateInput>
-    /**
-     * In case the existenciamix_cajas was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<existenciamix_cajasUpdateInput, existenciamix_cajasUncheckedUpdateInput>
-  }
-
-  /**
-   * existenciamix_cajas delete
-   */
-  export type existenciamix_cajasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the existenciamix_cajas
-     */
-    select?: existenciamix_cajasSelect<ExtArgs> | null
-    /**
-     * Filter which existenciamix_cajas to delete.
-     */
-    where: existenciamix_cajasWhereUniqueInput
-  }
-
-  /**
-   * existenciamix_cajas deleteMany
-   */
-  export type existenciamix_cajasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which existenciamix_cajas to delete
-     */
-    where?: existenciamix_cajasWhereInput
-  }
-
-  /**
    * existenciamix_cajas without action
    */
   export type existenciamix_cajasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25768,6 +26543,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the existenciamix_cajas
      */
     select?: existenciamix_cajasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the existenciamix_cajas
+     */
+    omit?: existenciamix_cajasOmit<ExtArgs> | null
   }
 
 
@@ -26130,6 +26909,7 @@ export namespace Prisma {
 
 
   export const Existencias_cajasScalarFieldEnum: {
+    Temporada: 'Temporada',
     Camara: 'Camara',
     Especie: 'Especie',
     Fecha_packing: 'Fecha_packing',
@@ -26154,6 +26934,7 @@ export namespace Prisma {
 
 
   export const Existenciamix_cajasScalarFieldEnum: {
+    Temporada: 'Temporada',
     Camara: 'Camara',
     Fecha_Packing: 'Fecha_Packing',
     Hora_Packing: 'Hora_Packing',
@@ -26191,7 +26972,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 
@@ -26920,7 +27701,7 @@ export namespace Prisma {
     fr_cod_pac?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_cod_fri?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_usu?: StringNullableFilter<"fr_repa_cab"> | string | null
-    fr_rep_sag?: BytesNullableFilter<"fr_repa_cab"> | Buffer | null
+    fr_rep_sag?: BytesNullableFilter<"fr_repa_cab"> | Uint8Array | null
     fr_cod_tem?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_cod_emp?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_tra_sdt?: StringNullableFilter<"fr_repa_cab"> | string | null
@@ -26953,7 +27734,7 @@ export namespace Prisma {
     fr_cod_pac?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_cod_fri?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_usu?: StringNullableFilter<"fr_repa_cab"> | string | null
-    fr_rep_sag?: BytesNullableFilter<"fr_repa_cab"> | Buffer | null
+    fr_rep_sag?: BytesNullableFilter<"fr_repa_cab"> | Uint8Array | null
     fr_cod_tem?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_cod_emp?: StringNullableFilter<"fr_repa_cab"> | string | null
     fr_tra_sdt?: StringNullableFilter<"fr_repa_cab"> | string | null
@@ -26991,7 +27772,7 @@ export namespace Prisma {
     fr_cod_pac?: StringNullableWithAggregatesFilter<"fr_repa_cab"> | string | null
     fr_cod_fri?: StringNullableWithAggregatesFilter<"fr_repa_cab"> | string | null
     fr_usu?: StringNullableWithAggregatesFilter<"fr_repa_cab"> | string | null
-    fr_rep_sag?: BytesNullableWithAggregatesFilter<"fr_repa_cab"> | Buffer | null
+    fr_rep_sag?: BytesNullableWithAggregatesFilter<"fr_repa_cab"> | Uint8Array | null
     fr_cod_tem?: StringNullableWithAggregatesFilter<"fr_repa_cab"> | string | null
     fr_cod_emp?: StringNullableWithAggregatesFilter<"fr_repa_cab"> | string | null
     fr_tra_sdt?: StringNullableWithAggregatesFilter<"fr_repa_cab"> | string | null
@@ -27746,7 +28527,7 @@ export namespace Prisma {
     principal_id?: IntFilter<"sysdiagrams"> | number
     diagram_id?: IntFilter<"sysdiagrams"> | number
     version?: IntNullableFilter<"sysdiagrams"> | number | null
-    definition?: BytesNullableFilter<"sysdiagrams"> | Buffer | null
+    definition?: BytesNullableFilter<"sysdiagrams"> | Uint8Array | null
   }
 
   export type sysdiagramsOrderByWithRelationInput = {
@@ -27766,7 +28547,7 @@ export namespace Prisma {
     name?: StringFilter<"sysdiagrams"> | string
     principal_id?: IntFilter<"sysdiagrams"> | number
     version?: IntNullableFilter<"sysdiagrams"> | number | null
-    definition?: BytesNullableFilter<"sysdiagrams"> | Buffer | null
+    definition?: BytesNullableFilter<"sysdiagrams"> | Uint8Array | null
   }, "diagram_id" | "principal_id_name">
 
   export type sysdiagramsOrderByWithAggregationInput = {
@@ -27790,7 +28571,7 @@ export namespace Prisma {
     principal_id?: IntWithAggregatesFilter<"sysdiagrams"> | number
     diagram_id?: IntWithAggregatesFilter<"sysdiagrams"> | number
     version?: IntNullableWithAggregatesFilter<"sysdiagrams"> | number | null
-    definition?: BytesNullableWithAggregatesFilter<"sysdiagrams"> | Buffer | null
+    definition?: BytesNullableWithAggregatesFilter<"sysdiagrams"> | Uint8Array | null
   }
 
   export type tipo_insWhereInput = {
@@ -27934,6 +28715,7 @@ export namespace Prisma {
     AND?: existencias_cajasWhereInput | existencias_cajasWhereInput[]
     OR?: existencias_cajasWhereInput[]
     NOT?: existencias_cajasWhereInput | existencias_cajasWhereInput[]
+    Temporada?: StringNullableFilter<"existencias_cajas"> | string | null
     Camara?: StringNullableFilter<"existencias_cajas"> | string | null
     Especie?: StringNullableFilter<"existencias_cajas"> | string | null
     Fecha_packing?: DateTimeNullableFilter<"existencias_cajas"> | Date | string | null
@@ -27955,6 +28737,7 @@ export namespace Prisma {
   }
 
   export type existencias_cajasOrderByWithRelationInput = {
+    Temporada?: SortOrderInput | SortOrder
     Camara?: SortOrderInput | SortOrder
     Especie?: SortOrderInput | SortOrder
     Fecha_packing?: SortOrderInput | SortOrder
@@ -27980,6 +28763,7 @@ export namespace Prisma {
     AND?: existencias_cajasWhereInput | existencias_cajasWhereInput[]
     OR?: existencias_cajasWhereInput[]
     NOT?: existencias_cajasWhereInput | existencias_cajasWhereInput[]
+    Temporada?: StringNullableFilter<"existencias_cajas"> | string | null
     Camara?: StringNullableFilter<"existencias_cajas"> | string | null
     Especie?: StringNullableFilter<"existencias_cajas"> | string | null
     Fecha_packing?: DateTimeNullableFilter<"existencias_cajas"> | Date | string | null
@@ -28000,6 +28784,7 @@ export namespace Prisma {
   }, "Folio">
 
   export type existencias_cajasOrderByWithAggregationInput = {
+    Temporada?: SortOrderInput | SortOrder
     Camara?: SortOrderInput | SortOrder
     Especie?: SortOrderInput | SortOrder
     Fecha_packing?: SortOrderInput | SortOrder
@@ -28029,6 +28814,7 @@ export namespace Prisma {
     AND?: existencias_cajasScalarWhereWithAggregatesInput | existencias_cajasScalarWhereWithAggregatesInput[]
     OR?: existencias_cajasScalarWhereWithAggregatesInput[]
     NOT?: existencias_cajasScalarWhereWithAggregatesInput | existencias_cajasScalarWhereWithAggregatesInput[]
+    Temporada?: StringNullableWithAggregatesFilter<"existencias_cajas"> | string | null
     Camara?: StringNullableWithAggregatesFilter<"existencias_cajas"> | string | null
     Especie?: StringNullableWithAggregatesFilter<"existencias_cajas"> | string | null
     Fecha_packing?: DateTimeNullableWithAggregatesFilter<"existencias_cajas"> | Date | string | null
@@ -28053,6 +28839,7 @@ export namespace Prisma {
     AND?: existenciamix_cajasWhereInput | existenciamix_cajasWhereInput[]
     OR?: existenciamix_cajasWhereInput[]
     NOT?: existenciamix_cajasWhereInput | existenciamix_cajasWhereInput[]
+    Temporada?: StringNullableFilter<"existenciamix_cajas"> | string | null
     Camara?: StringNullableFilter<"existenciamix_cajas"> | string | null
     Fecha_Packing?: StringNullableFilter<"existenciamix_cajas"> | string | null
     Hora_Packing?: StringNullableFilter<"existenciamix_cajas"> | string | null
@@ -28071,6 +28858,7 @@ export namespace Prisma {
   }
 
   export type existenciamix_cajasOrderByWithRelationInput = {
+    Temporada?: SortOrderInput | SortOrder
     Camara?: SortOrderInput | SortOrder
     Fecha_Packing?: SortOrderInput | SortOrder
     Hora_Packing?: SortOrderInput | SortOrder
@@ -28093,6 +28881,7 @@ export namespace Prisma {
     AND?: existenciamix_cajasWhereInput | existenciamix_cajasWhereInput[]
     OR?: existenciamix_cajasWhereInput[]
     NOT?: existenciamix_cajasWhereInput | existenciamix_cajasWhereInput[]
+    Temporada?: StringNullableFilter<"existenciamix_cajas"> | string | null
     Camara?: StringNullableFilter<"existenciamix_cajas"> | string | null
     Fecha_Packing?: StringNullableFilter<"existenciamix_cajas"> | string | null
     Hora_Packing?: StringNullableFilter<"existenciamix_cajas"> | string | null
@@ -28110,6 +28899,7 @@ export namespace Prisma {
   }, "Folio">
 
   export type existenciamix_cajasOrderByWithAggregationInput = {
+    Temporada?: SortOrderInput | SortOrder
     Camara?: SortOrderInput | SortOrder
     Fecha_Packing?: SortOrderInput | SortOrder
     Hora_Packing?: SortOrderInput | SortOrder
@@ -28136,6 +28926,7 @@ export namespace Prisma {
     AND?: existenciamix_cajasScalarWhereWithAggregatesInput | existenciamix_cajasScalarWhereWithAggregatesInput[]
     OR?: existenciamix_cajasScalarWhereWithAggregatesInput[]
     NOT?: existenciamix_cajasScalarWhereWithAggregatesInput | existenciamix_cajasScalarWhereWithAggregatesInput[]
+    Temporada?: StringNullableWithAggregatesFilter<"existenciamix_cajas"> | string | null
     Camara?: StringNullableWithAggregatesFilter<"existenciamix_cajas"> | string | null
     Fecha_Packing?: StringNullableWithAggregatesFilter<"existenciamix_cajas"> | string | null
     Hora_Packing?: StringNullableWithAggregatesFilter<"existenciamix_cajas"> | string | null
@@ -28877,7 +29668,7 @@ export namespace Prisma {
     fr_cod_pac?: string | null
     fr_cod_fri?: string | null
     fr_usu?: string | null
-    fr_rep_sag?: Buffer | null
+    fr_rep_sag?: Uint8Array | null
     fr_cod_tem?: string | null
     fr_cod_emp?: string | null
     fr_tra_sdt?: string | null
@@ -28892,7 +29683,7 @@ export namespace Prisma {
     fr_cod_pac?: string | null
     fr_cod_fri?: string | null
     fr_usu?: string | null
-    fr_rep_sag?: Buffer | null
+    fr_rep_sag?: Uint8Array | null
     fr_cod_tem?: string | null
     fr_cod_emp?: string | null
     fr_tra_sdt?: string | null
@@ -28906,7 +29697,7 @@ export namespace Prisma {
     fr_cod_pac?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_fri?: NullableStringFieldUpdateOperationsInput | string | null
     fr_usu?: NullableStringFieldUpdateOperationsInput | string | null
-    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     fr_cod_tem?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_emp?: NullableStringFieldUpdateOperationsInput | string | null
     fr_tra_sdt?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28921,7 +29712,7 @@ export namespace Prisma {
     fr_cod_pac?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_fri?: NullableStringFieldUpdateOperationsInput | string | null
     fr_usu?: NullableStringFieldUpdateOperationsInput | string | null
-    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     fr_cod_tem?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_emp?: NullableStringFieldUpdateOperationsInput | string | null
     fr_tra_sdt?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28935,7 +29726,7 @@ export namespace Prisma {
     fr_cod_pac?: string | null
     fr_cod_fri?: string | null
     fr_usu?: string | null
-    fr_rep_sag?: Buffer | null
+    fr_rep_sag?: Uint8Array | null
     fr_cod_tem?: string | null
     fr_cod_emp?: string | null
     fr_tra_sdt?: string | null
@@ -28949,7 +29740,7 @@ export namespace Prisma {
     fr_cod_pac?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_fri?: NullableStringFieldUpdateOperationsInput | string | null
     fr_usu?: NullableStringFieldUpdateOperationsInput | string | null
-    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     fr_cod_tem?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_emp?: NullableStringFieldUpdateOperationsInput | string | null
     fr_tra_sdt?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28964,7 +29755,7 @@ export namespace Prisma {
     fr_cod_pac?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_fri?: NullableStringFieldUpdateOperationsInput | string | null
     fr_usu?: NullableStringFieldUpdateOperationsInput | string | null
-    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    fr_rep_sag?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     fr_cod_tem?: NullableStringFieldUpdateOperationsInput | string | null
     fr_cod_emp?: NullableStringFieldUpdateOperationsInput | string | null
     fr_tra_sdt?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29834,7 +30625,7 @@ export namespace Prisma {
     name: string
     principal_id: number
     version?: number | null
-    definition?: Buffer | null
+    definition?: Uint8Array | null
   }
 
   export type sysdiagramsUncheckedCreateInput = {
@@ -29842,14 +30633,14 @@ export namespace Prisma {
     principal_id: number
     diagram_id?: number
     version?: number | null
-    definition?: Buffer | null
+    definition?: Uint8Array | null
   }
 
   export type sysdiagramsUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     principal_id?: IntFieldUpdateOperationsInput | number
     version?: NullableIntFieldUpdateOperationsInput | number | null
-    definition?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    definition?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type sysdiagramsUncheckedUpdateInput = {
@@ -29857,21 +30648,21 @@ export namespace Prisma {
     principal_id?: IntFieldUpdateOperationsInput | number
     diagram_id?: IntFieldUpdateOperationsInput | number
     version?: NullableIntFieldUpdateOperationsInput | number | null
-    definition?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    definition?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type sysdiagramsCreateManyInput = {
     name: string
     principal_id: number
     version?: number | null
-    definition?: Buffer | null
+    definition?: Uint8Array | null
   }
 
   export type sysdiagramsUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     principal_id?: IntFieldUpdateOperationsInput | number
     version?: NullableIntFieldUpdateOperationsInput | number | null
-    definition?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    definition?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type sysdiagramsUncheckedUpdateManyInput = {
@@ -29879,7 +30670,7 @@ export namespace Prisma {
     principal_id?: IntFieldUpdateOperationsInput | number
     diagram_id?: IntFieldUpdateOperationsInput | number
     version?: NullableIntFieldUpdateOperationsInput | number | null
-    definition?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    definition?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type tipo_insCreateInput = {
@@ -30001,279 +30792,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     numero_pallet?: NullableStringFieldUpdateOperationsInput | string | null
     temporada?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type existencias_cajasCreateInput = {
-    Camara?: string | null
-    Especie?: string | null
-    Fecha_packing?: Date | string | null
-    Hora_Packing?: string | null
-    Packing: string
-    Folio: string
-    Productor?: string | null
-    CSG?: string | null
-    Marca: string
-    Embalaje: string
-    Linea?: string | null
-    Exportadora?: string | null
-    Jornada?: string | null
-    Variedad?: string | null
-    Calibre: string
-    Categoria?: string | null
-    Cajas: number
-    Proceso: number
-  }
-
-  export type existencias_cajasUncheckedCreateInput = {
-    Camara?: string | null
-    Especie?: string | null
-    Fecha_packing?: Date | string | null
-    Hora_Packing?: string | null
-    Packing: string
-    Folio: string
-    Productor?: string | null
-    CSG?: string | null
-    Marca: string
-    Embalaje: string
-    Linea?: string | null
-    Exportadora?: string | null
-    Jornada?: string | null
-    Variedad?: string | null
-    Calibre: string
-    Categoria?: string | null
-    Cajas: number
-    Proceso: number
-  }
-
-  export type existencias_cajasUpdateInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Especie?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_packing?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Marca?: StringFieldUpdateOperationsInput | string
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Linea?: NullableStringFieldUpdateOperationsInput | string | null
-    Exportadora?: NullableStringFieldUpdateOperationsInput | string | null
-    Jornada?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type existencias_cajasUncheckedUpdateInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Especie?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_packing?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Marca?: StringFieldUpdateOperationsInput | string
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Linea?: NullableStringFieldUpdateOperationsInput | string | null
-    Exportadora?: NullableStringFieldUpdateOperationsInput | string | null
-    Jornada?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type existencias_cajasCreateManyInput = {
-    Camara?: string | null
-    Especie?: string | null
-    Fecha_packing?: Date | string | null
-    Hora_Packing?: string | null
-    Packing: string
-    Folio: string
-    Productor?: string | null
-    CSG?: string | null
-    Marca: string
-    Embalaje: string
-    Linea?: string | null
-    Exportadora?: string | null
-    Jornada?: string | null
-    Variedad?: string | null
-    Calibre: string
-    Categoria?: string | null
-    Cajas: number
-    Proceso: number
-  }
-
-  export type existencias_cajasUpdateManyMutationInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Especie?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_packing?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Marca?: StringFieldUpdateOperationsInput | string
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Linea?: NullableStringFieldUpdateOperationsInput | string | null
-    Exportadora?: NullableStringFieldUpdateOperationsInput | string | null
-    Jornada?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type existencias_cajasUncheckedUpdateManyInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Especie?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_packing?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Marca?: StringFieldUpdateOperationsInput | string
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Linea?: NullableStringFieldUpdateOperationsInput | string | null
-    Exportadora?: NullableStringFieldUpdateOperationsInput | string | null
-    Jornada?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type existenciamix_cajasCreateInput = {
-    Camara?: string | null
-    Fecha_Packing?: string | null
-    Hora_Packing?: string | null
-    Packing: string
-    Folio: string
-    Productor?: string | null
-    CSG?: string | null
-    Cuartel?: string | null
-    Variedad?: string | null
-    Embalaje: string
-    Etiqueta?: string | null
-    Calibre: string
-    Categoria?: string | null
-    Cajas: number
-    Proceso: number
-  }
-
-  export type existenciamix_cajasUncheckedCreateInput = {
-    Camara?: string | null
-    Fecha_Packing?: string | null
-    Hora_Packing?: string | null
-    Packing: string
-    Folio: string
-    Productor?: string | null
-    CSG?: string | null
-    Cuartel?: string | null
-    Variedad?: string | null
-    Embalaje: string
-    Etiqueta?: string | null
-    Calibre: string
-    Categoria?: string | null
-    Cajas: number
-    Proceso: number
-  }
-
-  export type existenciamix_cajasUpdateInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Cuartel?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Etiqueta?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type existenciamix_cajasUncheckedUpdateInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Cuartel?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Etiqueta?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type existenciamix_cajasCreateManyInput = {
-    Camara?: string | null
-    Fecha_Packing?: string | null
-    Hora_Packing?: string | null
-    Packing: string
-    Folio: string
-    Productor?: string | null
-    CSG?: string | null
-    Cuartel?: string | null
-    Variedad?: string | null
-    Embalaje: string
-    Etiqueta?: string | null
-    Calibre: string
-    Categoria?: string | null
-    Cajas: number
-    Proceso: number
-  }
-
-  export type existenciamix_cajasUpdateManyMutationInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Cuartel?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Etiqueta?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type existenciamix_cajasUncheckedUpdateManyInput = {
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Fecha_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Hora_Packing?: NullableStringFieldUpdateOperationsInput | string | null
-    Packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Productor?: NullableStringFieldUpdateOperationsInput | string | null
-    CSG?: NullableStringFieldUpdateOperationsInput | string | null
-    Cuartel?: NullableStringFieldUpdateOperationsInput | string | null
-    Variedad?: NullableStringFieldUpdateOperationsInput | string | null
-    Embalaje?: StringFieldUpdateOperationsInput | string
-    Etiqueta?: NullableStringFieldUpdateOperationsInput | string | null
-    Calibre?: StringFieldUpdateOperationsInput | string
-    Categoria?: NullableStringFieldUpdateOperationsInput | string | null
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Proceso?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -30891,10 +31409,10 @@ export namespace Prisma {
   }
 
   export type BytesNullableFilter<$PrismaModel = never> = {
-    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
-    in?: Buffer[] | null
-    notIn?: Buffer[] | null
-    not?: NestedBytesNullableFilter<$PrismaModel> | Buffer | null
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
   }
 
   export type fr_repa_cabCountOrderByAggregateInput = {
@@ -30955,10 +31473,10 @@ export namespace Prisma {
   }
 
   export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
-    in?: Buffer[] | null
-    notIn?: Buffer[] | null
-    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Buffer | null
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
@@ -31597,6 +32115,7 @@ export namespace Prisma {
   }
 
   export type existencias_cajasCountOrderByAggregateInput = {
+    Temporada?: SortOrder
     Camara?: SortOrder
     Especie?: SortOrder
     Fecha_packing?: SortOrder
@@ -31623,6 +32142,7 @@ export namespace Prisma {
   }
 
   export type existencias_cajasMaxOrderByAggregateInput = {
+    Temporada?: SortOrder
     Camara?: SortOrder
     Especie?: SortOrder
     Fecha_packing?: SortOrder
@@ -31644,6 +32164,7 @@ export namespace Prisma {
   }
 
   export type existencias_cajasMinOrderByAggregateInput = {
+    Temporada?: SortOrder
     Camara?: SortOrder
     Especie?: SortOrder
     Fecha_packing?: SortOrder
@@ -31670,6 +32191,7 @@ export namespace Prisma {
   }
 
   export type existenciamix_cajasCountOrderByAggregateInput = {
+    Temporada?: SortOrder
     Camara?: SortOrder
     Fecha_Packing?: SortOrder
     Hora_Packing?: SortOrder
@@ -31693,6 +32215,7 @@ export namespace Prisma {
   }
 
   export type existenciamix_cajasMaxOrderByAggregateInput = {
+    Temporada?: SortOrder
     Camara?: SortOrder
     Fecha_Packing?: SortOrder
     Hora_Packing?: SortOrder
@@ -31711,6 +32234,7 @@ export namespace Prisma {
   }
 
   export type existenciamix_cajasMinOrderByAggregateInput = {
+    Temporada?: SortOrder
     Camara?: SortOrder
     Fecha_Packing?: SortOrder
     Hora_Packing?: SortOrder
@@ -31774,7 +32298,7 @@ export namespace Prisma {
   }
 
   export type NullableBytesFieldUpdateOperationsInput = {
-    set?: Buffer | null
+    set?: Uint8Array | null
   }
 
   export type NullableFloatFieldUpdateOperationsInput = {
@@ -32001,17 +32525,17 @@ export namespace Prisma {
   }
 
   export type NestedBytesNullableFilter<$PrismaModel = never> = {
-    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
-    in?: Buffer[] | null
-    notIn?: Buffer[] | null
-    not?: NestedBytesNullableFilter<$PrismaModel> | Buffer | null
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
   }
 
   export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
-    in?: Buffer[] | null
-    notIn?: Buffer[] | null
-    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Buffer | null
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | null
+    notIn?: Uint8Array[] | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
@@ -32034,110 +32558,6 @@ export namespace Prisma {
   }
 
 
-
-  /**
-   * Aliases for legacy arg types
-   */
-    /**
-     * @deprecated Use capacidad_lineasDefaultArgs instead
-     */
-    export type capacidad_lineasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = capacidad_lineasDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use cc_checklistDefaultArgs instead
-     */
-    export type cc_checklistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = cc_checklistDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use certificacionDefaultArgs instead
-     */
-    export type certificacionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = certificacionDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use correlativoDefaultArgs instead
-     */
-    export type correlativoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = correlativoDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use env_x_sellarDefaultArgs instead
-     */
-    export type env_x_sellarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = env_x_sellarDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use estadosDefaultArgs instead
-     */
-    export type estadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = estadosDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use foliosDefaultArgs instead
-     */
-    export type foliosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = foliosDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use folios_frioDefaultArgs instead
-     */
-    export type folios_frioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = folios_frioDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use folios_packDefaultArgs instead
-     */
-    export type folios_packArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = folios_packDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use folios_seDefaultArgs instead
-     */
-    export type folios_seArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = folios_seDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use fr_repa_cabDefaultArgs instead
-     */
-    export type fr_repa_cabArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = fr_repa_cabDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use fr_repa_detDefaultArgs instead
-     */
-    export type fr_repa_detArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = fr_repa_detDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use Gr_Tipo_CobroDefaultArgs instead
-     */
-    export type Gr_Tipo_CobroArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Gr_Tipo_CobroDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use insp_cabDefaultArgs instead
-     */
-    export type insp_cabArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = insp_cabDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use mae_sta_elenaDefaultArgs instead
-     */
-    export type mae_sta_elenaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = mae_sta_elenaDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use maestro_pluDefaultArgs instead
-     */
-    export type maestro_pluArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = maestro_pluDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use pk_desver_cabDefaultArgs instead
-     */
-    export type pk_desver_cabArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = pk_desver_cabDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use pk_desver_detDefaultArgs instead
-     */
-    export type pk_desver_detArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = pk_desver_detDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use sys_logDefaultArgs instead
-     */
-    export type sys_logArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = sys_logDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use sysdiagramsDefaultArgs instead
-     */
-    export type sysdiagramsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = sysdiagramsDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use tipo_insDefaultArgs instead
-     */
-    export type tipo_insArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = tipo_insDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use traductor_calibreDefaultArgs instead
-     */
-    export type traductor_calibreArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = traductor_calibreDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use validacion_palletsDefaultArgs instead
-     */
-    export type validacion_palletsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = validacion_palletsDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use existencias_cajasDefaultArgs instead
-     */
-    export type existencias_cajasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = existencias_cajasDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use existenciamix_cajasDefaultArgs instead
-     */
-    export type existenciamix_cajasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = existenciamix_cajasDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

@@ -6,12 +6,13 @@ export declare class ValidacionController {
     create(createValidacionDto: CreateValidacionDto): Promise<{
         id: number;
         Folio: string;
-        Camara: string;
-        Especie: string;
-        Packing: string;
         Cajas: number;
+        Especie: string;
         Estado: boolean;
+        Temporada: string;
+        Camara: string;
         Usuario: string;
+        Packing: string;
         createdAt: Date;
         updatedAt: Date;
     } | {
@@ -28,8 +29,8 @@ export declare class ValidacionController {
         count: number;
         data: {
             Folio: string;
-            Fecha_packing: string;
             Cajas: number;
+            Fecha_packing: string;
             LINEA: string;
         }[];
         message?: undefined;
@@ -125,11 +126,11 @@ export declare class ValidacionController {
         count: number;
         data: {
             Folio: string;
-            Camara: string;
-            Especie: string;
-            Fecha_packing: string;
             Cajas: number;
+            Especie: string;
             Estado: string;
+            Camara: string;
+            Fecha_packing: string;
             LINEA: string;
         }[];
         message?: undefined;

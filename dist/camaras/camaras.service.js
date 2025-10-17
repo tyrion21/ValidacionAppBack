@@ -17,7 +17,7 @@ let CamarasService = class CamarasService {
         this.prisma = prisma;
     }
     async getCamaras(codFri) {
-        const temporada = '8';
+        const temporada = '9';
         return await this.prisma.prismaClient2.cAMARAS.findMany({
             where: {
                 COD_TEM: temporada,

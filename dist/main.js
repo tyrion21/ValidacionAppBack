@@ -12,11 +12,11 @@ async function bootstrap() {
         preflightContinue: false,
         optionsSuccessStatus: 204,
     });
-    await httpApp.listen(3000, '192.168.7.25');
-    console.log('Servidor HTTP de testing corriendo en http://192.168.7.25:3000');
+    await httpApp.listen(3000, '0.0.0.0');
+    console.log('Servidor HTTP de testing corriendo en http://0.0.0.0:3000 ');
     const httpsOptions = {
-        key: fs.readFileSync(path.join(__dirname, '../secrets/192.168.7.25-key.pem')),
-        cert: fs.readFileSync(path.join(__dirname, '../secrets/192.168.7.25.pem')),
+        key: fs.readFileSync(path.join(__dirname, '../secrets/192.168.7.26-key.pem')),
+        cert: fs.readFileSync(path.join(__dirname, '../secrets/192.168.7.26.pem')),
     };
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
         httpsOptions,
@@ -27,8 +27,8 @@ async function bootstrap() {
         preflightContinue: false,
         optionsSuccessStatus: 204,
     });
-    await app.listen(4000, '192.168.7.25');
-    console.log('Servidor HTTPS corriendo en https://192.168.7.25:4000');
+    await app.listen(4000, '0.0.0.0');
+    console.log('Servidor HTTPS corriendo en https://0.0.0.0:4000 probando deploy manual');
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

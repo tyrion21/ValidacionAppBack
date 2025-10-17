@@ -32,7 +32,7 @@ export class FriosService {
     return await this.prisma.prismaClient2.fRIOS.findMany({
       where: {
         COD_TEM: temporada,
-        OR: [{ COD_FRI: '175619' }, { COD_FRI: '3102213' }],
+        OR: [{ COD_FRI: '3102213' }],
       },
       select: {
         COD_FRI: true,

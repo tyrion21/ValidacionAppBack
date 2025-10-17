@@ -3,15 +3,17 @@ import { CreateValidacionDto } from './dto/create-validacion.dto';
 export declare class ValidacionService {
     private readonly prisma;
     constructor(prisma: PrismaService);
+    private verificarExistenciaFolio;
     create(createValidacionDto: CreateValidacionDto): Promise<{
         id: number;
         Folio: string;
-        Camara: string;
-        Especie: string;
-        Packing: string;
         Cajas: number;
+        Especie: string;
         Estado: boolean;
+        Temporada: string;
+        Camara: string;
         Usuario: string;
+        Packing: string;
         createdAt: Date;
         updatedAt: Date;
     } | {
@@ -20,15 +22,15 @@ export declare class ValidacionService {
     getFolioValidado(folio: string): Promise<any>;
     getCajasPacking(): Promise<{
         Folio: string;
-        Fecha_packing: string;
         Cajas: number;
+        Fecha_packing: string;
         LINEA: string;
     }[]>;
     getCajasValidadas(): Promise<{
         Folio: string;
+        Cajas: number;
         Camara: string;
         Fecha_packing: string;
-        Cajas: number;
     }[]>;
     getCajasPackingSummary(fecha?: string, linea?: string): Promise<any>;
     getCajasValidadasSummary(fecha?: string, linea?: string): Promise<any>;
@@ -70,11 +72,11 @@ export declare class ValidacionService {
     }>;
     getInformeDiario(fecha?: string, estado?: string): Promise<{
         Folio: string;
-        Camara: string;
-        Especie: string;
-        Fecha_packing: string;
         Cajas: number;
+        Especie: string;
         Estado: string;
+        Camara: string;
+        Fecha_packing: string;
         LINEA: string;
     }[]>;
 }

@@ -27,7 +27,7 @@ export class CamarasService {
   // }
   async getCamaras(codFri: string): Promise<any> {
     //const temporada = '7';
-    const temporada = '8';
+    const temporada = '9';
     return await this.prisma.prismaClient2.cAMARAS.findMany({
       where: {
         COD_TEM: temporada,

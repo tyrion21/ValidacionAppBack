@@ -4,4 +4,5 @@ export declare class ExistenciasService {
     constructor(prisma: PrismaService);
     getExistencia(folio: string): Promise<any>;
     getMixExistencia(folio: string): Promise<any>;
+    verificarExistenciaFolio(folio: string): Promise<boolean>;
 }

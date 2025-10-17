@@ -16,9 +16,31 @@ let ValidacionService = class ValidacionService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(createValidacionDto) {
-        const { Folio, Cajas, Especie, Estado, Camara, Usuario, Packing } = createValidacionDto;
+    async verificarExistenciaFolio(folio) {
         try {
+            const existenciaNormal = await this.prisma.prismaClient3.existencias_cajas.findUnique({
+                where: { Folio: folio },
+            });
+            if (existenciaNormal) {
+                return true;
+            }
+            const existenciaMix = await this.prisma.prismaClient3.existenciamix_cajas.findUnique({
+                where: { Folio: folio },
+            });
+            return existenciaMix !== null;
+        }
+        catch (error) {
+            console.error('Error verificando existencia de folio:', error);
+            return false;
+        }
+    }
+    async create(createValidacionDto) {
+        const { Folio, Cajas, Especie, Estado, Temporada, Camara, Usuario, Packing } = createValidacionDto;
+        try {
+            const existe = await this.verificarExistenciaFolio(Folio);
+            if (!existe) {
+                throw new common_1.NotFoundException(`El folio ${Folio} no existe en el sistema de existencias`);
+            }
             const findValidacion = await this.prisma.prismaClient4.validaciones.findFirst({
                 where: { Folio: Folio },
             });
@@ -32,6 +54,7 @@ let ValidacionService = class ValidacionService {
                         Cajas,
                         Especie,
                         Estado,
+                        Temporada,
                         Camara,
                         Usuario,
                         Packing,
@@ -194,7 +217,7 @@ let ValidacionService = class ValidacionService {
     }
     async createRechazo(rechazoDto) {
         try {
-            const { Folio, Motivos, Usuario, Especie, Cajas, Camara, Packing } = rechazoDto;
+            const { Folio, Motivos, Usuario, Especie, Cajas, Temporada, Camara, Packing } = rechazoDto;
             console.log('Valores recibidos para createRechazo:');
             console.log('Folio:', Folio, 'tipo:', typeof Folio);
             console.log('Especie:', Especie, 'tipo:', typeof Especie);
@@ -202,6 +225,10 @@ let ValidacionService = class ValidacionService {
             console.log('Camara:', Camara, 'tipo:', typeof Camara);
             console.log('Packing:', Packing, 'tipo:', typeof Packing);
             console.log('Motivos:', Motivos, 'es array:', Array.isArray(Motivos));
+            const existe = await this.verificarExistenciaFolio(Folio);
+            if (!existe) {
+                throw new common_1.NotFoundException(`El folio ${Folio} no existe en el sistema de existencias`);
+            }
             try {
                 const existingRejection = await this.prisma.prismaClient4.rechazados.findFirst({
                     where: { folio_rechazado: String(Folio || '') }
@@ -239,6 +266,7 @@ let ValidacionService = class ValidacionService {
                 const cajas = typeof Cajas === 'number' ? Cajas : parseInt(String(Cajas || '0'), 10) || 0;
                 const usuario = String(Usuario || 'Usuario desconocido');
                 const especie = String(Especie || '');
+                const temporada = String(Temporada || '');
                 const camara = String(Camara || '');
                 const packing = String(Packing || '');
                 try {
@@ -250,6 +278,7 @@ let ValidacionService = class ValidacionService {
                             fecha_rechazado: now,
                             usuario: usuario,
                             cajas: cajas,
+                            Temporada: temporada,
                             camara: camara,
                             nombre_estado: 'R',
                             estado: true,

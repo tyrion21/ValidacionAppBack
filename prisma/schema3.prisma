@@ -11,12 +11,13 @@ datasource db {
 }
 
 view existencias_cajas {
+  Temporada     String?   @db.NVarChar(2)
   Camara        String?   @db.NVarChar(50)
   Especie       String?   @db.NVarChar(30)
   Fecha_packing DateTime? @db.Date
   Hora_Packing  String?   @map("Hora Packing") @db.VarChar(8)
   Packing       String    @db.NVarChar(12)
-  Folio         String    @id @db.NVarChar(15)
+  Folio         String    @db.NVarChar(15)
   Productor     String?   @db.NVarChar(16)
   CSG           String?   @db.NVarChar(12)
   Marca         String    @db.NVarChar(8)
@@ -30,14 +31,16 @@ view existencias_cajas {
   Cajas         Int
   Proceso       Int
 
+  @@unique([Folio])
 }
 
 view existenciamix_cajas {
+  Temporada     String? @db.NVarChar(2)
   Camara        String? @db.NVarChar(50)
   Fecha_Packing String? @map("Fecha Packing") @db.VarChar(30)
   Hora_Packing  String? @map("Hora Packing") @db.VarChar(8)
   Packing       String  @db.NVarChar(12)
-  Folio         String  @id @db.NVarChar(15)
+  Folio         String  @db.NVarChar(15)
   Productor     String? @db.NVarChar(16)
   CSG           String? @db.NVarChar(8)
   Cuartel       String? @db.NVarChar(8)
@@ -49,6 +52,7 @@ view existenciamix_cajas {
   Cajas         Int
   Proceso       Int
 
+  @@unique([Folio])
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.

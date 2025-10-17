@@ -59,6 +59,23 @@ let ExistenciasController = class ExistenciasController {
             }
         }
     }
+    async verificarFolio(folio) {
+        try {
+            const existe = await this.existenciasService.verificarExistenciaFolio(folio);
+            return {
+                success: true,
+                existe: existe,
+                folio: folio
+            };
+        }
+        catch (error) {
+            console.error('Error verificando folio:', error);
+            throw new common_1.HttpException({
+                status: common_1.HttpStatus.INTERNAL_SERVER_ERROR,
+                error: 'Ocurrió un error al verificar el folio',
+            }, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 };
 exports.ExistenciasController = ExistenciasController;
 __decorate([
@@ -75,6 +92,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ExistenciasController.prototype, "getMixExistencia", null);
+__decorate([
+    (0, common_1.Get)('verificar-folio/:folio'),
+    __param(0, (0, common_1.Param)('folio')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ExistenciasController.prototype, "verificarFolio", null);
 exports.ExistenciasController = ExistenciasController = __decorate([
     (0, common_1.Controller)('existencias'),
     __metadata("design:paramtypes", [existencias_service_1.ExistenciasService])

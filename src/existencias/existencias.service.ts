@@ -91,6 +91,7 @@ export class ExistenciasService {
           Cuartel: true,
           Calibre: true,
           Cajas: true,
+          Temporada: true,
         },      });
     } catch (error) {
       if (error instanceof NotFoundException) {
@@ -101,6 +102,31 @@ export class ExistenciasService {
           'Ocurrió un error al buscar el folio',
         );
       }
+    }
+  }
+
+  async verificarExistenciaFolio(folio: string): Promise<boolean> {
+    try {
+      // Primero buscar en existencias normales
+      const existenciaNormal = await this.prisma.prismaClient3.existencias_cajas.findUnique({
+        where: { Folio: folio },
+      });
+
+      if (existenciaNormal) {
+        return true;
+      }
+
+      // Si no está en existencias normales, buscar en mix
+      const existenciaMix = await this.prisma.prismaClient3.existenciamix_cajas.findUnique({
+        where: { Folio: folio },
+      });
+
+      return existenciaMix !== null;
+    } catch (error) {
+      console.error('Error verificando existencia de folio:', error);
+      throw new InternalServerErrorException(
+        'Error al verificar la existencia del folio',
+      );
     }
   }
 }

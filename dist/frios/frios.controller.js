@@ -21,7 +21,7 @@ let FriosController = class FriosController {
     }
     async getFrios(res) {
         try {
-            const temporada = '8';
+            const temporada = '9';
             const frios = await this.friosService.getFrios(temporada);
             return res.status(common_1.HttpStatus.OK).json(frios);
         }

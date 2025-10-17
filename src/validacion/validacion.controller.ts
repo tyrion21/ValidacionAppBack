@@ -19,8 +19,21 @@ export class ValidacionController {
   constructor(private readonly validacionService: ValidacionService) {}
 
   @Post()
-  create(@Body() createValidacionDto: CreateValidacionDto) {
-    return this.validacionService.create(createValidacionDto);
+  async create(@Body() createValidacionDto: CreateValidacionDto) {
+    try {
+      console.log('Received validation request:', JSON.stringify(createValidacionDto, null, 2));
+      const resultado = await this.validacionService.create(createValidacionDto);
+      return resultado;
+    } catch (error) {
+      console.error('Error processing validation:', error);
+      if (error instanceof NotFoundException) {
+        throw error;
+      } else {
+        throw new InternalServerErrorException(
+          `Error al procesar la validación: ${error.message}`
+        );
+      }
+    }
   }
 
   @Get('folio/:folio')

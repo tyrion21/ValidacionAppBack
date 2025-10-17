@@ -36,7 +36,7 @@ export class FriosController {
   @Get()
   async getFrios(@Res() res: Response) {
     try {
-      const temporada = '8';
+      const temporada = '9';
       const frios = await this.friosService.getFrios(temporada);
       return res.status(HttpStatus.OK).json(frios);
     } catch (error) {

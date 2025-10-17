@@ -71,6 +71,7 @@ let ExistenciasService = class ExistenciasService {
                     Cuartel: true,
                     Calibre: true,
                     Cajas: true,
+                    Temporada: true,
                 },
             });
         }
@@ -82,6 +83,24 @@ let ExistenciasService = class ExistenciasService {
                 console.error('Error en getMixExistencia:', error);
                 throw new common_1.InternalServerErrorException('Ocurrió un error al buscar el folio');
             }
+        }
+    }
+    async verificarExistenciaFolio(folio) {
+        try {
+            const existenciaNormal = await this.prisma.prismaClient3.existencias_cajas.findUnique({
+                where: { Folio: folio },
+            });
+            if (existenciaNormal) {
+                return true;
+            }
+            const existenciaMix = await this.prisma.prismaClient3.existenciamix_cajas.findUnique({
+                where: { Folio: folio },
+            });
+            return existenciaMix !== null;
+        }
+        catch (error) {
+            console.error('Error verificando existencia de folio:', error);
+            throw new common_1.InternalServerErrorException('Error al verificar la existencia del folio');
         }
     }
 };

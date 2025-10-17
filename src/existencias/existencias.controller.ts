@@ -63,4 +63,25 @@ export class ExistenciasController {
       }
     }
   }
+
+  @Get('verificar-folio/:folio')
+  async verificarFolio(@Param('folio') folio: string) {
+    try {
+      const existe = await this.existenciasService.verificarExistenciaFolio(folio);
+      return {
+        success: true,
+        existe: existe,
+        folio: folio
+      };
+    } catch (error) {
+      console.error('Error verificando folio:', error);
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: 'Ocurrió un error al verificar el folio',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 }

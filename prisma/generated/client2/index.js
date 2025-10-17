@@ -13,6 +13,7 @@ const {
   empty,
   join,
   raw,
+  skip,
   Decimal,
   Debug,
   objectEnumValues,
@@ -31,12 +32,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.18.0
- * Query Engine version: 4c784e32044a8a016d99474bd02a3b6123742169
+ * Prisma Client JS version: 5.22.0
+ * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
  */
 Prisma.prismaVersion = {
-  client: "5.18.0",
-  engine: "4c784e32044a8a016d99474bd02a3b6123742169"
+  client: "5.22.0",
+  engine: "605197351a3c8bdd595af2d2a9bc3025bca48ea2"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -74,6 +75,8 @@ Prisma.NullTypes = {
   JsonNull: objectEnumValues.classes.JsonNull,
   AnyNull: objectEnumValues.classes.AnyNull
 }
+
+
 
 
   const path = require('path')
@@ -153,7 +156,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\backend-validacion\\prisma\\generated\\client2",
+      "value": "C:\\Apps\\ValidacionAppBack\\prisma\\generated\\client2",
       "fromEnvVar": null
     },
     "config": {
@@ -164,19 +167,23 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "linux-musl-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\backend-validacion\\prisma\\schema3.prisma",
+    "sourceFilePath": "C:\\Apps\\ValidacionAppBack\\prisma\\schema2.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
+    "rootEnvPath": "../../../.env",
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.18.0",
-  "engineVersion": "4c784e32044a8a016d99474bd02a3b6123742169",
+  "clientVersion": "5.22.0",
+  "engineVersion": "605197351a3c8bdd595af2d2a9bc3025bca48ea2",
   "datasourceNames": [
     "db"
   ],
@@ -190,8 +197,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client2\"\n}\n\ndatasource db {\n  provider = \"sqlserver\"\n  url      = env(\"DATABASE_URL2\")\n}\n\nmodel CAMARAS {\n  COD_EMP     String  @db.NVarChar(4)\n  COD_TEM     String  @db.NVarChar(2)\n  COD_FRI     String  @db.NVarChar(12)\n  COD_CAM     String  @db.NVarChar(8)\n  DES_CAM     String? @db.NVarChar(50)\n  TIPO_CAMARA String? @db.NVarChar(1)\n  BANDAS      Int?\n  FILAS       Int?\n  PISOS       Int?\n  TUNEL       Boolean @default(false, map: \"DF_CAMARAS_TUNEL\")\n\n  @@id([COD_EMP, COD_TEM, COD_FRI, COD_CAM], map: \"PK_CAMARAS\")\n}\n\nmodel FRIOS {\n  COD_FRI         String   @db.NVarChar(12)\n  COD_TEM         String   @db.NVarChar(2)\n  COD_EMP         String   @db.NVarChar(4)\n  COD_GRP_FRI     String?  @db.NVarChar(4)\n  NOM_FRI         String   @db.NVarChar(120)\n  FDA             String?  @db.NVarChar(30)\n  PIN             String?  @db.NVarChar(30)\n  ZON             String?  @db.NVarChar(8)\n  DIRECCION       String?  @db.NVarChar(120)\n  COD_PROVC       String?  @db.NVarChar(8)\n  COD_COM         String?  @db.NVarChar(8)\n  RUT             String?  @db.NVarChar(10)\n  RAZON_SOCIAL    String?  @db.NVarChar(50)\n  COD_CENTROCOSTO Int?\n  COD_SUBCENTRO   Int?\n  COD_EMP_CONT    String?  @db.NVarChar(4)\n  NOMBRELOGO      String?  @db.NVarChar(50)\n  IMAGEN          Bytes?   @db.Image\n  EMAIL           String?  @db.NChar(255)\n  TELEFONO        String?  @db.NVarChar(20)\n  FAX             String?  @db.NVarChar(20)\n  SW_INACTIVO     Boolean?\n\n  @@id([COD_FRI, COD_TEM, COD_EMP], map: \"PK_FRIOS\", clustered: false)\n  @@index([COD_TEM, COD_EMP], map: \"IX_FRIOS_COD_TEM_COD_EMP\")\n  @@index([COD_TEM, COD_EMP, ZON], map: \"IX_FRIOS_COD_TEM_COD_EMP_ZON\")\n}\n",
-  "inlineSchemaHash": "d68d611cfd103be5a8e78036ff2ff3fdf7055cb3d3507b106c12c1f848869231",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"./generated/client2\"\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"sqlserver\"\n  url      = env(\"DATABASE_URL2\")\n}\n\nmodel CAMARAS {\n  COD_EMP     String  @db.NVarChar(4)\n  COD_TEM     String  @db.NVarChar(2)\n  COD_FRI     String  @db.NVarChar(12)\n  COD_CAM     String  @db.NVarChar(8)\n  DES_CAM     String? @db.NVarChar(50)\n  TIPO_CAMARA String? @db.NVarChar(1)\n  BANDAS      Int?\n  FILAS       Int?\n  PISOS       Int?\n  TUNEL       Boolean @default(false, map: \"DF_CAMARAS_TUNEL\")\n\n  @@id([COD_EMP, COD_TEM, COD_FRI, COD_CAM], map: \"PK_CAMARAS\")\n}\n\nmodel FRIOS {\n  COD_FRI         String   @db.NVarChar(12)\n  COD_TEM         String   @db.NVarChar(2)\n  COD_EMP         String   @db.NVarChar(4)\n  COD_GRP_FRI     String?  @db.NVarChar(4)\n  NOM_FRI         String   @db.NVarChar(120)\n  FDA             String?  @db.NVarChar(30)\n  PIN             String?  @db.NVarChar(30)\n  ZON             String?  @db.NVarChar(8)\n  DIRECCION       String?  @db.NVarChar(120)\n  COD_PROVC       String?  @db.NVarChar(8)\n  COD_COM         String?  @db.NVarChar(8)\n  RUT             String?  @db.NVarChar(10)\n  RAZON_SOCIAL    String?  @db.NVarChar(50)\n  COD_CENTROCOSTO Int?\n  COD_SUBCENTRO   Int?\n  COD_EMP_CONT    String?  @db.NVarChar(4)\n  NOMBRELOGO      String?  @db.NVarChar(50)\n  IMAGEN          Bytes?   @db.Image\n  EMAIL           String?  @db.NChar(255)\n  TELEFONO        String?  @db.NVarChar(20)\n  FAX             String?  @db.NVarChar(20)\n  SW_INACTIVO     Boolean?\n\n  @@id([COD_FRI, COD_TEM, COD_EMP], map: \"PK_FRIOS\", clustered: false)\n  @@index([COD_TEM, COD_EMP], map: \"IX_FRIOS_COD_TEM_COD_EMP\")\n  @@index([COD_TEM, COD_EMP, ZON], map: \"IX_FRIOS_COD_TEM_COD_EMP_ZON\")\n}\n",
+  "inlineSchemaHash": "321d34a17cc5d875af607056fa7ff921f31aaeb9a0e532045d22410b18376186",
   "copyEngine": true
 }
 
@@ -231,6 +238,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "prisma/generated/client2/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-linux-musl-openssl-3.0.x.so.node");
+path.join(process.cwd(), "prisma/generated/client2/libquery_engine-linux-musl-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/client2/schema.prisma")

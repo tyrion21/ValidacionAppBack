@@ -4,4 +4,9 @@ export declare class ExistenciasController {
     constructor(existenciasService: ExistenciasService);
     getExistencia(folio: string): Promise<any>;
     getMixExistencia(folio: string): Promise<any>;
+    verificarFolio(folio: string): Promise<{
+        success: boolean;
+        existe: boolean;
+        folio: string;
+    }>;
 }

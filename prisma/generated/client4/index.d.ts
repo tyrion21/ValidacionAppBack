@@ -51,7 +51,7 @@ export type v_informe_diario = $Result.DefaultSelection<Prisma.$v_informe_diario
 
 /**
  * ##  Prisma Client ʲˢ
- * 
+ *
  * Type-safe database client for TypeScript & Node.js
  * @example
  * ```
@@ -60,19 +60,19 @@ export type v_informe_diario = $Result.DefaultSelection<Prisma.$v_informe_diario
  * const validaciones = await prisma.validaciones.findMany()
  * ```
  *
- * 
+ *
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
     /**
    * ##  Prisma Client ʲˢ
-   * 
+   *
    * Type-safe database client for TypeScript & Node.js
    * @example
    * ```
@@ -81,12 +81,12 @@ export class PrismaClient<
    * const validaciones = await prisma.validaciones.findMany()
    * ```
    *
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
   constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
-  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
 
   /**
    * Connect with the database
@@ -98,20 +98,13 @@ export class PrismaClient<
    */
   $disconnect(): $Utils.JsPromise<void>;
 
-  /**
-   * Add a middleware
-   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-   * @see https://pris.ly/d/extensions
-   */
-  $use(cb: Prisma.Middleware): void
-
 /**
    * Executes a prepared raw query and returns the number of affected rows.
    * @example
    * ```
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
@@ -123,7 +116,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
@@ -134,7 +127,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
@@ -146,7 +139,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
@@ -170,7 +163,9 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+    extArgs: ExtArgs
+  }>>
 
       /**
    * `prisma.validaciones`: Exposes CRUD operations for the **validaciones** model.
@@ -180,7 +175,7 @@ export class PrismaClient<
     * const validaciones = await prisma.validaciones.findMany()
     * ```
     */
-  get validaciones(): Prisma.validacionesDelegate<ExtArgs>;
+  get validaciones(): Prisma.validacionesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.dm_motivo_rechazo`: Exposes CRUD operations for the **dm_motivo_rechazo** model.
@@ -190,7 +185,7 @@ export class PrismaClient<
     * const dm_motivo_rechazos = await prisma.dm_motivo_rechazo.findMany()
     * ```
     */
-  get dm_motivo_rechazo(): Prisma.dm_motivo_rechazoDelegate<ExtArgs>;
+  get dm_motivo_rechazo(): Prisma.dm_motivo_rechazoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.rechazados`: Exposes CRUD operations for the **rechazados** model.
@@ -200,7 +195,7 @@ export class PrismaClient<
     * const rechazados = await prisma.rechazados.findMany()
     * ```
     */
-  get rechazados(): Prisma.rechazadosDelegate<ExtArgs>;
+  get rechazados(): Prisma.rechazadosDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.v_cajas_packing`: Exposes CRUD operations for the **v_cajas_packing** model.
@@ -210,7 +205,7 @@ export class PrismaClient<
     * const v_cajas_packings = await prisma.v_cajas_packing.findMany()
     * ```
     */
-  get v_cajas_packing(): Prisma.v_cajas_packingDelegate<ExtArgs>;
+  get v_cajas_packing(): Prisma.v_cajas_packingDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.v_cajas_validadas`: Exposes CRUD operations for the **v_cajas_validadas** model.
@@ -220,7 +215,7 @@ export class PrismaClient<
     * const v_cajas_validadas = await prisma.v_cajas_validadas.findMany()
     * ```
     */
-  get v_cajas_validadas(): Prisma.v_cajas_validadasDelegate<ExtArgs>;
+  get v_cajas_validadas(): Prisma.v_cajas_validadasDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.v_cajas_rechazadas`: Exposes CRUD operations for the **v_cajas_rechazadas** model.
@@ -230,7 +225,7 @@ export class PrismaClient<
     * const v_cajas_rechazadas = await prisma.v_cajas_rechazadas.findMany()
     * ```
     */
-  get v_cajas_rechazadas(): Prisma.v_cajas_rechazadasDelegate<ExtArgs>;
+  get v_cajas_rechazadas(): Prisma.v_cajas_rechazadasDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.v_informe_diario`: Exposes CRUD operations for the **v_informe_diario** model.
@@ -240,7 +235,7 @@ export class PrismaClient<
     * const v_informe_diarios = await prisma.v_informe_diario.findMany()
     * ```
     */
-  get v_informe_diario(): Prisma.v_informe_diarioDelegate<ExtArgs>;
+  get v_informe_diario(): Prisma.v_informe_diarioDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -261,7 +256,6 @@ export namespace Prisma {
   export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
   export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
   export import PrismaClientValidationError = runtime.PrismaClientValidationError
-  export import NotFoundError = runtime.NotFoundError
 
   /**
    * Re-export of sql-template-tag
@@ -282,7 +276,7 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics 
+   * Metrics
    */
   export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
@@ -300,14 +294,14 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.22.0
-   * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
+   * Prisma Client JS version: 6.17.1
+   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
    */
   export type PrismaVersion = {
     client: string
   }
 
-  export const prismaVersion: PrismaVersion 
+  export const prismaVersion: PrismaVersion
 
   /**
    * Utility Types
@@ -323,15 +317,15 @@ export namespace Prisma {
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   namespace NullTypes {
     /**
     * Type of `Prisma.DbNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class DbNull {
@@ -341,9 +335,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.JsonNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class JsonNull {
@@ -353,9 +347,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.AnyNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class AnyNull {
@@ -366,21 +360,21 @@ export namespace Prisma {
 
   /**
    * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const AnyNull: NullTypes.AnyNull
@@ -568,7 +562,7 @@ export namespace Prisma {
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
     ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-      | {[P in keyof O as P extends K ? K : never]-?: O[P]} & O
+      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
     : never>;
 
   type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
@@ -698,11 +692,14 @@ export namespace Prisma {
     db?: Datasource
   }
 
-  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs, clientOptions: PrismaClientOptions }, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs'], this['params']['clientOptions']>
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+    globalOmitOptions: {
+      omit: GlobalOmitOptions
+    }
     meta: {
       modelProps: "validaciones" | "dm_motivo_rechazo" | "rechazados" | "v_cajas_packing" | "v_cajas_validadas" | "v_cajas_rechazadas" | "v_informe_diario"
       txIsolationLevel: Prisma.TransactionIsolationLevel
@@ -930,34 +927,6 @@ export namespace Prisma {
             args: Prisma.v_cajas_packingFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$v_cajas_packingPayload>[]
           }
-          create: {
-            args: Prisma.v_cajas_packingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_packingPayload>
-          }
-          createMany: {
-            args: Prisma.v_cajas_packingCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.v_cajas_packingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_packingPayload>
-          }
-          update: {
-            args: Prisma.v_cajas_packingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_packingPayload>
-          }
-          deleteMany: {
-            args: Prisma.v_cajas_packingDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.v_cajas_packingUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.v_cajas_packingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_packingPayload>
-          }
           aggregate: {
             args: Prisma.V_cajas_packingAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateV_cajas_packing>
@@ -995,34 +964,6 @@ export namespace Prisma {
           findMany: {
             args: Prisma.v_cajas_validadasFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$v_cajas_validadasPayload>[]
-          }
-          create: {
-            args: Prisma.v_cajas_validadasCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_validadasPayload>
-          }
-          createMany: {
-            args: Prisma.v_cajas_validadasCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.v_cajas_validadasDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_validadasPayload>
-          }
-          update: {
-            args: Prisma.v_cajas_validadasUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_validadasPayload>
-          }
-          deleteMany: {
-            args: Prisma.v_cajas_validadasDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.v_cajas_validadasUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.v_cajas_validadasUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_validadasPayload>
           }
           aggregate: {
             args: Prisma.V_cajas_validadasAggregateArgs<ExtArgs>
@@ -1062,34 +1003,6 @@ export namespace Prisma {
             args: Prisma.v_cajas_rechazadasFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$v_cajas_rechazadasPayload>[]
           }
-          create: {
-            args: Prisma.v_cajas_rechazadasCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_rechazadasPayload>
-          }
-          createMany: {
-            args: Prisma.v_cajas_rechazadasCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.v_cajas_rechazadasDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_rechazadasPayload>
-          }
-          update: {
-            args: Prisma.v_cajas_rechazadasUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_rechazadasPayload>
-          }
-          deleteMany: {
-            args: Prisma.v_cajas_rechazadasDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.v_cajas_rechazadasUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.v_cajas_rechazadasUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_cajas_rechazadasPayload>
-          }
           aggregate: {
             args: Prisma.V_cajas_rechazadasAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateV_cajas_rechazadas>
@@ -1127,34 +1040,6 @@ export namespace Prisma {
           findMany: {
             args: Prisma.v_informe_diarioFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$v_informe_diarioPayload>[]
-          }
-          create: {
-            args: Prisma.v_informe_diarioCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_informe_diarioPayload>
-          }
-          createMany: {
-            args: Prisma.v_informe_diarioCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.v_informe_diarioDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_informe_diarioPayload>
-          }
-          update: {
-            args: Prisma.v_informe_diarioUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_informe_diarioPayload>
-          }
-          deleteMany: {
-            args: Prisma.v_informe_diarioDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.v_informe_diarioUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.v_informe_diarioUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$v_informe_diarioPayload>
           }
           aggregate: {
             args: Prisma.V_informe_diarioAggregateArgs<ExtArgs>
@@ -1213,16 +1098,24 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Defaults to stdout
+     * // Shorthand for `emit: 'stdout'`
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events
+     * // Emit as events only
      * log: [
-     *   { emit: 'stdout', level: 'query' },
-     *   { emit: 'stdout', level: 'info' },
-     *   { emit: 'stdout', level: 'warn' }
-     *   { emit: 'stdout', level: 'error' }
+     *   { emit: 'event', level: 'query' },
+     *   { emit: 'event', level: 'info' },
+     *   { emit: 'event', level: 'warn' }
+     *   { emit: 'event', level: 'error' }
      * ]
+     * 
+     * / Emit as events and log to stdout
+     * og: [
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
+     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -1237,8 +1130,35 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
+    /**
+     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
+     */
+    adapter?: runtime.SqlDriverAdapterFactory | null
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
   }
-
+  export type GlobalOmitConfig = {
+    validaciones?: validacionesOmit
+    dm_motivo_rechazo?: dm_motivo_rechazoOmit
+    rechazados?: rechazadosOmit
+    v_cajas_packing?: v_cajas_packingOmit
+    v_cajas_validadas?: v_cajas_validadasOmit
+    v_cajas_rechazadas?: v_cajas_rechazadasOmit
+    v_informe_diario?: v_informe_diarioOmit
+  }
 
   /* Types for Logging */
   export type LogLevel = 'info' | 'query' | 'warn' | 'error'
@@ -1247,10 +1167,15 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-    : never
+  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+  export type GetLogType<T> = CheckIsLogLevel<
+    T extends LogDefinition ? T['level'] : T
+  >;
+
+  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+    ? GetLogType<T[number]>
+    : never;
 
   export type QueryEvent = {
     timestamp: Date
@@ -1279,6 +1204,7 @@ export namespace Prisma {
     | 'createManyAndReturn'
     | 'update'
     | 'updateMany'
+    | 'updateManyAndReturn'
     | 'upsert'
     | 'delete'
     | 'deleteMany'
@@ -1289,25 +1215,6 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
-
-  /**
-   * These options are being passed into the middleware as "params"
-   */
-  export type MiddlewareParams = {
-    model?: ModelName
-    action: PrismaAction
-    args: any
-    dataPath: string[]
-    runInTransaction: boolean
-  }
-
-  /**
-   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
-   */
-  export type Middleware<T = any> = (
-    params: MiddlewareParams,
-    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -1389,6 +1296,7 @@ export namespace Prisma {
     Cajas: number | null
     Especie: string | null
     Estado: boolean | null
+    Temporada: string | null
     Camara: string | null
     Usuario: string | null
     Packing: string | null
@@ -1402,6 +1310,7 @@ export namespace Prisma {
     Cajas: number | null
     Especie: string | null
     Estado: boolean | null
+    Temporada: string | null
     Camara: string | null
     Usuario: string | null
     Packing: string | null
@@ -1415,6 +1324,7 @@ export namespace Prisma {
     Cajas: number
     Especie: number
     Estado: number
+    Temporada: number
     Camara: number
     Usuario: number
     Packing: number
@@ -1440,6 +1350,7 @@ export namespace Prisma {
     Cajas?: true
     Especie?: true
     Estado?: true
+    Temporada?: true
     Camara?: true
     Usuario?: true
     Packing?: true
@@ -1453,6 +1364,7 @@ export namespace Prisma {
     Cajas?: true
     Especie?: true
     Estado?: true
+    Temporada?: true
     Camara?: true
     Usuario?: true
     Packing?: true
@@ -1466,6 +1378,7 @@ export namespace Prisma {
     Cajas?: true
     Especie?: true
     Estado?: true
+    Temporada?: true
     Camara?: true
     Usuario?: true
     Packing?: true
@@ -1566,6 +1479,7 @@ export namespace Prisma {
     Cajas: number
     Especie: string
     Estado: boolean
+    Temporada: string
     Camara: string
     Usuario: string
     Packing: string
@@ -1598,6 +1512,7 @@ export namespace Prisma {
     Cajas?: boolean
     Especie?: boolean
     Estado?: boolean
+    Temporada?: boolean
     Camara?: boolean
     Usuario?: boolean
     Packing?: boolean
@@ -1606,12 +1521,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["validaciones"]>
 
 
+
   export type validacionesSelectScalar = {
     id?: boolean
     Folio?: boolean
     Cajas?: boolean
     Especie?: boolean
     Estado?: boolean
+    Temporada?: boolean
     Camara?: boolean
     Usuario?: boolean
     Packing?: boolean
@@ -1619,6 +1536,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
+  export type validacionesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Folio" | "Cajas" | "Especie" | "Estado" | "Temporada" | "Camara" | "Usuario" | "Packing" | "createdAt" | "updatedAt", ExtArgs["result"]["validaciones"]>
 
   export type $validacionesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "validaciones"
@@ -1629,6 +1547,7 @@ export namespace Prisma {
       Cajas: number
       Especie: string
       Estado: boolean
+      Temporada: string
       Camara: string
       Usuario: string
       Packing: string
@@ -1640,12 +1559,12 @@ export namespace Prisma {
 
   type validacionesGetPayload<S extends boolean | null | undefined | validacionesDefaultArgs> = $Result.GetResult<Prisma.$validacionesPayload, S>
 
-  type validacionesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<validacionesFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type validacionesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<validacionesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: ValidacionesCountAggregateInputType | true
     }
 
-  export interface validacionesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface validacionesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['validaciones'], meta: { name: 'validaciones' } }
     /**
      * Find zero or one Validaciones that matches the filter.
@@ -1658,10 +1577,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends validacionesFindUniqueArgs>(args: SelectSubset<T, validacionesFindUniqueArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends validacionesFindUniqueArgs>(args: SelectSubset<T, validacionesFindUniqueArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Validaciones that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Validaciones that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {validacionesFindUniqueOrThrowArgs} args - Arguments to find a Validaciones
      * @example
@@ -1672,7 +1591,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends validacionesFindUniqueOrThrowArgs>(args: SelectSubset<T, validacionesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends validacionesFindUniqueOrThrowArgs>(args: SelectSubset<T, validacionesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Validaciones that matches the filter.
@@ -1687,7 +1606,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends validacionesFindFirstArgs>(args?: SelectSubset<T, validacionesFindFirstArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends validacionesFindFirstArgs>(args?: SelectSubset<T, validacionesFindFirstArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Validaciones that matches the filter or
@@ -1703,7 +1622,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends validacionesFindFirstOrThrowArgs>(args?: SelectSubset<T, validacionesFindFirstOrThrowArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends validacionesFindFirstOrThrowArgs>(args?: SelectSubset<T, validacionesFindFirstOrThrowArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Validaciones that matches the filter.
@@ -1721,7 +1640,7 @@ export namespace Prisma {
      * const validacionesWithIdOnly = await prisma.validaciones.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends validacionesFindManyArgs>(args?: SelectSubset<T, validacionesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends validacionesFindManyArgs>(args?: SelectSubset<T, validacionesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Validaciones.
@@ -1735,7 +1654,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends validacionesCreateArgs>(args: SelectSubset<T, validacionesCreateArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends validacionesCreateArgs>(args: SelectSubset<T, validacionesCreateArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Validaciones.
@@ -1763,7 +1682,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends validacionesDeleteArgs>(args: SelectSubset<T, validacionesDeleteArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends validacionesDeleteArgs>(args: SelectSubset<T, validacionesDeleteArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Validaciones.
@@ -1780,7 +1699,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends validacionesUpdateArgs>(args: SelectSubset<T, validacionesUpdateArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends validacionesUpdateArgs>(args: SelectSubset<T, validacionesUpdateArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Validaciones.
@@ -1832,7 +1751,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends validacionesUpsertArgs>(args: SelectSubset<T, validacionesUpsertArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends validacionesUpsertArgs>(args: SelectSubset<T, validacionesUpsertArgs<ExtArgs>>): Prisma__validacionesClient<$Result.GetResult<Prisma.$validacionesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -1972,7 +1891,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__validacionesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__validacionesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2001,13 +1920,14 @@ export namespace Prisma {
 
   /**
    * Fields of the validaciones model
-   */ 
+   */
   interface validacionesFieldRefs {
     readonly id: FieldRef<"validaciones", 'Int'>
     readonly Folio: FieldRef<"validaciones", 'String'>
     readonly Cajas: FieldRef<"validaciones", 'Int'>
     readonly Especie: FieldRef<"validaciones", 'String'>
     readonly Estado: FieldRef<"validaciones", 'Boolean'>
+    readonly Temporada: FieldRef<"validaciones", 'String'>
     readonly Camara: FieldRef<"validaciones", 'String'>
     readonly Usuario: FieldRef<"validaciones", 'String'>
     readonly Packing: FieldRef<"validaciones", 'String'>
@@ -2026,6 +1946,10 @@ export namespace Prisma {
      */
     select?: validacionesSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
+    /**
      * Filter, which validaciones to fetch.
      */
     where: validacionesWhereUniqueInput
@@ -2040,6 +1964,10 @@ export namespace Prisma {
      */
     select?: validacionesSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
+    /**
      * Filter, which validaciones to fetch.
      */
     where: validacionesWhereUniqueInput
@@ -2053,6 +1981,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the validaciones
      */
     select?: validacionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
     /**
      * Filter, which validaciones to fetch.
      */
@@ -2098,6 +2030,10 @@ export namespace Prisma {
      */
     select?: validacionesSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
+    /**
      * Filter, which validaciones to fetch.
      */
     where?: validacionesWhereInput
@@ -2142,6 +2078,10 @@ export namespace Prisma {
      */
     select?: validacionesSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
+    /**
      * Filter, which validaciones to fetch.
      */
     where?: validacionesWhereInput
@@ -2181,6 +2121,10 @@ export namespace Prisma {
      */
     select?: validacionesSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
+    /**
      * The data needed to create a validaciones.
      */
     data: XOR<validacionesCreateInput, validacionesUncheckedCreateInput>
@@ -2205,6 +2149,10 @@ export namespace Prisma {
      */
     select?: validacionesSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
+    /**
      * The data needed to update a validaciones.
      */
     data: XOR<validacionesUpdateInput, validacionesUncheckedUpdateInput>
@@ -2226,6 +2174,10 @@ export namespace Prisma {
      * Filter which validaciones to update
      */
     where?: validacionesWhereInput
+    /**
+     * Limit how many validaciones to update.
+     */
+    limit?: number
   }
 
   /**
@@ -2236,6 +2188,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the validaciones
      */
     select?: validacionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
     /**
      * The filter to search for the validaciones to update in case it exists.
      */
@@ -2259,6 +2215,10 @@ export namespace Prisma {
      */
     select?: validacionesSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
+    /**
      * Filter which validaciones to delete.
      */
     where: validacionesWhereUniqueInput
@@ -2272,6 +2232,10 @@ export namespace Prisma {
      * Filter which validaciones to delete
      */
     where?: validacionesWhereInput
+    /**
+     * Limit how many validaciones to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -2282,6 +2246,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the validaciones
      */
     select?: validacionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the validaciones
+     */
+    omit?: validacionesOmit<ExtArgs> | null
   }
 
 
@@ -2472,12 +2440,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["dm_motivo_rechazo"]>
 
 
+
   export type dm_motivo_rechazoSelectScalar = {
     id_motivo?: boolean
     nombre_motivo?: boolean
     estado_motivo?: boolean
   }
 
+  export type dm_motivo_rechazoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_motivo" | "nombre_motivo" | "estado_motivo", ExtArgs["result"]["dm_motivo_rechazo"]>
   export type dm_motivo_rechazoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rechazados?: boolean | dm_motivo_rechazo$rechazadosArgs<ExtArgs>
     _count?: boolean | Dm_motivo_rechazoCountOutputTypeDefaultArgs<ExtArgs>
@@ -2498,12 +2468,12 @@ export namespace Prisma {
 
   type dm_motivo_rechazoGetPayload<S extends boolean | null | undefined | dm_motivo_rechazoDefaultArgs> = $Result.GetResult<Prisma.$dm_motivo_rechazoPayload, S>
 
-  type dm_motivo_rechazoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<dm_motivo_rechazoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type dm_motivo_rechazoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<dm_motivo_rechazoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: Dm_motivo_rechazoCountAggregateInputType | true
     }
 
-  export interface dm_motivo_rechazoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface dm_motivo_rechazoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['dm_motivo_rechazo'], meta: { name: 'dm_motivo_rechazo' } }
     /**
      * Find zero or one Dm_motivo_rechazo that matches the filter.
@@ -2516,10 +2486,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends dm_motivo_rechazoFindUniqueArgs>(args: SelectSubset<T, dm_motivo_rechazoFindUniqueArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends dm_motivo_rechazoFindUniqueArgs>(args: SelectSubset<T, dm_motivo_rechazoFindUniqueArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Dm_motivo_rechazo that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Dm_motivo_rechazo that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {dm_motivo_rechazoFindUniqueOrThrowArgs} args - Arguments to find a Dm_motivo_rechazo
      * @example
@@ -2530,7 +2500,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends dm_motivo_rechazoFindUniqueOrThrowArgs>(args: SelectSubset<T, dm_motivo_rechazoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends dm_motivo_rechazoFindUniqueOrThrowArgs>(args: SelectSubset<T, dm_motivo_rechazoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Dm_motivo_rechazo that matches the filter.
@@ -2545,7 +2515,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends dm_motivo_rechazoFindFirstArgs>(args?: SelectSubset<T, dm_motivo_rechazoFindFirstArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends dm_motivo_rechazoFindFirstArgs>(args?: SelectSubset<T, dm_motivo_rechazoFindFirstArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Dm_motivo_rechazo that matches the filter or
@@ -2561,7 +2531,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends dm_motivo_rechazoFindFirstOrThrowArgs>(args?: SelectSubset<T, dm_motivo_rechazoFindFirstOrThrowArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends dm_motivo_rechazoFindFirstOrThrowArgs>(args?: SelectSubset<T, dm_motivo_rechazoFindFirstOrThrowArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Dm_motivo_rechazos that matches the filter.
@@ -2579,7 +2549,7 @@ export namespace Prisma {
      * const dm_motivo_rechazoWithId_motivoOnly = await prisma.dm_motivo_rechazo.findMany({ select: { id_motivo: true } })
      * 
      */
-    findMany<T extends dm_motivo_rechazoFindManyArgs>(args?: SelectSubset<T, dm_motivo_rechazoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends dm_motivo_rechazoFindManyArgs>(args?: SelectSubset<T, dm_motivo_rechazoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Dm_motivo_rechazo.
@@ -2593,7 +2563,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends dm_motivo_rechazoCreateArgs>(args: SelectSubset<T, dm_motivo_rechazoCreateArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends dm_motivo_rechazoCreateArgs>(args: SelectSubset<T, dm_motivo_rechazoCreateArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Dm_motivo_rechazos.
@@ -2621,7 +2591,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends dm_motivo_rechazoDeleteArgs>(args: SelectSubset<T, dm_motivo_rechazoDeleteArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends dm_motivo_rechazoDeleteArgs>(args: SelectSubset<T, dm_motivo_rechazoDeleteArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Dm_motivo_rechazo.
@@ -2638,7 +2608,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends dm_motivo_rechazoUpdateArgs>(args: SelectSubset<T, dm_motivo_rechazoUpdateArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends dm_motivo_rechazoUpdateArgs>(args: SelectSubset<T, dm_motivo_rechazoUpdateArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Dm_motivo_rechazos.
@@ -2690,7 +2660,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends dm_motivo_rechazoUpsertArgs>(args: SelectSubset<T, dm_motivo_rechazoUpsertArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends dm_motivo_rechazoUpsertArgs>(args: SelectSubset<T, dm_motivo_rechazoUpsertArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -2830,9 +2800,9 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__dm_motivo_rechazoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__dm_motivo_rechazoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    rechazados<T extends dm_motivo_rechazo$rechazadosArgs<ExtArgs> = {}>(args?: Subset<T, dm_motivo_rechazo$rechazadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findMany"> | Null>
+    rechazados<T extends dm_motivo_rechazo$rechazadosArgs<ExtArgs> = {}>(args?: Subset<T, dm_motivo_rechazo$rechazadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2860,7 +2830,7 @@ export namespace Prisma {
 
   /**
    * Fields of the dm_motivo_rechazo model
-   */ 
+   */
   interface dm_motivo_rechazoFieldRefs {
     readonly id_motivo: FieldRef<"dm_motivo_rechazo", 'Int'>
     readonly nombre_motivo: FieldRef<"dm_motivo_rechazo", 'String'>
@@ -2877,6 +2847,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the dm_motivo_rechazo
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2896,6 +2870,10 @@ export namespace Prisma {
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: dm_motivo_rechazoInclude<ExtArgs> | null
@@ -2913,6 +2891,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the dm_motivo_rechazo
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2962,6 +2944,10 @@ export namespace Prisma {
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: dm_motivo_rechazoInclude<ExtArgs> | null
@@ -3010,6 +2996,10 @@ export namespace Prisma {
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: dm_motivo_rechazoInclude<ExtArgs> | null
@@ -3053,6 +3043,10 @@ export namespace Prisma {
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: dm_motivo_rechazoInclude<ExtArgs> | null
@@ -3081,6 +3075,10 @@ export namespace Prisma {
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: dm_motivo_rechazoInclude<ExtArgs> | null
@@ -3106,6 +3104,10 @@ export namespace Prisma {
      * Filter which dm_motivo_rechazos to update
      */
     where?: dm_motivo_rechazoWhereInput
+    /**
+     * Limit how many dm_motivo_rechazos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -3116,6 +3118,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the dm_motivo_rechazo
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3143,6 +3149,10 @@ export namespace Prisma {
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: dm_motivo_rechazoInclude<ExtArgs> | null
@@ -3160,6 +3170,10 @@ export namespace Prisma {
      * Filter which dm_motivo_rechazos to delete
      */
     where?: dm_motivo_rechazoWhereInput
+    /**
+     * Limit how many dm_motivo_rechazos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -3170,6 +3184,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the rechazados
      */
     select?: rechazadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3190,6 +3208,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the dm_motivo_rechazo
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3228,6 +3250,7 @@ export namespace Prisma {
     fecha_rechazado: Date | null
     usuario: string | null
     cajas: number | null
+    Temporada: string | null
     camara: string | null
     nombre_estado: string | null
     estado: boolean | null
@@ -3242,6 +3265,7 @@ export namespace Prisma {
     fecha_rechazado: Date | null
     usuario: string | null
     cajas: number | null
+    Temporada: string | null
     camara: string | null
     nombre_estado: string | null
     estado: boolean | null
@@ -3256,6 +3280,7 @@ export namespace Prisma {
     fecha_rechazado: number
     usuario: number
     cajas: number
+    Temporada: number
     camara: number
     nombre_estado: number
     estado: number
@@ -3284,6 +3309,7 @@ export namespace Prisma {
     fecha_rechazado?: true
     usuario?: true
     cajas?: true
+    Temporada?: true
     camara?: true
     nombre_estado?: true
     estado?: true
@@ -3298,6 +3324,7 @@ export namespace Prisma {
     fecha_rechazado?: true
     usuario?: true
     cajas?: true
+    Temporada?: true
     camara?: true
     nombre_estado?: true
     estado?: true
@@ -3312,6 +3339,7 @@ export namespace Prisma {
     fecha_rechazado?: true
     usuario?: true
     cajas?: true
+    Temporada?: true
     camara?: true
     nombre_estado?: true
     estado?: true
@@ -3413,6 +3441,7 @@ export namespace Prisma {
     fecha_rechazado: Date | null
     usuario: string | null
     cajas: number | null
+    Temporada: string
     camara: string | null
     nombre_estado: string | null
     estado: boolean | null
@@ -3446,6 +3475,7 @@ export namespace Prisma {
     fecha_rechazado?: boolean
     usuario?: boolean
     cajas?: boolean
+    Temporada?: boolean
     camara?: boolean
     nombre_estado?: boolean
     estado?: boolean
@@ -3455,6 +3485,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["rechazados"]>
 
 
+
   export type rechazadosSelectScalar = {
     id_rechazado?: boolean
     folio_rechazado?: boolean
@@ -3462,6 +3493,7 @@ export namespace Prisma {
     fecha_rechazado?: boolean
     usuario?: boolean
     cajas?: boolean
+    Temporada?: boolean
     camara?: boolean
     nombre_estado?: boolean
     estado?: boolean
@@ -3469,6 +3501,7 @@ export namespace Prisma {
     especie?: boolean
   }
 
+  export type rechazadosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_rechazado" | "folio_rechazado" | "id_motivo_rechazo_fk" | "fecha_rechazado" | "usuario" | "cajas" | "Temporada" | "camara" | "nombre_estado" | "estado" | "packing" | "especie", ExtArgs["result"]["rechazados"]>
   export type rechazadosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     dm_motivo_rechazo?: boolean | rechazados$dm_motivo_rechazoArgs<ExtArgs>
   }
@@ -3485,6 +3518,7 @@ export namespace Prisma {
       fecha_rechazado: Date | null
       usuario: string | null
       cajas: number | null
+      Temporada: string
       camara: string | null
       nombre_estado: string | null
       estado: boolean | null
@@ -3496,12 +3530,12 @@ export namespace Prisma {
 
   type rechazadosGetPayload<S extends boolean | null | undefined | rechazadosDefaultArgs> = $Result.GetResult<Prisma.$rechazadosPayload, S>
 
-  type rechazadosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<rechazadosFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type rechazadosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<rechazadosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: RechazadosCountAggregateInputType | true
     }
 
-  export interface rechazadosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface rechazadosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['rechazados'], meta: { name: 'rechazados' } }
     /**
      * Find zero or one Rechazados that matches the filter.
@@ -3514,10 +3548,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends rechazadosFindUniqueArgs>(args: SelectSubset<T, rechazadosFindUniqueArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends rechazadosFindUniqueArgs>(args: SelectSubset<T, rechazadosFindUniqueArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Rechazados that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Rechazados that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {rechazadosFindUniqueOrThrowArgs} args - Arguments to find a Rechazados
      * @example
@@ -3528,7 +3562,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends rechazadosFindUniqueOrThrowArgs>(args: SelectSubset<T, rechazadosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends rechazadosFindUniqueOrThrowArgs>(args: SelectSubset<T, rechazadosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Rechazados that matches the filter.
@@ -3543,7 +3577,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends rechazadosFindFirstArgs>(args?: SelectSubset<T, rechazadosFindFirstArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends rechazadosFindFirstArgs>(args?: SelectSubset<T, rechazadosFindFirstArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Rechazados that matches the filter or
@@ -3559,7 +3593,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends rechazadosFindFirstOrThrowArgs>(args?: SelectSubset<T, rechazadosFindFirstOrThrowArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends rechazadosFindFirstOrThrowArgs>(args?: SelectSubset<T, rechazadosFindFirstOrThrowArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Rechazados that matches the filter.
@@ -3577,7 +3611,7 @@ export namespace Prisma {
      * const rechazadosWithId_rechazadoOnly = await prisma.rechazados.findMany({ select: { id_rechazado: true } })
      * 
      */
-    findMany<T extends rechazadosFindManyArgs>(args?: SelectSubset<T, rechazadosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends rechazadosFindManyArgs>(args?: SelectSubset<T, rechazadosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Rechazados.
@@ -3591,7 +3625,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends rechazadosCreateArgs>(args: SelectSubset<T, rechazadosCreateArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends rechazadosCreateArgs>(args: SelectSubset<T, rechazadosCreateArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Rechazados.
@@ -3619,7 +3653,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends rechazadosDeleteArgs>(args: SelectSubset<T, rechazadosDeleteArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends rechazadosDeleteArgs>(args: SelectSubset<T, rechazadosDeleteArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Rechazados.
@@ -3636,7 +3670,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends rechazadosUpdateArgs>(args: SelectSubset<T, rechazadosUpdateArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends rechazadosUpdateArgs>(args: SelectSubset<T, rechazadosUpdateArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Rechazados.
@@ -3688,7 +3722,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends rechazadosUpsertArgs>(args: SelectSubset<T, rechazadosUpsertArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends rechazadosUpsertArgs>(args: SelectSubset<T, rechazadosUpsertArgs<ExtArgs>>): Prisma__rechazadosClient<$Result.GetResult<Prisma.$rechazadosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -3828,9 +3862,9 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__rechazadosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__rechazadosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    dm_motivo_rechazo<T extends rechazados$dm_motivo_rechazoArgs<ExtArgs> = {}>(args?: Subset<T, rechazados$dm_motivo_rechazoArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    dm_motivo_rechazo<T extends rechazados$dm_motivo_rechazoArgs<ExtArgs> = {}>(args?: Subset<T, rechazados$dm_motivo_rechazoArgs<ExtArgs>>): Prisma__dm_motivo_rechazoClient<$Result.GetResult<Prisma.$dm_motivo_rechazoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3858,7 +3892,7 @@ export namespace Prisma {
 
   /**
    * Fields of the rechazados model
-   */ 
+   */
   interface rechazadosFieldRefs {
     readonly id_rechazado: FieldRef<"rechazados", 'Int'>
     readonly folio_rechazado: FieldRef<"rechazados", 'String'>
@@ -3866,6 +3900,7 @@ export namespace Prisma {
     readonly fecha_rechazado: FieldRef<"rechazados", 'DateTime'>
     readonly usuario: FieldRef<"rechazados", 'String'>
     readonly cajas: FieldRef<"rechazados", 'Int'>
+    readonly Temporada: FieldRef<"rechazados", 'String'>
     readonly camara: FieldRef<"rechazados", 'String'>
     readonly nombre_estado: FieldRef<"rechazados", 'String'>
     readonly estado: FieldRef<"rechazados", 'Boolean'>
@@ -3883,6 +3918,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the rechazados
      */
     select?: rechazadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3902,6 +3941,10 @@ export namespace Prisma {
      */
     select?: rechazadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: rechazadosInclude<ExtArgs> | null
@@ -3919,6 +3962,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the rechazados
      */
     select?: rechazadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3968,6 +4015,10 @@ export namespace Prisma {
      */
     select?: rechazadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: rechazadosInclude<ExtArgs> | null
@@ -4016,6 +4067,10 @@ export namespace Prisma {
      */
     select?: rechazadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: rechazadosInclude<ExtArgs> | null
@@ -4059,6 +4114,10 @@ export namespace Prisma {
      */
     select?: rechazadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: rechazadosInclude<ExtArgs> | null
@@ -4087,6 +4146,10 @@ export namespace Prisma {
      */
     select?: rechazadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: rechazadosInclude<ExtArgs> | null
@@ -4112,6 +4175,10 @@ export namespace Prisma {
      * Filter which rechazados to update
      */
     where?: rechazadosWhereInput
+    /**
+     * Limit how many rechazados to update.
+     */
+    limit?: number
   }
 
   /**
@@ -4122,6 +4189,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the rechazados
      */
     select?: rechazadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4149,6 +4220,10 @@ export namespace Prisma {
      */
     select?: rechazadosSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: rechazadosInclude<ExtArgs> | null
@@ -4166,6 +4241,10 @@ export namespace Prisma {
      * Filter which rechazados to delete
      */
     where?: rechazadosWhereInput
+    /**
+     * Limit how many rechazados to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -4176,6 +4255,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the dm_motivo_rechazo
      */
     select?: dm_motivo_rechazoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the dm_motivo_rechazo
+     */
+    omit?: dm_motivo_rechazoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4191,6 +4274,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the rechazados
      */
     select?: rechazadosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rechazados
+     */
+    omit?: rechazadosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4399,6 +4486,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["v_cajas_packing"]>
 
 
+
   export type v_cajas_packingSelectScalar = {
     Folio?: boolean
     Especie?: boolean
@@ -4407,6 +4495,7 @@ export namespace Prisma {
     LINEA?: boolean
   }
 
+  export type v_cajas_packingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Folio" | "Especie" | "Fecha_packing" | "Cajas" | "LINEA", ExtArgs["result"]["v_cajas_packing"]>
 
   export type $v_cajas_packingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "v_cajas_packing"
@@ -4423,12 +4512,12 @@ export namespace Prisma {
 
   type v_cajas_packingGetPayload<S extends boolean | null | undefined | v_cajas_packingDefaultArgs> = $Result.GetResult<Prisma.$v_cajas_packingPayload, S>
 
-  type v_cajas_packingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<v_cajas_packingFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type v_cajas_packingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<v_cajas_packingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: V_cajas_packingCountAggregateInputType | true
     }
 
-  export interface v_cajas_packingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface v_cajas_packingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['v_cajas_packing'], meta: { name: 'v_cajas_packing' } }
     /**
      * Find zero or one V_cajas_packing that matches the filter.
@@ -4441,10 +4530,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends v_cajas_packingFindUniqueArgs>(args: SelectSubset<T, v_cajas_packingFindUniqueArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends v_cajas_packingFindUniqueArgs>(args: SelectSubset<T, v_cajas_packingFindUniqueArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one V_cajas_packing that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one V_cajas_packing that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {v_cajas_packingFindUniqueOrThrowArgs} args - Arguments to find a V_cajas_packing
      * @example
@@ -4455,7 +4544,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends v_cajas_packingFindUniqueOrThrowArgs>(args: SelectSubset<T, v_cajas_packingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends v_cajas_packingFindUniqueOrThrowArgs>(args: SelectSubset<T, v_cajas_packingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_cajas_packing that matches the filter.
@@ -4470,7 +4559,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends v_cajas_packingFindFirstArgs>(args?: SelectSubset<T, v_cajas_packingFindFirstArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends v_cajas_packingFindFirstArgs>(args?: SelectSubset<T, v_cajas_packingFindFirstArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_cajas_packing that matches the filter or
@@ -4486,7 +4575,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends v_cajas_packingFindFirstOrThrowArgs>(args?: SelectSubset<T, v_cajas_packingFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends v_cajas_packingFindFirstOrThrowArgs>(args?: SelectSubset<T, v_cajas_packingFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more V_cajas_packings that matches the filter.
@@ -4504,118 +4593,7 @@ export namespace Prisma {
      * const v_cajas_packingWithFolioOnly = await prisma.v_cajas_packing.findMany({ select: { Folio: true } })
      * 
      */
-    findMany<T extends v_cajas_packingFindManyArgs>(args?: SelectSubset<T, v_cajas_packingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a V_cajas_packing.
-     * @param {v_cajas_packingCreateArgs} args - Arguments to create a V_cajas_packing.
-     * @example
-     * // Create one V_cajas_packing
-     * const V_cajas_packing = await prisma.v_cajas_packing.create({
-     *   data: {
-     *     // ... data to create a V_cajas_packing
-     *   }
-     * })
-     * 
-     */
-    create<T extends v_cajas_packingCreateArgs>(args: SelectSubset<T, v_cajas_packingCreateArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many V_cajas_packings.
-     * @param {v_cajas_packingCreateManyArgs} args - Arguments to create many V_cajas_packings.
-     * @example
-     * // Create many V_cajas_packings
-     * const v_cajas_packing = await prisma.v_cajas_packing.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends v_cajas_packingCreateManyArgs>(args?: SelectSubset<T, v_cajas_packingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a V_cajas_packing.
-     * @param {v_cajas_packingDeleteArgs} args - Arguments to delete one V_cajas_packing.
-     * @example
-     * // Delete one V_cajas_packing
-     * const V_cajas_packing = await prisma.v_cajas_packing.delete({
-     *   where: {
-     *     // ... filter to delete one V_cajas_packing
-     *   }
-     * })
-     * 
-     */
-    delete<T extends v_cajas_packingDeleteArgs>(args: SelectSubset<T, v_cajas_packingDeleteArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one V_cajas_packing.
-     * @param {v_cajas_packingUpdateArgs} args - Arguments to update one V_cajas_packing.
-     * @example
-     * // Update one V_cajas_packing
-     * const v_cajas_packing = await prisma.v_cajas_packing.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends v_cajas_packingUpdateArgs>(args: SelectSubset<T, v_cajas_packingUpdateArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more V_cajas_packings.
-     * @param {v_cajas_packingDeleteManyArgs} args - Arguments to filter V_cajas_packings to delete.
-     * @example
-     * // Delete a few V_cajas_packings
-     * const { count } = await prisma.v_cajas_packing.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends v_cajas_packingDeleteManyArgs>(args?: SelectSubset<T, v_cajas_packingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more V_cajas_packings.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {v_cajas_packingUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many V_cajas_packings
-     * const v_cajas_packing = await prisma.v_cajas_packing.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends v_cajas_packingUpdateManyArgs>(args: SelectSubset<T, v_cajas_packingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one V_cajas_packing.
-     * @param {v_cajas_packingUpsertArgs} args - Arguments to update or create a V_cajas_packing.
-     * @example
-     * // Update or create a V_cajas_packing
-     * const v_cajas_packing = await prisma.v_cajas_packing.upsert({
-     *   create: {
-     *     // ... data to create a V_cajas_packing
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the V_cajas_packing we want to update
-     *   }
-     * })
-     */
-    upsert<T extends v_cajas_packingUpsertArgs>(args: SelectSubset<T, v_cajas_packingUpsertArgs<ExtArgs>>): Prisma__v_cajas_packingClient<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    findMany<T extends v_cajas_packingFindManyArgs>(args?: SelectSubset<T, v_cajas_packingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_cajas_packingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
 
     /**
@@ -4755,7 +4733,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__v_cajas_packingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__v_cajas_packingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4784,7 +4762,7 @@ export namespace Prisma {
 
   /**
    * Fields of the v_cajas_packing model
-   */ 
+   */
   interface v_cajas_packingFieldRefs {
     readonly Folio: FieldRef<"v_cajas_packing", 'String'>
     readonly Especie: FieldRef<"v_cajas_packing", 'String'>
@@ -4804,6 +4782,10 @@ export namespace Prisma {
      */
     select?: v_cajas_packingSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_packing
+     */
+    omit?: v_cajas_packingOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_packing to fetch.
      */
     where: v_cajas_packingWhereUniqueInput
@@ -4818,6 +4800,10 @@ export namespace Prisma {
      */
     select?: v_cajas_packingSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_packing
+     */
+    omit?: v_cajas_packingOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_packing to fetch.
      */
     where: v_cajas_packingWhereUniqueInput
@@ -4831,6 +4817,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_cajas_packing
      */
     select?: v_cajas_packingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_cajas_packing
+     */
+    omit?: v_cajas_packingOmit<ExtArgs> | null
     /**
      * Filter, which v_cajas_packing to fetch.
      */
@@ -4876,6 +4866,10 @@ export namespace Prisma {
      */
     select?: v_cajas_packingSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_packing
+     */
+    omit?: v_cajas_packingOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_packing to fetch.
      */
     where?: v_cajas_packingWhereInput
@@ -4920,6 +4914,10 @@ export namespace Prisma {
      */
     select?: v_cajas_packingSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_packing
+     */
+    omit?: v_cajas_packingOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_packings to fetch.
      */
     where?: v_cajas_packingWhereInput
@@ -4951,108 +4949,6 @@ export namespace Prisma {
   }
 
   /**
-   * v_cajas_packing create
-   */
-  export type v_cajas_packingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_packing
-     */
-    select?: v_cajas_packingSelect<ExtArgs> | null
-    /**
-     * The data needed to create a v_cajas_packing.
-     */
-    data: XOR<v_cajas_packingCreateInput, v_cajas_packingUncheckedCreateInput>
-  }
-
-  /**
-   * v_cajas_packing createMany
-   */
-  export type v_cajas_packingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many v_cajas_packings.
-     */
-    data: v_cajas_packingCreateManyInput | v_cajas_packingCreateManyInput[]
-  }
-
-  /**
-   * v_cajas_packing update
-   */
-  export type v_cajas_packingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_packing
-     */
-    select?: v_cajas_packingSelect<ExtArgs> | null
-    /**
-     * The data needed to update a v_cajas_packing.
-     */
-    data: XOR<v_cajas_packingUpdateInput, v_cajas_packingUncheckedUpdateInput>
-    /**
-     * Choose, which v_cajas_packing to update.
-     */
-    where: v_cajas_packingWhereUniqueInput
-  }
-
-  /**
-   * v_cajas_packing updateMany
-   */
-  export type v_cajas_packingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update v_cajas_packings.
-     */
-    data: XOR<v_cajas_packingUpdateManyMutationInput, v_cajas_packingUncheckedUpdateManyInput>
-    /**
-     * Filter which v_cajas_packings to update
-     */
-    where?: v_cajas_packingWhereInput
-  }
-
-  /**
-   * v_cajas_packing upsert
-   */
-  export type v_cajas_packingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_packing
-     */
-    select?: v_cajas_packingSelect<ExtArgs> | null
-    /**
-     * The filter to search for the v_cajas_packing to update in case it exists.
-     */
-    where: v_cajas_packingWhereUniqueInput
-    /**
-     * In case the v_cajas_packing found by the `where` argument doesn't exist, create a new v_cajas_packing with this data.
-     */
-    create: XOR<v_cajas_packingCreateInput, v_cajas_packingUncheckedCreateInput>
-    /**
-     * In case the v_cajas_packing was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<v_cajas_packingUpdateInput, v_cajas_packingUncheckedUpdateInput>
-  }
-
-  /**
-   * v_cajas_packing delete
-   */
-  export type v_cajas_packingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_packing
-     */
-    select?: v_cajas_packingSelect<ExtArgs> | null
-    /**
-     * Filter which v_cajas_packing to delete.
-     */
-    where: v_cajas_packingWhereUniqueInput
-  }
-
-  /**
-   * v_cajas_packing deleteMany
-   */
-  export type v_cajas_packingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which v_cajas_packings to delete
-     */
-    where?: v_cajas_packingWhereInput
-  }
-
-  /**
    * v_cajas_packing without action
    */
   export type v_cajas_packingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5060,6 +4956,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_cajas_packing
      */
     select?: v_cajas_packingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_cajas_packing
+     */
+    omit?: v_cajas_packingOmit<ExtArgs> | null
   }
 
 
@@ -5264,6 +5164,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["v_cajas_validadas"]>
 
 
+
   export type v_cajas_validadasSelectScalar = {
     Especie?: boolean
     Fecha_packing?: boolean
@@ -5272,6 +5173,7 @@ export namespace Prisma {
     Camara?: boolean
   }
 
+  export type v_cajas_validadasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Especie" | "Fecha_packing" | "Folio" | "Cajas" | "Camara", ExtArgs["result"]["v_cajas_validadas"]>
 
   export type $v_cajas_validadasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "v_cajas_validadas"
@@ -5288,12 +5190,12 @@ export namespace Prisma {
 
   type v_cajas_validadasGetPayload<S extends boolean | null | undefined | v_cajas_validadasDefaultArgs> = $Result.GetResult<Prisma.$v_cajas_validadasPayload, S>
 
-  type v_cajas_validadasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<v_cajas_validadasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type v_cajas_validadasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<v_cajas_validadasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: V_cajas_validadasCountAggregateInputType | true
     }
 
-  export interface v_cajas_validadasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface v_cajas_validadasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['v_cajas_validadas'], meta: { name: 'v_cajas_validadas' } }
     /**
      * Find zero or one V_cajas_validadas that matches the filter.
@@ -5306,10 +5208,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends v_cajas_validadasFindUniqueArgs>(args: SelectSubset<T, v_cajas_validadasFindUniqueArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends v_cajas_validadasFindUniqueArgs>(args: SelectSubset<T, v_cajas_validadasFindUniqueArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one V_cajas_validadas that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one V_cajas_validadas that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {v_cajas_validadasFindUniqueOrThrowArgs} args - Arguments to find a V_cajas_validadas
      * @example
@@ -5320,7 +5222,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends v_cajas_validadasFindUniqueOrThrowArgs>(args: SelectSubset<T, v_cajas_validadasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends v_cajas_validadasFindUniqueOrThrowArgs>(args: SelectSubset<T, v_cajas_validadasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_cajas_validadas that matches the filter.
@@ -5335,7 +5237,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends v_cajas_validadasFindFirstArgs>(args?: SelectSubset<T, v_cajas_validadasFindFirstArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends v_cajas_validadasFindFirstArgs>(args?: SelectSubset<T, v_cajas_validadasFindFirstArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_cajas_validadas that matches the filter or
@@ -5351,7 +5253,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends v_cajas_validadasFindFirstOrThrowArgs>(args?: SelectSubset<T, v_cajas_validadasFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends v_cajas_validadasFindFirstOrThrowArgs>(args?: SelectSubset<T, v_cajas_validadasFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more V_cajas_validadas that matches the filter.
@@ -5369,118 +5271,7 @@ export namespace Prisma {
      * const v_cajas_validadasWithEspecieOnly = await prisma.v_cajas_validadas.findMany({ select: { Especie: true } })
      * 
      */
-    findMany<T extends v_cajas_validadasFindManyArgs>(args?: SelectSubset<T, v_cajas_validadasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a V_cajas_validadas.
-     * @param {v_cajas_validadasCreateArgs} args - Arguments to create a V_cajas_validadas.
-     * @example
-     * // Create one V_cajas_validadas
-     * const V_cajas_validadas = await prisma.v_cajas_validadas.create({
-     *   data: {
-     *     // ... data to create a V_cajas_validadas
-     *   }
-     * })
-     * 
-     */
-    create<T extends v_cajas_validadasCreateArgs>(args: SelectSubset<T, v_cajas_validadasCreateArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many V_cajas_validadas.
-     * @param {v_cajas_validadasCreateManyArgs} args - Arguments to create many V_cajas_validadas.
-     * @example
-     * // Create many V_cajas_validadas
-     * const v_cajas_validadas = await prisma.v_cajas_validadas.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends v_cajas_validadasCreateManyArgs>(args?: SelectSubset<T, v_cajas_validadasCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a V_cajas_validadas.
-     * @param {v_cajas_validadasDeleteArgs} args - Arguments to delete one V_cajas_validadas.
-     * @example
-     * // Delete one V_cajas_validadas
-     * const V_cajas_validadas = await prisma.v_cajas_validadas.delete({
-     *   where: {
-     *     // ... filter to delete one V_cajas_validadas
-     *   }
-     * })
-     * 
-     */
-    delete<T extends v_cajas_validadasDeleteArgs>(args: SelectSubset<T, v_cajas_validadasDeleteArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one V_cajas_validadas.
-     * @param {v_cajas_validadasUpdateArgs} args - Arguments to update one V_cajas_validadas.
-     * @example
-     * // Update one V_cajas_validadas
-     * const v_cajas_validadas = await prisma.v_cajas_validadas.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends v_cajas_validadasUpdateArgs>(args: SelectSubset<T, v_cajas_validadasUpdateArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more V_cajas_validadas.
-     * @param {v_cajas_validadasDeleteManyArgs} args - Arguments to filter V_cajas_validadas to delete.
-     * @example
-     * // Delete a few V_cajas_validadas
-     * const { count } = await prisma.v_cajas_validadas.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends v_cajas_validadasDeleteManyArgs>(args?: SelectSubset<T, v_cajas_validadasDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more V_cajas_validadas.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {v_cajas_validadasUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many V_cajas_validadas
-     * const v_cajas_validadas = await prisma.v_cajas_validadas.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends v_cajas_validadasUpdateManyArgs>(args: SelectSubset<T, v_cajas_validadasUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one V_cajas_validadas.
-     * @param {v_cajas_validadasUpsertArgs} args - Arguments to update or create a V_cajas_validadas.
-     * @example
-     * // Update or create a V_cajas_validadas
-     * const v_cajas_validadas = await prisma.v_cajas_validadas.upsert({
-     *   create: {
-     *     // ... data to create a V_cajas_validadas
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the V_cajas_validadas we want to update
-     *   }
-     * })
-     */
-    upsert<T extends v_cajas_validadasUpsertArgs>(args: SelectSubset<T, v_cajas_validadasUpsertArgs<ExtArgs>>): Prisma__v_cajas_validadasClient<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    findMany<T extends v_cajas_validadasFindManyArgs>(args?: SelectSubset<T, v_cajas_validadasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_cajas_validadasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
 
     /**
@@ -5620,7 +5411,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__v_cajas_validadasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__v_cajas_validadasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5649,7 +5440,7 @@ export namespace Prisma {
 
   /**
    * Fields of the v_cajas_validadas model
-   */ 
+   */
   interface v_cajas_validadasFieldRefs {
     readonly Especie: FieldRef<"v_cajas_validadas", 'String'>
     readonly Fecha_packing: FieldRef<"v_cajas_validadas", 'String'>
@@ -5669,6 +5460,10 @@ export namespace Prisma {
      */
     select?: v_cajas_validadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_validadas
+     */
+    omit?: v_cajas_validadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_validadas to fetch.
      */
     where: v_cajas_validadasWhereUniqueInput
@@ -5683,6 +5478,10 @@ export namespace Prisma {
      */
     select?: v_cajas_validadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_validadas
+     */
+    omit?: v_cajas_validadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_validadas to fetch.
      */
     where: v_cajas_validadasWhereUniqueInput
@@ -5696,6 +5495,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_cajas_validadas
      */
     select?: v_cajas_validadasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_cajas_validadas
+     */
+    omit?: v_cajas_validadasOmit<ExtArgs> | null
     /**
      * Filter, which v_cajas_validadas to fetch.
      */
@@ -5741,6 +5544,10 @@ export namespace Prisma {
      */
     select?: v_cajas_validadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_validadas
+     */
+    omit?: v_cajas_validadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_validadas to fetch.
      */
     where?: v_cajas_validadasWhereInput
@@ -5785,6 +5592,10 @@ export namespace Prisma {
      */
     select?: v_cajas_validadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_validadas
+     */
+    omit?: v_cajas_validadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_validadas to fetch.
      */
     where?: v_cajas_validadasWhereInput
@@ -5816,108 +5627,6 @@ export namespace Prisma {
   }
 
   /**
-   * v_cajas_validadas create
-   */
-  export type v_cajas_validadasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_validadas
-     */
-    select?: v_cajas_validadasSelect<ExtArgs> | null
-    /**
-     * The data needed to create a v_cajas_validadas.
-     */
-    data: XOR<v_cajas_validadasCreateInput, v_cajas_validadasUncheckedCreateInput>
-  }
-
-  /**
-   * v_cajas_validadas createMany
-   */
-  export type v_cajas_validadasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many v_cajas_validadas.
-     */
-    data: v_cajas_validadasCreateManyInput | v_cajas_validadasCreateManyInput[]
-  }
-
-  /**
-   * v_cajas_validadas update
-   */
-  export type v_cajas_validadasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_validadas
-     */
-    select?: v_cajas_validadasSelect<ExtArgs> | null
-    /**
-     * The data needed to update a v_cajas_validadas.
-     */
-    data: XOR<v_cajas_validadasUpdateInput, v_cajas_validadasUncheckedUpdateInput>
-    /**
-     * Choose, which v_cajas_validadas to update.
-     */
-    where: v_cajas_validadasWhereUniqueInput
-  }
-
-  /**
-   * v_cajas_validadas updateMany
-   */
-  export type v_cajas_validadasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update v_cajas_validadas.
-     */
-    data: XOR<v_cajas_validadasUpdateManyMutationInput, v_cajas_validadasUncheckedUpdateManyInput>
-    /**
-     * Filter which v_cajas_validadas to update
-     */
-    where?: v_cajas_validadasWhereInput
-  }
-
-  /**
-   * v_cajas_validadas upsert
-   */
-  export type v_cajas_validadasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_validadas
-     */
-    select?: v_cajas_validadasSelect<ExtArgs> | null
-    /**
-     * The filter to search for the v_cajas_validadas to update in case it exists.
-     */
-    where: v_cajas_validadasWhereUniqueInput
-    /**
-     * In case the v_cajas_validadas found by the `where` argument doesn't exist, create a new v_cajas_validadas with this data.
-     */
-    create: XOR<v_cajas_validadasCreateInput, v_cajas_validadasUncheckedCreateInput>
-    /**
-     * In case the v_cajas_validadas was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<v_cajas_validadasUpdateInput, v_cajas_validadasUncheckedUpdateInput>
-  }
-
-  /**
-   * v_cajas_validadas delete
-   */
-  export type v_cajas_validadasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_validadas
-     */
-    select?: v_cajas_validadasSelect<ExtArgs> | null
-    /**
-     * Filter which v_cajas_validadas to delete.
-     */
-    where: v_cajas_validadasWhereUniqueInput
-  }
-
-  /**
-   * v_cajas_validadas deleteMany
-   */
-  export type v_cajas_validadasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which v_cajas_validadas to delete
-     */
-    where?: v_cajas_validadasWhereInput
-  }
-
-  /**
    * v_cajas_validadas without action
    */
   export type v_cajas_validadasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5925,6 +5634,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_cajas_validadas
      */
     select?: v_cajas_validadasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_cajas_validadas
+     */
+    omit?: v_cajas_validadasOmit<ExtArgs> | null
   }
 
 
@@ -6129,6 +5842,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["v_cajas_rechazadas"]>
 
 
+
   export type v_cajas_rechazadasSelectScalar = {
     folio_rechazado?: boolean
     especie?: boolean
@@ -6137,6 +5851,7 @@ export namespace Prisma {
     camara?: boolean
   }
 
+  export type v_cajas_rechazadasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"folio_rechazado" | "especie" | "Fecha_packing" | "cajas" | "camara", ExtArgs["result"]["v_cajas_rechazadas"]>
 
   export type $v_cajas_rechazadasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "v_cajas_rechazadas"
@@ -6153,12 +5868,12 @@ export namespace Prisma {
 
   type v_cajas_rechazadasGetPayload<S extends boolean | null | undefined | v_cajas_rechazadasDefaultArgs> = $Result.GetResult<Prisma.$v_cajas_rechazadasPayload, S>
 
-  type v_cajas_rechazadasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<v_cajas_rechazadasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type v_cajas_rechazadasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<v_cajas_rechazadasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: V_cajas_rechazadasCountAggregateInputType | true
     }
 
-  export interface v_cajas_rechazadasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface v_cajas_rechazadasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['v_cajas_rechazadas'], meta: { name: 'v_cajas_rechazadas' } }
     /**
      * Find zero or one V_cajas_rechazadas that matches the filter.
@@ -6171,10 +5886,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends v_cajas_rechazadasFindUniqueArgs>(args: SelectSubset<T, v_cajas_rechazadasFindUniqueArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends v_cajas_rechazadasFindUniqueArgs>(args: SelectSubset<T, v_cajas_rechazadasFindUniqueArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one V_cajas_rechazadas that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one V_cajas_rechazadas that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {v_cajas_rechazadasFindUniqueOrThrowArgs} args - Arguments to find a V_cajas_rechazadas
      * @example
@@ -6185,7 +5900,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends v_cajas_rechazadasFindUniqueOrThrowArgs>(args: SelectSubset<T, v_cajas_rechazadasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends v_cajas_rechazadasFindUniqueOrThrowArgs>(args: SelectSubset<T, v_cajas_rechazadasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_cajas_rechazadas that matches the filter.
@@ -6200,7 +5915,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends v_cajas_rechazadasFindFirstArgs>(args?: SelectSubset<T, v_cajas_rechazadasFindFirstArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends v_cajas_rechazadasFindFirstArgs>(args?: SelectSubset<T, v_cajas_rechazadasFindFirstArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_cajas_rechazadas that matches the filter or
@@ -6216,7 +5931,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends v_cajas_rechazadasFindFirstOrThrowArgs>(args?: SelectSubset<T, v_cajas_rechazadasFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends v_cajas_rechazadasFindFirstOrThrowArgs>(args?: SelectSubset<T, v_cajas_rechazadasFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more V_cajas_rechazadas that matches the filter.
@@ -6234,118 +5949,7 @@ export namespace Prisma {
      * const v_cajas_rechazadasWithFolio_rechazadoOnly = await prisma.v_cajas_rechazadas.findMany({ select: { folio_rechazado: true } })
      * 
      */
-    findMany<T extends v_cajas_rechazadasFindManyArgs>(args?: SelectSubset<T, v_cajas_rechazadasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a V_cajas_rechazadas.
-     * @param {v_cajas_rechazadasCreateArgs} args - Arguments to create a V_cajas_rechazadas.
-     * @example
-     * // Create one V_cajas_rechazadas
-     * const V_cajas_rechazadas = await prisma.v_cajas_rechazadas.create({
-     *   data: {
-     *     // ... data to create a V_cajas_rechazadas
-     *   }
-     * })
-     * 
-     */
-    create<T extends v_cajas_rechazadasCreateArgs>(args: SelectSubset<T, v_cajas_rechazadasCreateArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many V_cajas_rechazadas.
-     * @param {v_cajas_rechazadasCreateManyArgs} args - Arguments to create many V_cajas_rechazadas.
-     * @example
-     * // Create many V_cajas_rechazadas
-     * const v_cajas_rechazadas = await prisma.v_cajas_rechazadas.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends v_cajas_rechazadasCreateManyArgs>(args?: SelectSubset<T, v_cajas_rechazadasCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a V_cajas_rechazadas.
-     * @param {v_cajas_rechazadasDeleteArgs} args - Arguments to delete one V_cajas_rechazadas.
-     * @example
-     * // Delete one V_cajas_rechazadas
-     * const V_cajas_rechazadas = await prisma.v_cajas_rechazadas.delete({
-     *   where: {
-     *     // ... filter to delete one V_cajas_rechazadas
-     *   }
-     * })
-     * 
-     */
-    delete<T extends v_cajas_rechazadasDeleteArgs>(args: SelectSubset<T, v_cajas_rechazadasDeleteArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one V_cajas_rechazadas.
-     * @param {v_cajas_rechazadasUpdateArgs} args - Arguments to update one V_cajas_rechazadas.
-     * @example
-     * // Update one V_cajas_rechazadas
-     * const v_cajas_rechazadas = await prisma.v_cajas_rechazadas.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends v_cajas_rechazadasUpdateArgs>(args: SelectSubset<T, v_cajas_rechazadasUpdateArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more V_cajas_rechazadas.
-     * @param {v_cajas_rechazadasDeleteManyArgs} args - Arguments to filter V_cajas_rechazadas to delete.
-     * @example
-     * // Delete a few V_cajas_rechazadas
-     * const { count } = await prisma.v_cajas_rechazadas.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends v_cajas_rechazadasDeleteManyArgs>(args?: SelectSubset<T, v_cajas_rechazadasDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more V_cajas_rechazadas.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {v_cajas_rechazadasUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many V_cajas_rechazadas
-     * const v_cajas_rechazadas = await prisma.v_cajas_rechazadas.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends v_cajas_rechazadasUpdateManyArgs>(args: SelectSubset<T, v_cajas_rechazadasUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one V_cajas_rechazadas.
-     * @param {v_cajas_rechazadasUpsertArgs} args - Arguments to update or create a V_cajas_rechazadas.
-     * @example
-     * // Update or create a V_cajas_rechazadas
-     * const v_cajas_rechazadas = await prisma.v_cajas_rechazadas.upsert({
-     *   create: {
-     *     // ... data to create a V_cajas_rechazadas
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the V_cajas_rechazadas we want to update
-     *   }
-     * })
-     */
-    upsert<T extends v_cajas_rechazadasUpsertArgs>(args: SelectSubset<T, v_cajas_rechazadasUpsertArgs<ExtArgs>>): Prisma__v_cajas_rechazadasClient<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    findMany<T extends v_cajas_rechazadasFindManyArgs>(args?: SelectSubset<T, v_cajas_rechazadasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_cajas_rechazadasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
 
     /**
@@ -6485,7 +6089,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__v_cajas_rechazadasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__v_cajas_rechazadasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6514,7 +6118,7 @@ export namespace Prisma {
 
   /**
    * Fields of the v_cajas_rechazadas model
-   */ 
+   */
   interface v_cajas_rechazadasFieldRefs {
     readonly folio_rechazado: FieldRef<"v_cajas_rechazadas", 'String'>
     readonly especie: FieldRef<"v_cajas_rechazadas", 'String'>
@@ -6534,6 +6138,10 @@ export namespace Prisma {
      */
     select?: v_cajas_rechazadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_rechazadas
+     */
+    omit?: v_cajas_rechazadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_rechazadas to fetch.
      */
     where: v_cajas_rechazadasWhereUniqueInput
@@ -6548,6 +6156,10 @@ export namespace Prisma {
      */
     select?: v_cajas_rechazadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_rechazadas
+     */
+    omit?: v_cajas_rechazadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_rechazadas to fetch.
      */
     where: v_cajas_rechazadasWhereUniqueInput
@@ -6561,6 +6173,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_cajas_rechazadas
      */
     select?: v_cajas_rechazadasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_cajas_rechazadas
+     */
+    omit?: v_cajas_rechazadasOmit<ExtArgs> | null
     /**
      * Filter, which v_cajas_rechazadas to fetch.
      */
@@ -6606,6 +6222,10 @@ export namespace Prisma {
      */
     select?: v_cajas_rechazadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_rechazadas
+     */
+    omit?: v_cajas_rechazadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_rechazadas to fetch.
      */
     where?: v_cajas_rechazadasWhereInput
@@ -6650,6 +6270,10 @@ export namespace Prisma {
      */
     select?: v_cajas_rechazadasSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_cajas_rechazadas
+     */
+    omit?: v_cajas_rechazadasOmit<ExtArgs> | null
+    /**
      * Filter, which v_cajas_rechazadas to fetch.
      */
     where?: v_cajas_rechazadasWhereInput
@@ -6681,108 +6305,6 @@ export namespace Prisma {
   }
 
   /**
-   * v_cajas_rechazadas create
-   */
-  export type v_cajas_rechazadasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_rechazadas
-     */
-    select?: v_cajas_rechazadasSelect<ExtArgs> | null
-    /**
-     * The data needed to create a v_cajas_rechazadas.
-     */
-    data: XOR<v_cajas_rechazadasCreateInput, v_cajas_rechazadasUncheckedCreateInput>
-  }
-
-  /**
-   * v_cajas_rechazadas createMany
-   */
-  export type v_cajas_rechazadasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many v_cajas_rechazadas.
-     */
-    data: v_cajas_rechazadasCreateManyInput | v_cajas_rechazadasCreateManyInput[]
-  }
-
-  /**
-   * v_cajas_rechazadas update
-   */
-  export type v_cajas_rechazadasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_rechazadas
-     */
-    select?: v_cajas_rechazadasSelect<ExtArgs> | null
-    /**
-     * The data needed to update a v_cajas_rechazadas.
-     */
-    data: XOR<v_cajas_rechazadasUpdateInput, v_cajas_rechazadasUncheckedUpdateInput>
-    /**
-     * Choose, which v_cajas_rechazadas to update.
-     */
-    where: v_cajas_rechazadasWhereUniqueInput
-  }
-
-  /**
-   * v_cajas_rechazadas updateMany
-   */
-  export type v_cajas_rechazadasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update v_cajas_rechazadas.
-     */
-    data: XOR<v_cajas_rechazadasUpdateManyMutationInput, v_cajas_rechazadasUncheckedUpdateManyInput>
-    /**
-     * Filter which v_cajas_rechazadas to update
-     */
-    where?: v_cajas_rechazadasWhereInput
-  }
-
-  /**
-   * v_cajas_rechazadas upsert
-   */
-  export type v_cajas_rechazadasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_rechazadas
-     */
-    select?: v_cajas_rechazadasSelect<ExtArgs> | null
-    /**
-     * The filter to search for the v_cajas_rechazadas to update in case it exists.
-     */
-    where: v_cajas_rechazadasWhereUniqueInput
-    /**
-     * In case the v_cajas_rechazadas found by the `where` argument doesn't exist, create a new v_cajas_rechazadas with this data.
-     */
-    create: XOR<v_cajas_rechazadasCreateInput, v_cajas_rechazadasUncheckedCreateInput>
-    /**
-     * In case the v_cajas_rechazadas was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<v_cajas_rechazadasUpdateInput, v_cajas_rechazadasUncheckedUpdateInput>
-  }
-
-  /**
-   * v_cajas_rechazadas delete
-   */
-  export type v_cajas_rechazadasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_cajas_rechazadas
-     */
-    select?: v_cajas_rechazadasSelect<ExtArgs> | null
-    /**
-     * Filter which v_cajas_rechazadas to delete.
-     */
-    where: v_cajas_rechazadasWhereUniqueInput
-  }
-
-  /**
-   * v_cajas_rechazadas deleteMany
-   */
-  export type v_cajas_rechazadasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which v_cajas_rechazadas to delete
-     */
-    where?: v_cajas_rechazadasWhereInput
-  }
-
-  /**
    * v_cajas_rechazadas without action
    */
   export type v_cajas_rechazadasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6790,6 +6312,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_cajas_rechazadas
      */
     select?: v_cajas_rechazadasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_cajas_rechazadas
+     */
+    omit?: v_cajas_rechazadasOmit<ExtArgs> | null
   }
 
 
@@ -7010,6 +6536,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["v_informe_diario"]>
 
 
+
   export type v_informe_diarioSelectScalar = {
     Folio?: boolean
     Especie?: boolean
@@ -7020,6 +6547,7 @@ export namespace Prisma {
     Estado?: boolean
   }
 
+  export type v_informe_diarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Folio" | "Especie" | "Fecha_packing" | "Cajas" | "LINEA" | "Camara" | "Estado", ExtArgs["result"]["v_informe_diario"]>
 
   export type $v_informe_diarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "v_informe_diario"
@@ -7038,12 +6566,12 @@ export namespace Prisma {
 
   type v_informe_diarioGetPayload<S extends boolean | null | undefined | v_informe_diarioDefaultArgs> = $Result.GetResult<Prisma.$v_informe_diarioPayload, S>
 
-  type v_informe_diarioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<v_informe_diarioFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type v_informe_diarioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<v_informe_diarioFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: V_informe_diarioCountAggregateInputType | true
     }
 
-  export interface v_informe_diarioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface v_informe_diarioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['v_informe_diario'], meta: { name: 'v_informe_diario' } }
     /**
      * Find zero or one V_informe_diario that matches the filter.
@@ -7056,10 +6584,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends v_informe_diarioFindUniqueArgs>(args: SelectSubset<T, v_informe_diarioFindUniqueArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends v_informe_diarioFindUniqueArgs>(args: SelectSubset<T, v_informe_diarioFindUniqueArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one V_informe_diario that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one V_informe_diario that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {v_informe_diarioFindUniqueOrThrowArgs} args - Arguments to find a V_informe_diario
      * @example
@@ -7070,7 +6598,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends v_informe_diarioFindUniqueOrThrowArgs>(args: SelectSubset<T, v_informe_diarioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends v_informe_diarioFindUniqueOrThrowArgs>(args: SelectSubset<T, v_informe_diarioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_informe_diario that matches the filter.
@@ -7085,7 +6613,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends v_informe_diarioFindFirstArgs>(args?: SelectSubset<T, v_informe_diarioFindFirstArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends v_informe_diarioFindFirstArgs>(args?: SelectSubset<T, v_informe_diarioFindFirstArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first V_informe_diario that matches the filter or
@@ -7101,7 +6629,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends v_informe_diarioFindFirstOrThrowArgs>(args?: SelectSubset<T, v_informe_diarioFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends v_informe_diarioFindFirstOrThrowArgs>(args?: SelectSubset<T, v_informe_diarioFindFirstOrThrowArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more V_informe_diarios that matches the filter.
@@ -7119,118 +6647,7 @@ export namespace Prisma {
      * const v_informe_diarioWithFolioOnly = await prisma.v_informe_diario.findMany({ select: { Folio: true } })
      * 
      */
-    findMany<T extends v_informe_diarioFindManyArgs>(args?: SelectSubset<T, v_informe_diarioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a V_informe_diario.
-     * @param {v_informe_diarioCreateArgs} args - Arguments to create a V_informe_diario.
-     * @example
-     * // Create one V_informe_diario
-     * const V_informe_diario = await prisma.v_informe_diario.create({
-     *   data: {
-     *     // ... data to create a V_informe_diario
-     *   }
-     * })
-     * 
-     */
-    create<T extends v_informe_diarioCreateArgs>(args: SelectSubset<T, v_informe_diarioCreateArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many V_informe_diarios.
-     * @param {v_informe_diarioCreateManyArgs} args - Arguments to create many V_informe_diarios.
-     * @example
-     * // Create many V_informe_diarios
-     * const v_informe_diario = await prisma.v_informe_diario.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends v_informe_diarioCreateManyArgs>(args?: SelectSubset<T, v_informe_diarioCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a V_informe_diario.
-     * @param {v_informe_diarioDeleteArgs} args - Arguments to delete one V_informe_diario.
-     * @example
-     * // Delete one V_informe_diario
-     * const V_informe_diario = await prisma.v_informe_diario.delete({
-     *   where: {
-     *     // ... filter to delete one V_informe_diario
-     *   }
-     * })
-     * 
-     */
-    delete<T extends v_informe_diarioDeleteArgs>(args: SelectSubset<T, v_informe_diarioDeleteArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one V_informe_diario.
-     * @param {v_informe_diarioUpdateArgs} args - Arguments to update one V_informe_diario.
-     * @example
-     * // Update one V_informe_diario
-     * const v_informe_diario = await prisma.v_informe_diario.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends v_informe_diarioUpdateArgs>(args: SelectSubset<T, v_informe_diarioUpdateArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more V_informe_diarios.
-     * @param {v_informe_diarioDeleteManyArgs} args - Arguments to filter V_informe_diarios to delete.
-     * @example
-     * // Delete a few V_informe_diarios
-     * const { count } = await prisma.v_informe_diario.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends v_informe_diarioDeleteManyArgs>(args?: SelectSubset<T, v_informe_diarioDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more V_informe_diarios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {v_informe_diarioUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many V_informe_diarios
-     * const v_informe_diario = await prisma.v_informe_diario.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends v_informe_diarioUpdateManyArgs>(args: SelectSubset<T, v_informe_diarioUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one V_informe_diario.
-     * @param {v_informe_diarioUpsertArgs} args - Arguments to update or create a V_informe_diario.
-     * @example
-     * // Update or create a V_informe_diario
-     * const v_informe_diario = await prisma.v_informe_diario.upsert({
-     *   create: {
-     *     // ... data to create a V_informe_diario
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the V_informe_diario we want to update
-     *   }
-     * })
-     */
-    upsert<T extends v_informe_diarioUpsertArgs>(args: SelectSubset<T, v_informe_diarioUpsertArgs<ExtArgs>>): Prisma__v_informe_diarioClient<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    findMany<T extends v_informe_diarioFindManyArgs>(args?: SelectSubset<T, v_informe_diarioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$v_informe_diarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
 
     /**
@@ -7370,7 +6787,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__v_informe_diarioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__v_informe_diarioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7399,7 +6816,7 @@ export namespace Prisma {
 
   /**
    * Fields of the v_informe_diario model
-   */ 
+   */
   interface v_informe_diarioFieldRefs {
     readonly Folio: FieldRef<"v_informe_diario", 'String'>
     readonly Especie: FieldRef<"v_informe_diario", 'String'>
@@ -7421,6 +6838,10 @@ export namespace Prisma {
      */
     select?: v_informe_diarioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_informe_diario
+     */
+    omit?: v_informe_diarioOmit<ExtArgs> | null
+    /**
      * Filter, which v_informe_diario to fetch.
      */
     where: v_informe_diarioWhereUniqueInput
@@ -7435,6 +6856,10 @@ export namespace Prisma {
      */
     select?: v_informe_diarioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_informe_diario
+     */
+    omit?: v_informe_diarioOmit<ExtArgs> | null
+    /**
      * Filter, which v_informe_diario to fetch.
      */
     where: v_informe_diarioWhereUniqueInput
@@ -7448,6 +6873,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_informe_diario
      */
     select?: v_informe_diarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_informe_diario
+     */
+    omit?: v_informe_diarioOmit<ExtArgs> | null
     /**
      * Filter, which v_informe_diario to fetch.
      */
@@ -7493,6 +6922,10 @@ export namespace Prisma {
      */
     select?: v_informe_diarioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_informe_diario
+     */
+    omit?: v_informe_diarioOmit<ExtArgs> | null
+    /**
      * Filter, which v_informe_diario to fetch.
      */
     where?: v_informe_diarioWhereInput
@@ -7537,6 +6970,10 @@ export namespace Prisma {
      */
     select?: v_informe_diarioSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the v_informe_diario
+     */
+    omit?: v_informe_diarioOmit<ExtArgs> | null
+    /**
      * Filter, which v_informe_diarios to fetch.
      */
     where?: v_informe_diarioWhereInput
@@ -7568,108 +7005,6 @@ export namespace Prisma {
   }
 
   /**
-   * v_informe_diario create
-   */
-  export type v_informe_diarioCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_informe_diario
-     */
-    select?: v_informe_diarioSelect<ExtArgs> | null
-    /**
-     * The data needed to create a v_informe_diario.
-     */
-    data: XOR<v_informe_diarioCreateInput, v_informe_diarioUncheckedCreateInput>
-  }
-
-  /**
-   * v_informe_diario createMany
-   */
-  export type v_informe_diarioCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many v_informe_diarios.
-     */
-    data: v_informe_diarioCreateManyInput | v_informe_diarioCreateManyInput[]
-  }
-
-  /**
-   * v_informe_diario update
-   */
-  export type v_informe_diarioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_informe_diario
-     */
-    select?: v_informe_diarioSelect<ExtArgs> | null
-    /**
-     * The data needed to update a v_informe_diario.
-     */
-    data: XOR<v_informe_diarioUpdateInput, v_informe_diarioUncheckedUpdateInput>
-    /**
-     * Choose, which v_informe_diario to update.
-     */
-    where: v_informe_diarioWhereUniqueInput
-  }
-
-  /**
-   * v_informe_diario updateMany
-   */
-  export type v_informe_diarioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update v_informe_diarios.
-     */
-    data: XOR<v_informe_diarioUpdateManyMutationInput, v_informe_diarioUncheckedUpdateManyInput>
-    /**
-     * Filter which v_informe_diarios to update
-     */
-    where?: v_informe_diarioWhereInput
-  }
-
-  /**
-   * v_informe_diario upsert
-   */
-  export type v_informe_diarioUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_informe_diario
-     */
-    select?: v_informe_diarioSelect<ExtArgs> | null
-    /**
-     * The filter to search for the v_informe_diario to update in case it exists.
-     */
-    where: v_informe_diarioWhereUniqueInput
-    /**
-     * In case the v_informe_diario found by the `where` argument doesn't exist, create a new v_informe_diario with this data.
-     */
-    create: XOR<v_informe_diarioCreateInput, v_informe_diarioUncheckedCreateInput>
-    /**
-     * In case the v_informe_diario was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<v_informe_diarioUpdateInput, v_informe_diarioUncheckedUpdateInput>
-  }
-
-  /**
-   * v_informe_diario delete
-   */
-  export type v_informe_diarioDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the v_informe_diario
-     */
-    select?: v_informe_diarioSelect<ExtArgs> | null
-    /**
-     * Filter which v_informe_diario to delete.
-     */
-    where: v_informe_diarioWhereUniqueInput
-  }
-
-  /**
-   * v_informe_diario deleteMany
-   */
-  export type v_informe_diarioDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which v_informe_diarios to delete
-     */
-    where?: v_informe_diarioWhereInput
-  }
-
-  /**
    * v_informe_diario without action
    */
   export type v_informe_diarioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7677,6 +7012,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the v_informe_diario
      */
     select?: v_informe_diarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the v_informe_diario
+     */
+    omit?: v_informe_diarioOmit<ExtArgs> | null
   }
 
 
@@ -7701,6 +7040,7 @@ export namespace Prisma {
     Cajas: 'Cajas',
     Especie: 'Especie',
     Estado: 'Estado',
+    Temporada: 'Temporada',
     Camara: 'Camara',
     Usuario: 'Usuario',
     Packing: 'Packing',
@@ -7727,6 +7067,7 @@ export namespace Prisma {
     fecha_rechazado: 'fecha_rechazado',
     usuario: 'usuario',
     cajas: 'cajas',
+    Temporada: 'Temporada',
     camara: 'camara',
     nombre_estado: 'nombre_estado',
     estado: 'estado',
@@ -7800,7 +7141,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 
@@ -7851,6 +7192,7 @@ export namespace Prisma {
     Cajas?: IntFilter<"validaciones"> | number
     Especie?: StringFilter<"validaciones"> | string
     Estado?: BoolFilter<"validaciones"> | boolean
+    Temporada?: StringFilter<"validaciones"> | string
     Camara?: StringFilter<"validaciones"> | string
     Usuario?: StringFilter<"validaciones"> | string
     Packing?: StringFilter<"validaciones"> | string
@@ -7864,6 +7206,7 @@ export namespace Prisma {
     Cajas?: SortOrder
     Especie?: SortOrder
     Estado?: SortOrder
+    Temporada?: SortOrder
     Camara?: SortOrder
     Usuario?: SortOrder
     Packing?: SortOrder
@@ -7880,6 +7223,7 @@ export namespace Prisma {
     Cajas?: IntFilter<"validaciones"> | number
     Especie?: StringFilter<"validaciones"> | string
     Estado?: BoolFilter<"validaciones"> | boolean
+    Temporada?: StringFilter<"validaciones"> | string
     Camara?: StringFilter<"validaciones"> | string
     Usuario?: StringFilter<"validaciones"> | string
     Packing?: StringFilter<"validaciones"> | string
@@ -7893,6 +7237,7 @@ export namespace Prisma {
     Cajas?: SortOrder
     Especie?: SortOrder
     Estado?: SortOrder
+    Temporada?: SortOrder
     Camara?: SortOrder
     Usuario?: SortOrder
     Packing?: SortOrder
@@ -7914,6 +7259,7 @@ export namespace Prisma {
     Cajas?: IntWithAggregatesFilter<"validaciones"> | number
     Especie?: StringWithAggregatesFilter<"validaciones"> | string
     Estado?: BoolWithAggregatesFilter<"validaciones"> | boolean
+    Temporada?: StringWithAggregatesFilter<"validaciones"> | string
     Camara?: StringWithAggregatesFilter<"validaciones"> | string
     Usuario?: StringWithAggregatesFilter<"validaciones"> | string
     Packing?: StringWithAggregatesFilter<"validaciones"> | string
@@ -7978,12 +7324,13 @@ export namespace Prisma {
     fecha_rechazado?: DateTimeNullableFilter<"rechazados"> | Date | string | null
     usuario?: StringNullableFilter<"rechazados"> | string | null
     cajas?: IntNullableFilter<"rechazados"> | number | null
+    Temporada?: StringFilter<"rechazados"> | string
     camara?: StringNullableFilter<"rechazados"> | string | null
     nombre_estado?: StringNullableFilter<"rechazados"> | string | null
     estado?: BoolNullableFilter<"rechazados"> | boolean | null
     packing?: StringNullableFilter<"rechazados"> | string | null
     especie?: StringNullableFilter<"rechazados"> | string | null
-    dm_motivo_rechazo?: XOR<Dm_motivo_rechazoNullableRelationFilter, dm_motivo_rechazoWhereInput> | null
+    dm_motivo_rechazo?: XOR<Dm_motivo_rechazoNullableScalarRelationFilter, dm_motivo_rechazoWhereInput> | null
   }
 
   export type rechazadosOrderByWithRelationInput = {
@@ -7993,6 +7340,7 @@ export namespace Prisma {
     fecha_rechazado?: SortOrderInput | SortOrder
     usuario?: SortOrderInput | SortOrder
     cajas?: SortOrderInput | SortOrder
+    Temporada?: SortOrder
     camara?: SortOrderInput | SortOrder
     nombre_estado?: SortOrderInput | SortOrder
     estado?: SortOrderInput | SortOrder
@@ -8011,12 +7359,13 @@ export namespace Prisma {
     fecha_rechazado?: DateTimeNullableFilter<"rechazados"> | Date | string | null
     usuario?: StringNullableFilter<"rechazados"> | string | null
     cajas?: IntNullableFilter<"rechazados"> | number | null
+    Temporada?: StringFilter<"rechazados"> | string
     camara?: StringNullableFilter<"rechazados"> | string | null
     nombre_estado?: StringNullableFilter<"rechazados"> | string | null
     estado?: BoolNullableFilter<"rechazados"> | boolean | null
     packing?: StringNullableFilter<"rechazados"> | string | null
     especie?: StringNullableFilter<"rechazados"> | string | null
-    dm_motivo_rechazo?: XOR<Dm_motivo_rechazoNullableRelationFilter, dm_motivo_rechazoWhereInput> | null
+    dm_motivo_rechazo?: XOR<Dm_motivo_rechazoNullableScalarRelationFilter, dm_motivo_rechazoWhereInput> | null
   }, "id_rechazado">
 
   export type rechazadosOrderByWithAggregationInput = {
@@ -8026,6 +7375,7 @@ export namespace Prisma {
     fecha_rechazado?: SortOrderInput | SortOrder
     usuario?: SortOrderInput | SortOrder
     cajas?: SortOrderInput | SortOrder
+    Temporada?: SortOrder
     camara?: SortOrderInput | SortOrder
     nombre_estado?: SortOrderInput | SortOrder
     estado?: SortOrderInput | SortOrder
@@ -8048,6 +7398,7 @@ export namespace Prisma {
     fecha_rechazado?: DateTimeNullableWithAggregatesFilter<"rechazados"> | Date | string | null
     usuario?: StringNullableWithAggregatesFilter<"rechazados"> | string | null
     cajas?: IntNullableWithAggregatesFilter<"rechazados"> | number | null
+    Temporada?: StringWithAggregatesFilter<"rechazados"> | string
     camara?: StringNullableWithAggregatesFilter<"rechazados"> | string | null
     nombre_estado?: StringNullableWithAggregatesFilter<"rechazados"> | string | null
     estado?: BoolNullableWithAggregatesFilter<"rechazados"> | boolean | null
@@ -8290,6 +7641,7 @@ export namespace Prisma {
     Cajas: number
     Especie: string
     Estado?: boolean
+    Temporada: string
     Camara: string
     Usuario: string
     Packing: string
@@ -8303,6 +7655,7 @@ export namespace Prisma {
     Cajas: number
     Especie: string
     Estado?: boolean
+    Temporada: string
     Camara: string
     Usuario: string
     Packing: string
@@ -8315,6 +7668,7 @@ export namespace Prisma {
     Cajas?: IntFieldUpdateOperationsInput | number
     Especie?: StringFieldUpdateOperationsInput | string
     Estado?: BoolFieldUpdateOperationsInput | boolean
+    Temporada?: StringFieldUpdateOperationsInput | string
     Camara?: StringFieldUpdateOperationsInput | string
     Usuario?: StringFieldUpdateOperationsInput | string
     Packing?: StringFieldUpdateOperationsInput | string
@@ -8328,6 +7682,7 @@ export namespace Prisma {
     Cajas?: IntFieldUpdateOperationsInput | number
     Especie?: StringFieldUpdateOperationsInput | string
     Estado?: BoolFieldUpdateOperationsInput | boolean
+    Temporada?: StringFieldUpdateOperationsInput | string
     Camara?: StringFieldUpdateOperationsInput | string
     Usuario?: StringFieldUpdateOperationsInput | string
     Packing?: StringFieldUpdateOperationsInput | string
@@ -8340,6 +7695,7 @@ export namespace Prisma {
     Cajas: number
     Especie: string
     Estado?: boolean
+    Temporada: string
     Camara: string
     Usuario: string
     Packing: string
@@ -8352,6 +7708,7 @@ export namespace Prisma {
     Cajas?: IntFieldUpdateOperationsInput | number
     Especie?: StringFieldUpdateOperationsInput | string
     Estado?: BoolFieldUpdateOperationsInput | boolean
+    Temporada?: StringFieldUpdateOperationsInput | string
     Camara?: StringFieldUpdateOperationsInput | string
     Usuario?: StringFieldUpdateOperationsInput | string
     Packing?: StringFieldUpdateOperationsInput | string
@@ -8365,6 +7722,7 @@ export namespace Prisma {
     Cajas?: IntFieldUpdateOperationsInput | number
     Especie?: StringFieldUpdateOperationsInput | string
     Estado?: BoolFieldUpdateOperationsInput | boolean
+    Temporada?: StringFieldUpdateOperationsInput | string
     Camara?: StringFieldUpdateOperationsInput | string
     Usuario?: StringFieldUpdateOperationsInput | string
     Packing?: StringFieldUpdateOperationsInput | string
@@ -8420,6 +7778,7 @@ export namespace Prisma {
     fecha_rechazado?: Date | string | null
     usuario?: string | null
     cajas?: number | null
+    Temporada: string
     camara?: string | null
     nombre_estado?: string | null
     estado?: boolean | null
@@ -8435,6 +7794,7 @@ export namespace Prisma {
     fecha_rechazado?: Date | string | null
     usuario?: string | null
     cajas?: number | null
+    Temporada: string
     camara?: string | null
     nombre_estado?: string | null
     estado?: boolean | null
@@ -8448,6 +7808,7 @@ export namespace Prisma {
     fecha_rechazado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usuario?: NullableStringFieldUpdateOperationsInput | string | null
     cajas?: NullableIntFieldUpdateOperationsInput | number | null
+    Temporada?: StringFieldUpdateOperationsInput | string
     camara?: NullableStringFieldUpdateOperationsInput | string | null
     nombre_estado?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -8463,6 +7824,7 @@ export namespace Prisma {
     fecha_rechazado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usuario?: NullableStringFieldUpdateOperationsInput | string | null
     cajas?: NullableIntFieldUpdateOperationsInput | number | null
+    Temporada?: StringFieldUpdateOperationsInput | string
     camara?: NullableStringFieldUpdateOperationsInput | string | null
     nombre_estado?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -8477,6 +7839,7 @@ export namespace Prisma {
     fecha_rechazado?: Date | string | null
     usuario?: string | null
     cajas?: number | null
+    Temporada: string
     camara?: string | null
     nombre_estado?: string | null
     estado?: boolean | null
@@ -8490,6 +7853,7 @@ export namespace Prisma {
     fecha_rechazado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usuario?: NullableStringFieldUpdateOperationsInput | string | null
     cajas?: NullableIntFieldUpdateOperationsInput | number | null
+    Temporada?: StringFieldUpdateOperationsInput | string
     camara?: NullableStringFieldUpdateOperationsInput | string | null
     nombre_estado?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -8504,249 +7868,12 @@ export namespace Prisma {
     fecha_rechazado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usuario?: NullableStringFieldUpdateOperationsInput | string | null
     cajas?: NullableIntFieldUpdateOperationsInput | number | null
+    Temporada?: StringFieldUpdateOperationsInput | string
     camara?: NullableStringFieldUpdateOperationsInput | string | null
     nombre_estado?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: NullableBoolFieldUpdateOperationsInput | boolean | null
     packing?: NullableStringFieldUpdateOperationsInput | string | null
     especie?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_packingCreateInput = {
-    Folio: string
-    Especie: string
-    Fecha_packing: string
-    Cajas: number
-    LINEA?: string | null
-  }
-
-  export type v_cajas_packingUncheckedCreateInput = {
-    Folio: string
-    Especie: string
-    Fecha_packing: string
-    Cajas: number
-    LINEA?: string | null
-  }
-
-  export type v_cajas_packingUpdateInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_packingUncheckedUpdateInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_packingCreateManyInput = {
-    Folio: string
-    Especie: string
-    Fecha_packing: string
-    Cajas: number
-    LINEA?: string | null
-  }
-
-  export type v_cajas_packingUpdateManyMutationInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_packingUncheckedUpdateManyInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_validadasCreateInput = {
-    Especie: string
-    Fecha_packing: string
-    Folio: string
-    Cajas: number
-    Camara: string
-  }
-
-  export type v_cajas_validadasUncheckedCreateInput = {
-    Especie: string
-    Fecha_packing: string
-    Folio: string
-    Cajas: number
-    Camara: string
-  }
-
-  export type v_cajas_validadasUpdateInput = {
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Camara?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type v_cajas_validadasUncheckedUpdateInput = {
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Camara?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type v_cajas_validadasCreateManyInput = {
-    Especie: string
-    Fecha_packing: string
-    Folio: string
-    Cajas: number
-    Camara: string
-  }
-
-  export type v_cajas_validadasUpdateManyMutationInput = {
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Camara?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type v_cajas_validadasUncheckedUpdateManyInput = {
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Folio?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    Camara?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type v_cajas_rechazadasCreateInput = {
-    folio_rechazado: string
-    especie: string
-    Fecha_packing: string
-    cajas?: number | null
-    camara?: string | null
-  }
-
-  export type v_cajas_rechazadasUncheckedCreateInput = {
-    folio_rechazado: string
-    especie: string
-    Fecha_packing: string
-    cajas?: number | null
-    camara?: string | null
-  }
-
-  export type v_cajas_rechazadasUpdateInput = {
-    folio_rechazado?: StringFieldUpdateOperationsInput | string
-    especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    cajas?: NullableIntFieldUpdateOperationsInput | number | null
-    camara?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_rechazadasUncheckedUpdateInput = {
-    folio_rechazado?: StringFieldUpdateOperationsInput | string
-    especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    cajas?: NullableIntFieldUpdateOperationsInput | number | null
-    camara?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_rechazadasCreateManyInput = {
-    folio_rechazado: string
-    especie: string
-    Fecha_packing: string
-    cajas?: number | null
-    camara?: string | null
-  }
-
-  export type v_cajas_rechazadasUpdateManyMutationInput = {
-    folio_rechazado?: StringFieldUpdateOperationsInput | string
-    especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    cajas?: NullableIntFieldUpdateOperationsInput | number | null
-    camara?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_cajas_rechazadasUncheckedUpdateManyInput = {
-    folio_rechazado?: StringFieldUpdateOperationsInput | string
-    especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    cajas?: NullableIntFieldUpdateOperationsInput | number | null
-    camara?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type v_informe_diarioCreateInput = {
-    Folio: string
-    Especie: string
-    Fecha_packing: string
-    Cajas: number
-    LINEA?: string | null
-    Camara?: string | null
-    Estado: string
-  }
-
-  export type v_informe_diarioUncheckedCreateInput = {
-    Folio: string
-    Especie: string
-    Fecha_packing: string
-    Cajas: number
-    LINEA?: string | null
-    Camara?: string | null
-    Estado: string
-  }
-
-  export type v_informe_diarioUpdateInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Estado?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type v_informe_diarioUncheckedUpdateInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Estado?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type v_informe_diarioCreateManyInput = {
-    Folio: string
-    Especie: string
-    Fecha_packing: string
-    Cajas: number
-    LINEA?: string | null
-    Camara?: string | null
-    Estado: string
-  }
-
-  export type v_informe_diarioUpdateManyMutationInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Estado?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type v_informe_diarioUncheckedUpdateManyInput = {
-    Folio?: StringFieldUpdateOperationsInput | string
-    Especie?: StringFieldUpdateOperationsInput | string
-    Fecha_packing?: StringFieldUpdateOperationsInput | string
-    Cajas?: IntFieldUpdateOperationsInput | number
-    LINEA?: NullableStringFieldUpdateOperationsInput | string | null
-    Camara?: NullableStringFieldUpdateOperationsInput | string | null
-    Estado?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -8796,6 +7923,7 @@ export namespace Prisma {
     Cajas?: SortOrder
     Especie?: SortOrder
     Estado?: SortOrder
+    Temporada?: SortOrder
     Camara?: SortOrder
     Usuario?: SortOrder
     Packing?: SortOrder
@@ -8814,6 +7942,7 @@ export namespace Prisma {
     Cajas?: SortOrder
     Especie?: SortOrder
     Estado?: SortOrder
+    Temporada?: SortOrder
     Camara?: SortOrder
     Usuario?: SortOrder
     Packing?: SortOrder
@@ -8827,6 +7956,7 @@ export namespace Prisma {
     Cajas?: SortOrder
     Especie?: SortOrder
     Estado?: SortOrder
+    Temporada?: SortOrder
     Camara?: SortOrder
     Usuario?: SortOrder
     Packing?: SortOrder
@@ -9001,7 +8131,7 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type Dm_motivo_rechazoNullableRelationFilter = {
+  export type Dm_motivo_rechazoNullableScalarRelationFilter = {
     is?: dm_motivo_rechazoWhereInput | null
     isNot?: dm_motivo_rechazoWhereInput | null
   }
@@ -9013,6 +8143,7 @@ export namespace Prisma {
     fecha_rechazado?: SortOrder
     usuario?: SortOrder
     cajas?: SortOrder
+    Temporada?: SortOrder
     camara?: SortOrder
     nombre_estado?: SortOrder
     estado?: SortOrder
@@ -9033,6 +8164,7 @@ export namespace Prisma {
     fecha_rechazado?: SortOrder
     usuario?: SortOrder
     cajas?: SortOrder
+    Temporada?: SortOrder
     camara?: SortOrder
     nombre_estado?: SortOrder
     estado?: SortOrder
@@ -9047,6 +8179,7 @@ export namespace Prisma {
     fecha_rechazado?: SortOrder
     usuario?: SortOrder
     cajas?: SortOrder
+    Temporada?: SortOrder
     camara?: SortOrder
     nombre_estado?: SortOrder
     estado?: SortOrder
@@ -9566,6 +8699,7 @@ export namespace Prisma {
     fecha_rechazado?: Date | string | null
     usuario?: string | null
     cajas?: number | null
+    Temporada: string
     camara?: string | null
     nombre_estado?: string | null
     estado?: boolean | null
@@ -9579,6 +8713,7 @@ export namespace Prisma {
     fecha_rechazado?: Date | string | null
     usuario?: string | null
     cajas?: number | null
+    Temporada: string
     camara?: string | null
     nombre_estado?: string | null
     estado?: boolean | null
@@ -9621,6 +8756,7 @@ export namespace Prisma {
     fecha_rechazado?: DateTimeNullableFilter<"rechazados"> | Date | string | null
     usuario?: StringNullableFilter<"rechazados"> | string | null
     cajas?: IntNullableFilter<"rechazados"> | number | null
+    Temporada?: StringFilter<"rechazados"> | string
     camara?: StringNullableFilter<"rechazados"> | string | null
     nombre_estado?: StringNullableFilter<"rechazados"> | string | null
     estado?: BoolNullableFilter<"rechazados"> | boolean | null
@@ -9672,6 +8808,7 @@ export namespace Prisma {
     fecha_rechazado?: Date | string | null
     usuario?: string | null
     cajas?: number | null
+    Temporada: string
     camara?: string | null
     nombre_estado?: string | null
     estado?: boolean | null
@@ -9685,6 +8822,7 @@ export namespace Prisma {
     fecha_rechazado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usuario?: NullableStringFieldUpdateOperationsInput | string | null
     cajas?: NullableIntFieldUpdateOperationsInput | number | null
+    Temporada?: StringFieldUpdateOperationsInput | string
     camara?: NullableStringFieldUpdateOperationsInput | string | null
     nombre_estado?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -9698,6 +8836,7 @@ export namespace Prisma {
     fecha_rechazado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usuario?: NullableStringFieldUpdateOperationsInput | string | null
     cajas?: NullableIntFieldUpdateOperationsInput | number | null
+    Temporada?: StringFieldUpdateOperationsInput | string
     camara?: NullableStringFieldUpdateOperationsInput | string | null
     nombre_estado?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -9711,6 +8850,7 @@ export namespace Prisma {
     fecha_rechazado?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usuario?: NullableStringFieldUpdateOperationsInput | string | null
     cajas?: NullableIntFieldUpdateOperationsInput | number | null
+    Temporada?: StringFieldUpdateOperationsInput | string
     camara?: NullableStringFieldUpdateOperationsInput | string | null
     nombre_estado?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -9719,42 +8859,6 @@ export namespace Prisma {
   }
 
 
-
-  /**
-   * Aliases for legacy arg types
-   */
-    /**
-     * @deprecated Use Dm_motivo_rechazoCountOutputTypeDefaultArgs instead
-     */
-    export type Dm_motivo_rechazoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Dm_motivo_rechazoCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use validacionesDefaultArgs instead
-     */
-    export type validacionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = validacionesDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use dm_motivo_rechazoDefaultArgs instead
-     */
-    export type dm_motivo_rechazoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = dm_motivo_rechazoDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use rechazadosDefaultArgs instead
-     */
-    export type rechazadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = rechazadosDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use v_cajas_packingDefaultArgs instead
-     */
-    export type v_cajas_packingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = v_cajas_packingDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use v_cajas_validadasDefaultArgs instead
-     */
-    export type v_cajas_validadasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = v_cajas_validadasDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use v_cajas_rechazadasDefaultArgs instead
-     */
-    export type v_cajas_rechazadasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = v_cajas_rechazadasDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use v_informe_diarioDefaultArgs instead
-     */
-    export type v_informe_diarioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = v_informe_diarioDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

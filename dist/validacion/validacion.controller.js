@@ -20,8 +20,21 @@ let ValidacionController = class ValidacionController {
     constructor(validacionService) {
         this.validacionService = validacionService;
     }
-    create(createValidacionDto) {
-        return this.validacionService.create(createValidacionDto);
+    async create(createValidacionDto) {
+        try {
+            console.log('Received validation request:', JSON.stringify(createValidacionDto, null, 2));
+            const resultado = await this.validacionService.create(createValidacionDto);
+            return resultado;
+        }
+        catch (error) {
+            console.error('Error processing validation:', error);
+            if (error instanceof common_1.NotFoundException) {
+                throw error;
+            }
+            else {
+                throw new common_1.InternalServerErrorException(`Error al procesar la validación: ${error.message}`);
+            }
+        }
     }
     async getFolioValidado(folio) {
         try {
@@ -228,7 +241,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_validacion_dto_1.CreateValidacionDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ValidacionController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)('folio/:folio'),

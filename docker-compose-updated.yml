@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  validacion-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: validacion-app-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Database URLs - Configure these with your SQL Server details
+      - DATABASE_URL=${DATABASE_URL:-sqlserver://user:password@host:1433;database=db;trustServerCertificate=true}
+      - DATABASE_URL2=${DATABASE_URL2:-sqlserver://user:password@host:1433;database=db2;trustServerCertificate=true}
+      - DATABASE_URL3=${DATABASE_URL3:-sqlserver://user:password@host:1433;database=db3;trustServerCertificate=true}
+      - DATABASE_URL4=${DATABASE_URL4:-sqlserver://user:password@host:1433;database=db4;trustServerCertificate=true}
+    volumes:
+      # Mount logs directory for persistence
+      - ./logs:/app/logs
+      # Mount secrets directory for SSL certificates
+      - ./secrets:/app/secrets
+    networks:
+      - validacion-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+networks:
+  validacion-network:
+    driver: bridge
+
+volumes:
+  logs:
+    driver: local
