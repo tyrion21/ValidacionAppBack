@@ -105,23 +105,27 @@ export class ExistenciasService {
     }
   }
 
-  async verificarExistenciaFolio(folio: string): Promise<boolean> {
+  async verificarExistenciaFolio(folio: string): Promise<{ existe: boolean; tipo?: 'normal' | 'mix' }> {
     try {
-      // Primero buscar en existencias normales
+      // PRIMERO buscar en existencias MIX (tiene prioridad porque tiene detalles desagregados)
+      const existenciaMix = await this.prisma.prismaClient3.existenciamix_cajas.findUnique({
+        where: { Folio: folio },
+      });
+
+      if (existenciaMix) {
+        return { existe: true, tipo: 'mix' };
+      }
+
+      // Si no está en mix, buscar en existencias normales
       const existenciaNormal = await this.prisma.prismaClient3.existencias_cajas.findUnique({
         where: { Folio: folio },
       });
 
       if (existenciaNormal) {
-        return true;
+        return { existe: true, tipo: 'normal' };
       }
 
-      // Si no está en existencias normales, buscar en mix
-      const existenciaMix = await this.prisma.prismaClient3.existenciamix_cajas.findUnique({
-        where: { Folio: folio },
-      });
-
-      return existenciaMix !== null;
+      return { existe: false };
     } catch (error) {
       console.error('Error verificando existencia de folio:', error);
       throw new InternalServerErrorException(
