@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Apps/ValidacionAppFr/android/app/**)",
+      "Read(//c/Apps/ValidacionAppFr/**)",
+      "Bash(./gradlew clean:*)",
+      "Bash(npm run android:update-icon:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

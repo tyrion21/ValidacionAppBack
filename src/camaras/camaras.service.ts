@@ -32,9 +32,10 @@ export class CamarasService {
       where: {
         COD_TEM: temporada,
         COD_FRI: codFri,
-        DES_CAM: {
-          startsWith: 'PA',
-        },
+        OR: [
+          { DES_CAM: { startsWith: 'PA' } },
+          { COD_CAM: { startsWith: 'RT01' } }
+        ],
       },
       select: {
         DES_CAM: true,
