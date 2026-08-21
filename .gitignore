@@ -50,3 +50,11 @@ Thumbs.db
 
 # Prisma
 prisma/.env
+
+# Certificados y llaves privadas
+secrets/
+deploy-cert/
+*.pem
+*.key
+*.p12
+!new-server-certs/server.conf
