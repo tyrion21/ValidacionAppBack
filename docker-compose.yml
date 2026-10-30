@@ -18,13 +18,17 @@ services:
       - DATABASE_URL2=${DATABASE_URL2:-sqlserver://user:password@host:1433;database=db2;trustServerCertificate=true}
       - DATABASE_URL3=${DATABASE_URL3:-sqlserver://user:password@host:1433;database=db3;trustServerCertificate=true}
       - DATABASE_URL4=${DATABASE_URL4:-sqlserver://user:password@host:1433;database=db4;trustServerCertificate=true}
+      # Temporada vigente (ver docs/CAMBIO-TEMPORADA.md)
+      - TEMPORADA=${TEMPORADA:-10}
     volumes:
       # Mount logs directory for persistence
       - ./logs:/app/logs
+      # Mount secrets directory for SSL certificates
+      - ./secrets:/app/secrets
     networks:
       - validacion-network
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:3000/"]
       interval: 30s
       timeout: 10s
       retries: 3

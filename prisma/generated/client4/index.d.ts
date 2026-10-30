@@ -7216,10 +7216,11 @@ export namespace Prisma {
 
   export type validacionesWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    Folio?: string
+    Folio_Temporada?: validacionesFolioTemporadaCompoundUniqueInput
     AND?: validacionesWhereInput | validacionesWhereInput[]
     OR?: validacionesWhereInput[]
     NOT?: validacionesWhereInput | validacionesWhereInput[]
+    Folio?: StringFilter<"validaciones"> | string
     Cajas?: IntFilter<"validaciones"> | number
     Especie?: StringFilter<"validaciones"> | string
     Estado?: BoolFilter<"validaciones"> | boolean
@@ -7229,7 +7230,7 @@ export namespace Prisma {
     Packing?: StringFilter<"validaciones"> | string
     createdAt?: DateTimeFilter<"validaciones"> | Date | string
     updatedAt?: DateTimeFilter<"validaciones"> | Date | string
-  }, "id" | "Folio">
+  }, "id" | "Folio_Temporada">
 
   export type validacionesOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7915,6 +7916,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type validacionesFolioTemporadaCompoundUniqueInput = {
+    Folio: string
+    Temporada: string
   }
 
   export type validacionesCountOrderByAggregateInput = {

@@ -12,7 +12,7 @@ datasource db {
 
 model validaciones {
   id        Int      @id(map: "Validacion_pkey") @default(autoincrement())
-  Folio     String   @unique(map: "Validacion_Folio_key") @db.NVarChar(100)
+  Folio     String   @db.NVarChar(100)
   Cajas     Int
   Especie   String   @db.NVarChar(30)
   Estado    Boolean  @default(false, map: "Validacion_Estado_df")
@@ -22,6 +22,9 @@ model validaciones {
   Packing   String   @db.NVarChar(1000)
   createdAt DateTime @default(now(), map: "Validacion_createdAt_df")
   updatedAt DateTime
+
+  // Los folios se reinician cada temporada: el mismo número puede volver a aparecer.
+  @@unique([Folio, Temporada], map: "Validacion_Folio_Temporada_key")
 }
 
 model dm_motivo_rechazo {

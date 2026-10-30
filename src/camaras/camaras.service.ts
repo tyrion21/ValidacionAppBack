@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateCamaraDto } from './dto/create-camara.dto';
 import { UpdateCamaraDto } from './dto/update-camara.dto';
 import { PrismaService } from '../prisma/prisma.service'; // Asegúrate de tener un PrismaService configurado
+import { TEMPORADA } from '../temporada';
 
 @Injectable()
 export class CamarasService {
@@ -26,11 +27,9 @@ export class CamarasService {
   //   return `This action removes a #${id} camara`;
   // }
   async getCamaras(codFri: string): Promise<any> {
-    //const temporada = '7';
-    const temporada = '9';
     return await this.prisma.prismaClient2.cAMARAS.findMany({
       where: {
-        COD_TEM: temporada,
+        COD_TEM: TEMPORADA,
         COD_FRI: codFri,
         OR: [
           { DES_CAM: { startsWith: 'PA' } },

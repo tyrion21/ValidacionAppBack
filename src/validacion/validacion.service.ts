@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException, NotFoundException, ConflictException } from "@nestjs/common";
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateValidacionDto } from './dto/create-validacion.dto';
+import { TEMPORADA } from '../temporada';
 
 @Injectable()
 export class ValidacionService {
@@ -35,7 +36,8 @@ export class ValidacionService {
   }
 
   async create(createValidacionDto: CreateValidacionDto) {
-    const { Folio, Cajas, Especie, Estado, Temporada, Camara, Usuario, Packing } = createValidacionDto;
+    // La Temporada que envía la APK se ignora: manda la del backend
+    const { Folio, Cajas, Especie, Estado, Camara, Usuario, Packing } = createValidacionDto;
 
     try {
       // Primero verificar si el folio existe en existencias
@@ -45,7 +47,7 @@ export class ValidacionService {
       }
 
       const findValidacion = await this.prisma.prismaClient4.validaciones.findFirst({
-        where: { Folio: Folio },
+        where: { Folio: Folio, Temporada: TEMPORADA },
       });
 
 
@@ -58,7 +60,7 @@ export class ValidacionService {
             Cajas,
             Especie,
             Estado,
-            Temporada,
+            Temporada: TEMPORADA,
             Camara,
             Usuario,
             Packing,
@@ -79,7 +81,7 @@ export class ValidacionService {
   async getFolioValidado(folio: string): Promise<any> {
     try {
       const validacion = await this.prisma.prismaClient4.validaciones.findUnique({
-        where: { Folio: folio },
+        where: { Folio_Temporada: { Folio: folio, Temporada: TEMPORADA } },
         select: { createdAt: true },
       });
 
@@ -291,7 +293,8 @@ export class ValidacionService {
    */
   async createRechazo(rechazoDto: any) {
     try {
-      const { Folio, Motivos, Usuario, Especie, Cajas, Temporada, Camara, Packing } = rechazoDto;
+      // La Temporada que envía la APK se ignora: manda la del backend
+      const { Folio, Motivos, Usuario, Especie, Cajas, Camara, Packing } = rechazoDto;
 
       // Registro de depuración para ver qué valores llegan
       console.log('Valores recibidos para createRechazo:');
@@ -311,7 +314,7 @@ export class ValidacionService {
       // Comprobar si el folio ya fue rechazado anteriormente
       try {
         const existingRejection = await this.prisma.prismaClient4.rechazados.findFirst({
-          where: { folio_rechazado: String(Folio || '') }
+          where: { folio_rechazado: String(Folio || ''), Temporada: TEMPORADA }
         });
         
         if (existingRejection) {
@@ -356,7 +359,6 @@ export class ValidacionService {
         const cajas = typeof Cajas === 'number' ? Cajas : parseInt(String(Cajas || '0'), 10) || 0;
         const usuario = String(Usuario || 'Usuario desconocido');
         const especie = String(Especie || '');
-        const temporada = String(Temporada || '');
         const camara = String(Camara || '');
         const packing = String(Packing || '');
 
@@ -369,7 +371,7 @@ export class ValidacionService {
               fecha_rechazado: now,
               usuario: usuario,
               cajas: cajas,
-              Temporada: temporada,
+              Temporada: TEMPORADA,
               camara: camara,
               nombre_estado: 'R', // Estado fijo como 'R'
               estado: true,
@@ -439,8 +441,9 @@ export class ValidacionService {
     try {
       // Buscar en la tabla de rechazados
       const rechazo = await this.prisma.prismaClient4.rechazados.findFirst({
-        where: { 
-          folio_rechazado: String(folio || '') 
+        where: {
+          folio_rechazado: String(folio || ''),
+          Temporada: TEMPORADA
         }
       });
       
@@ -475,8 +478,9 @@ export class ValidacionService {
     try {
       // Actualizar todos los registros de rechazo para el folio
       const result = await this.prisma.prismaClient4.rechazados.updateMany({
-        where: { 
+        where: {
           folio_rechazado: String(folio || ''),
+          Temporada: TEMPORADA,
           nombre_estado: 'R' // Solo actualizar si está en estado 'R'
         },
         data: {
@@ -513,7 +517,7 @@ export class ValidacionService {
     try {
       // Buscar el folio en la tabla de validaciones
       const validacion = await this.prisma.prismaClient4.validaciones.findUnique({
-        where: { Folio: folio }
+        where: { Folio_Temporada: { Folio: folio, Temporada: TEMPORADA } }
       });
       
       return {

@@ -3,6 +3,7 @@ import { FriosService } from './frios.service';
 import { CreateFrioDto } from './dto/create-frio.dto';
 import { UpdateFrioDto } from './dto/update-frio.dto';
 import { Response } from 'express';
+import { TEMPORADA } from '../temporada';
 
 @Controller('frios')
 export class FriosController {
@@ -36,8 +37,7 @@ export class FriosController {
   @Get()
   async getFrios(@Res() res: Response) {
     try {
-      const temporada = '9';
-      const frios = await this.friosService.getFrios(temporada);
+      const frios = await this.friosService.getFrios(TEMPORADA);
       return res.status(HttpStatus.OK).json(frios);
     } catch (error) {
       console.error(error);
